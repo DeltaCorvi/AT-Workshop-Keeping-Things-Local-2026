@@ -1,8 +1,16 @@
 # Large binaries — distributed separately, exceed GitHub's 100 MB file limit
-VM resources/VM resources.zip
+VM resources/
 Lab Manual/assets/*.mp4
+
+# Obsidian vault config, local to this machine
+.obsidian/
+.trash/
 
 # OS noise
 .DS_Store
 Thumbs.db
 desktop.ini
+
+# Editor swap/backup files
+*.swp
+*~
