@@ -1,5 +1,5 @@
 # Large binaries — distributed separately, exceed GitHub's 100 MB file limit
-VM resources/
+misc_resources/
 Lab Manual/assets/*.mp4
 
 # Obsidian vault config, local to this machine

@@ -1,21 +1,14 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 720" font-family="'DejaVu Sans', Arial, sans-serif">
   <rect x="0" y="0" width="1400" height="720" fill="#ffffff"/>
-
-  <!-- Title -->
   <text x="700" y="62" text-anchor="middle" font-size="40" font-weight="700" fill="#0f172a">Keeping Things Local — VM Architecture</text>
-
-  <!-- Arrowhead marker -->
   <defs>
     <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
       <path d="M0,0 L10,5 L0,10 z" fill="#475569"/>
     </marker>
   </defs>
-
-  <!-- ================= MARVIN (client) ================= -->
   <rect x="60" y="130" width="410" height="480" rx="14" fill="#f8fafc" stroke="#94a3b8" stroke-width="2"/>
   <text x="265" y="190" text-anchor="middle" font-size="32" font-weight="700" fill="#0f172a">Marvin</text>
   <text x="265" y="222" text-anchor="middle" font-size="19" fill="#475569">client · user: benjy</text>
-
   <g>
     <rect x="100" y="255" width="330" height="72" rx="10" fill="#475569"/>
     <text x="265" y="299" text-anchor="middle" font-size="22" font-weight="600" fill="#ffffff">Terminal / curl</text>
@@ -28,39 +21,26 @@
     <rect x="100" y="443" width="330" height="72" rx="10" fill="#475569"/>
     <text x="265" y="487" text-anchor="middle" font-size="22" font-weight="600" fill="#ffffff">Web UI</text>
   </g>
-
   <text x="265" y="575" text-anchor="middle" font-size="18" fill="#475569">8 GB RAM · 2 vCPU · headless</text>
-
-  <!-- ================= TAILSCALE MESH ================= -->
   <rect x="555" y="330" width="290" height="120" rx="60" fill="#2563eb"/>
   <text x="700" y="385" text-anchor="middle" font-size="26" font-weight="700" fill="#ffffff">Tailscale mesh</text>
   <text x="700" y="416" text-anchor="middle" font-size="19" fill="#dbeafe" font-family="'DejaVu Sans Mono', monospace">encrypted · 100.x.y.z</text>
-
-  <!-- Arrows client -> mesh -> server -->
-  <line x1="470" y1="390" x2="548" y2="390" stroke="#475569" stroke-width="4" marker-end="url(#arrow)"/>
-  <line x1="845" y1="390" x2="923" y2="390" stroke="#475569" stroke-width="4" marker-end="url(#arrow)"/>
-
-  <!-- ================= HEARTOFGOLD (server) ================= -->
+  <line x1="470" y1="390" x2="548" y2="390" stroke="#475569" stroke-width="4" marker-start="url(#arrow)" marker-end="url(#arrow)"/>
+  <line x1="845" y1="390" x2="923" y2="390" stroke="#475569" stroke-width="4" marker-start="url(#arrow)" marker-end="url(#arrow)"/>
   <rect x="930" y="130" width="410" height="480" rx="14" fill="#f8fafc" stroke="#94a3b8" stroke-width="2"/>
   <text x="1135" y="190" text-anchor="middle" font-size="32" font-weight="700" fill="#0f172a">HeartOfGold</text>
   <text x="1135" y="222" text-anchor="middle" font-size="19" fill="#475569">server · user: frankie</text>
-
   <g>
     <rect x="970" y="270" width="330" height="96" rx="10" fill="#0d9488"/>
     <text x="1135" y="308" text-anchor="middle" font-size="23" font-weight="700" fill="#ffffff">nginx</text>
     <text x="1135" y="338" text-anchor="middle" font-size="17" fill="#d1fae5">reverse proxy + basic auth</text>
   </g>
-
-  <line x1="1135" y1="366" x2="1135" y2="424" stroke="#475569" stroke-width="4" marker-end="url(#arrow)"/>
-
+  <line x1="1135" y1="366" x2="1135" y2="424" stroke="#475569" stroke-width="4" marker-start="url(#arrow)" marker-end="url(#arrow)"/>
   <g>
     <rect x="970" y="426" width="330" height="96" rx="10" fill="#7c3aed"/>
     <text x="1135" y="464" text-anchor="middle" font-size="23" font-weight="700" fill="#ffffff">Ollama</text>
     <text x="1135" y="494" text-anchor="middle" font-size="17" fill="#ede9fe">local LLM</text>
   </g>
-
   <text x="1135" y="575" text-anchor="middle" font-size="18" fill="#475569">RAM/disk: TBD</text>
-
-  <!-- Caption -->
   <text x="700" y="682" text-anchor="middle" font-size="20" fill="#64748b">Final-state architecture, after the nginx lab (Lesson 06) is complete</text>
 </svg>

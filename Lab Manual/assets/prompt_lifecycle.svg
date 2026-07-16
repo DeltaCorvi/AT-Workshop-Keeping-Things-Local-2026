@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="252 10 696 1088" font-family="'DejaVu Sans', Arial, sans-serif">
+  <rect x="252" y="10" width="696" height="1088" fill="#ffffff"/>
+  <defs>
+    <marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#475569"/>
+    </marker>
+  </defs>
+
+  <text x="600" y="44" text-anchor="middle" font-size="34" font-weight="700" fill="#0f172a">The Life Cycle of a Prompt</text>
+
+  <!-- return rails (behind boxes) -->
+  <polyline points="380,1043 300,1043 300,99 520,99" fill="none" stroke="#475569" stroke-width="3" marker-end="url(#ah)"/>
+  <polyline points="820,1043 900,1043 900,199 820,199" fill="none" stroke="#475569" stroke-width="3" stroke-dasharray="8 6" marker-end="url(#ah)"/>
+
+  <!-- User -->
+  <rect x="520" y="74" width="160" height="50" rx="25" fill="#2563eb"/>
+  <text x="600" y="106" text-anchor="middle" font-size="22" font-weight="700" fill="#ffffff">User</text>
+
+  <line x1="600" y1="124" x2="600" y2="166" stroke="#475569" stroke-width="3" marker-end="url(#ah)"/>
+  <rect x="536" y="134" width="128" height="22" rx="5" fill="#ffffff"/>
+  <text x="600" y="150" text-anchor="middle" font-size="16" fill="#334155">enters a prompt</text>
+
+  <!-- H1 -->
+  <rect x="380" y="170" width="440" height="58" rx="10" fill="#475569"/>
+  <text x="600" y="205" text-anchor="middle" font-size="20" font-weight="600" fill="#ffffff">Harness receives prompt</text>
+
+  <line x1="600" y1="228" x2="600" y2="262" stroke="#475569" stroke-width="3" marker-end="url(#ah)"/>
+
+  <!-- H2 -->
+  <rect x="380" y="266" width="440" height="76" rx="10" fill="#475569"/>
+  <text x="600" y="298" text-anchor="middle" font-size="18" font-weight="600" fill="#ffffff">Harness attaches the system prompt,</text>
+  <text x="600" y="323" text-anchor="middle" font-size="18" font-weight="600" fill="#ffffff">persona, tone, constraints</text>
+
+  <line x1="600" y1="342" x2="600" y2="376" stroke="#475569" stroke-width="3" marker-end="url(#ah)"/>
+
+  <!-- TOK1 -->
+  <rect x="380" y="380" width="440" height="58" rx="10" fill="#475569"/>
+  <text x="600" y="415" text-anchor="middle" font-size="20" font-weight="600" fill="#ffffff">Tokenizer breaks text into tokens</text>
+
+  <line x1="600" y1="438" x2="600" y2="472" stroke="#475569" stroke-width="3" marker-end="url(#ah)"/>
+
+  <!-- LOOP container -->
+  <rect x="350" y="476" width="500" height="372" rx="14" fill="#f1f5f9" stroke="#94a3b8" stroke-width="2"/>
+  <text x="600" y="502" text-anchor="middle" font-size="15" font-style="italic" fill="#334155">Autoregressive generation: repeats one token at a time</text>
+
+  <!-- M1 -->
+  <rect x="400" y="518" width="400" height="76" rx="10" fill="#475569"/>
+  <text x="600" y="550" text-anchor="middle" font-size="18" font-weight="600" fill="#ffffff">Model scores probable next tokens</text>
+  <text x="600" y="575" text-anchor="middle" font-size="18" font-weight="600" fill="#ffffff">using its trained parameters</text>
+
+  <line x1="600" y1="594" x2="600" y2="618" stroke="#475569" stroke-width="3" marker-end="url(#ah)"/>
+
+  <!-- TEMP decision -->
+  <polygon points="600,618 805,676 600,734 395,676" fill="#7c3aed"/>
+  <text x="600" y="670" text-anchor="middle" font-size="17" font-weight="600" fill="#ffffff">Temperature shapes</text>
+  <text x="600" y="693" text-anchor="middle" font-size="17" font-weight="600" fill="#ffffff">which token gets picked</text>
+
+  <line x1="600" y1="734" x2="600" y2="760" stroke="#475569" stroke-width="3" marker-end="url(#ah)"/>
+
+  <!-- APPEND -->
+  <rect x="400" y="764" width="400" height="58" rx="10" fill="#475569"/>
+  <text x="600" y="799" text-anchor="middle" font-size="18" font-weight="600" fill="#ffffff">Token appended to the output so far</text>
+
+  <!-- loop back APPEND -> M1 -->
+  <polyline points="400,793 368,793 368,556 400,556" fill="none" stroke="#475569" stroke-width="3" marker-end="url(#ah)"/>
+  <text transform="rotate(-90 359 675)" x="359" y="675" text-anchor="middle" font-size="14" fill="#334155">not a stop token</text>
+
+  <!-- stop token exit -->
+  <line x1="600" y1="822" x2="600" y2="896" stroke="#475569" stroke-width="3" marker-end="url(#ah)"/>
+  <rect x="514" y="853" width="172" height="22" rx="5" fill="#ffffff"/>
+  <text x="600" y="869" text-anchor="middle" font-size="16" fill="#334155">stop token reached</text>
+
+  <!-- TOK2 -->
+  <rect x="380" y="900" width="440" height="76" rx="10" fill="#475569"/>
+  <text x="600" y="932" text-anchor="middle" font-size="18" font-weight="600" fill="#ffffff">Detokenizer reassembles</text>
+  <text x="600" y="957" text-anchor="middle" font-size="18" font-weight="600" fill="#ffffff">tokens into readable text</text>
+
+  <line x1="600" y1="976" x2="600" y2="1010" stroke="#475569" stroke-width="3" marker-end="url(#ah)"/>
+
+  <!-- H3 -->
+  <rect x="380" y="1014" width="440" height="58" rx="10" fill="#475569"/>
+  <text x="600" y="1049" text-anchor="middle" font-size="20" font-weight="600" fill="#ffffff">Harness returns the response</text>
+
+  <!-- rail labels -->
+  <text transform="rotate(-90 288 560)" x="288" y="560" text-anchor="middle" font-size="15" fill="#334155">response returned to user</text>
+  <text transform="rotate(-90 912 600)" x="912" y="600" text-anchor="middle" font-size="15" fill="#334155">next message in the conversation</text>
+</svg>

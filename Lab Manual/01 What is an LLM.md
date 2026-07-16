@@ -102,25 +102,7 @@ A raw model only predicts the next token. Everything that makes it feel like a p
 
 Here's how the pieces above fit together in practice, the full journey a single prompt takes, from you, through everything in between, and back.
 
-```mermaid
-flowchart TD
-    U(["User"]) -->|"enters a prompt"| H1["Harness receives prompt"]
-    H1 --> H2["Harness attaches the system prompt,<br/>persona, tone, constraints"]
-    H2 --> TOK1["Tokenizer breaks text into tokens"]
-    TOK1 --> M1["Model scores probable next tokens<br/>using its trained parameters"]
-
-    subgraph LOOP["Autoregressive generation: repeats one token at a time"]
-        direction TB
-        M1 --> TEMP{"Temperature shapes<br/>which token gets picked"}
-        TEMP --> APPEND["Token appended to the output so far"]
-        APPEND -->|"not a stop token"| M1
-    end
-
-    APPEND -->|"stop token reached"| TOK2["Detokenizer reassembles<br/>tokens into readable text"]
-    TOK2 --> H3["Harness returns the response"]
-    H3 --> U
-    H3 -.->|"next message in the conversation"| H1
-```
+![The life cycle of a prompt: a prompt travels from the user through the harness, system prompt, tokenizer, and model into an autoregressive generation loop shaped by temperature, then back out through the detokenizer and harness to the user|500](assets/prompt_lifecycle.png)
 
 ### System Prompt
 
