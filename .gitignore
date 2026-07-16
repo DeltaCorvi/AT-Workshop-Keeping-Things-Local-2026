@@ -1,0 +1,8 @@
+# Large binaries — distributed separately, exceed GitHub's 100 MB file limit
+VM resources/VM resources.zip
+Lab Manual/assets/*.mp4
+
+# OS noise
+.DS_Store
+Thumbs.db
+desktop.ini
