@@ -30,6 +30,7 @@ By the end of the workshop, you will be able to:
 - Configure Ollama to listen on the network so other systems can use it
 - Customize model behavior with Modelfiles to build purpose-specific assistants for your workflows
 - Build an encrypted mesh network with Tailscale and connect multiple machines to it
+- Self-host the mesh's control plane with Headscale to keep the entire stack on hardware you control (optional module)
 - Put an nginx reverse proxy with basic authentication in front of Ollama to control who can reach it
 - Explain the data sovereignty case for local AI and the attack surface you take on when you expose an LLM service
 
@@ -87,9 +88,11 @@ The lab manual is organized into sequential modules. Each builds on the last.
 | 03 | [Working with Ollama](Lab%20Manual/03%20Working%20with%20Ollama.md) | Install Ollama, pull and run models, and the commands you'll use most |
 | 04 | [Model Customization with Modelfiles](Lab%20Manual/04%20Model%20Customization%20with%20Modelfiles.md) | Build purpose-specific assistants with system prompts and parameter tuning |
 | 05 | [Tailscale Mesh Networking](Lab%20Manual/05%20Tailscale%20Mesh%20Networking.md) | Stand up an encrypted mesh and reach Ollama across it |
+| 05b | [Self-Hosting the Mesh with Headscale](Lab%20Manual/05b%20Self-Hosting%20the%20Mesh%20with%20Headscale.md) | *Optional.* Run the mesh's control plane yourself with Headscale instead of Tailscale's hosted server |
 | 06 | [Locking It Down with nginx](Lab%20Manual/06%20Locking%20It%20Down%20with%20nginx.md) | Add an nginx reverse proxy with authentication in front of Ollama |
-| 07 | [Wrap Up and Q&A](Lab%20Manual/07%20Wrap%20Up%20and%20Q%26A.md) | Data sovereignty, attack surface, and hardening for production |
-| 08 | [References](Lab%20Manual/08%20References.md) | Supplemental material, including the full history of AI |
+| 07 | [Putting It Through Its Paces](Lab%20Manual/07%20Putting%20It%20Through%20Its%20Paces.md) | Reach the model three ways (terminal, TUI, web UI), then use it on sensitive-data and red team tasks |
+| 08 | [Wrap Up and Q&A](Lab%20Manual/08%20Wrap%20Up%20and%20Q%26A.md) | Data sovereignty, attack surface, and hardening for production |
+| 09 | [References](Lab%20Manual/09%20References.md) | Supplemental material, including the full history of AI |
 
 ## Repository Layout
 
@@ -97,7 +100,7 @@ The lab manual is organized into sequential modules. Each builds on the last.
 .
 ├── README.md                 This file
 ├── LICENSE                   CC BY 4.0
-├── Lab Manual/               The workshop modules (00–08) and images
+├── Lab Manual/               The workshop modules (00–09) and images
 │   └── assets/               Diagrams and screenshots used in the manual
 ├── assets/                   Architecture and login diagrams
 └── model files/              Example Modelfiles (daffy, quizmaker)
@@ -107,6 +110,7 @@ The lab manual is organized into sequential modules. Each builds on the last.
 
 - **[Ollama](https://ollama.com/)** — local LLM runtime
 - **[Tailscale](https://tailscale.com/)** — encrypted mesh networking
+- **[Headscale](https://headscale.net/)** — self-hosted Tailscale control server (optional module)
 - **[nginx](https://nginx.org/)** — reverse proxy with basic authentication
 - **VMware Workstation / Fusion** — virtualization for the two lab VMs
 

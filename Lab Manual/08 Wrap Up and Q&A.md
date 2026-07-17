@@ -17,4 +17,4 @@ maxLevel: 3
 
 ---
 
-< Previous - [[06 Locking It Down with nginx]] | [[08 References]] - Next >
+< Previous - [[07 Putting It Through Its Paces]] | [[09 References]] - Next >

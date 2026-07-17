@@ -54,10 +54,13 @@ Optional advanced track. Run the coordination server yourself with Headscale ins
 ### [[06 Locking It Down with nginx]]
 Put an nginx reverse proxy in front of Ollama with basic authentication. Now your service is remote, encrypted, and access-controlled.
 
-### [[07 Wrap Up and Q&A]]
+### [[07 Putting It Through Its Paces]]
+Reach the same served model from Marvin three ways, with a terminal client, a TUI, and a web UI, then use it on the tasks that make local AI worth it: sensitive data and authorized red team work.
+
+### [[08 Wrap Up and Q&A]]
 Data sovereignty principles, attack surface considerations, and hardening ideas for production deployments.
 
-### [[08 References]]
+### [[09 References]]
 Supplemental material not essential to the hands-on lab, including the full history of AI.
 
 ---

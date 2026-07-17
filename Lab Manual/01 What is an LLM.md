@@ -11,7 +11,7 @@ minLevel: 0
 maxLevel: 5
 ```
 
-> [!info] Curious about the full history of AI, from 1956 to present? See [[08 References]].
+> [!info] Curious about the full history of AI, from 1956 to present? See [[09 References]].
 
 # Ok, So What IS AI?!?
 

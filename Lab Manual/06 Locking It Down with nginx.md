@@ -17,4 +17,4 @@ maxLevel: 3
 
 ---
 
-< Previous - [[05 Tailscale Mesh Networking]] | [[07 Wrap Up and Q&A]] - Next >
+< Previous - [[05 Tailscale Mesh Networking]] | [[07 Putting It Through Its Paces]] - Next >

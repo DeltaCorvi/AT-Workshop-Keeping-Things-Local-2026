@@ -40,4 +40,4 @@ AI, first defined in 1956, has progressed from symbolic reasoning to machine lea
 
 ---
 
-< Previous - [[07 Wrap Up and Q&A]]
+< Previous - [[08 Wrap Up and Q&A]]
