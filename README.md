@@ -114,11 +114,11 @@ The lab manual is organized into sequential modules. Each builds on the last.
 
 ## Tools Used
 
-- **[Ollama](https://ollama.com/)** — local LLM runtime
-- **[Tailscale](https://tailscale.com/)** — encrypted mesh networking
-- **[Headscale](https://headscale.net/)** — self-hosted Tailscale control server (optional module)
-- **[nginx](https://nginx.org/)** — reverse proxy with basic authentication
-- **VMware Workstation / Fusion** — virtualization for the two lab VMs
+- **[Ollama](https://ollama.com/)**: local LLM runtime
+- **[Tailscale](https://tailscale.com/)**: encrypted mesh networking
+- **[Headscale](https://headscale.net/)**: self-hosted Tailscale control server (optional module)
+- **[nginx](https://nginx.org/)**: reverse proxy with basic authentication
+- **VMware Workstation / Fusion**: virtualization for the two lab VMs
 
 ## License
 
@@ -126,4 +126,4 @@ This work is licensed under the [Creative Commons Attribution 4.0 International 
 
 ## Author
 
-**Bronwen Aker** — *Corvus, The Cybrarian*
+**Bronwen Aker**, *Corvus, The Cybrarian*
