@@ -14,3 +14,6 @@ desktop.ini
 # Editor swap/backup files
 *.swp
 *~
+
+# Claude Code local settings
+.claude/settings.local.json
