@@ -94,4 +94,7 @@ A quick reference for the commands you will reach for most with Ollama:
 
 ---
 
-< Previous - [[02 Setting Up Your VMs]] | [[04 Model Customization with Modelfiles]] - Next >
+> [!nav]
+> [[02 Setting Up Your VMs]]
+>
+> [[04 Model Customization with Modelfiles]]

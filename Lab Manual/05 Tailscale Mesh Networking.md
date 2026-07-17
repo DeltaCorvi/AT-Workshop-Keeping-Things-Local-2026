@@ -171,4 +171,7 @@ To watch it actually generate, send a prompt:
 
 ---
 
-< Previous - [[04 Model Customization with Modelfiles]] | [[06 Locking It Down with nginx]] - Next >
+> [!nav]
+> [[04 Model Customization with Modelfiles]]
+>
+> [[06 Locking It Down with nginx]]

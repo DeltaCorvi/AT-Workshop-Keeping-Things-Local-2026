@@ -128,7 +128,10 @@ Temperature controls how predictable versus creative a model's output is. Low te
 
 ---
 
-< Previous - [[00 About This Workshop]] | [[02 Setting Up Your VMs]] - Next > 
+> [!nav]
+> [[00 About This Workshop]]
+>
+> [[02 Setting Up Your VMs]]
 
 
 

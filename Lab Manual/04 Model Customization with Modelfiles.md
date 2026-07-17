@@ -149,4 +149,7 @@ Try modifying one of these. Change Daffy's character, or tighten quizmaker's out
 
 ---
 
-< Previous - [[03 Working with Ollama]] | [[05 Tailscale Mesh Networking]] - Next >
+> [!nav]
+> [[03 Working with Ollama]]
+>
+> [[05 Tailscale Mesh Networking]]

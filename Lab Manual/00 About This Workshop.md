@@ -65,4 +65,5 @@ Supplemental material not essential to the hands-on lab, including the full hist
 
 ---
 
-[[01 What is an LLM]] - Next >
+> [!navnext]
+> [[01 What is an LLM]]

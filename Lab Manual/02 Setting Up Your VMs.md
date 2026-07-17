@@ -164,4 +164,7 @@ Unlike when you install a new VM from scratch, this VM has already been built an
 
 ---
 
-< Previous - [[01 What is an LLM]] | [[03 Working with Ollama]] - Next >
+> [!nav]
+> [[01 What is an LLM]]
+>
+> [[03 Working with Ollama]]

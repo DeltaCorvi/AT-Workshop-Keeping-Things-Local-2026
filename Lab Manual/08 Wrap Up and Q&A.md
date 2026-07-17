@@ -17,4 +17,7 @@ maxLevel: 3
 
 ---
 
-< Previous - [[07 Putting It Through Its Paces]] | [[09 References]] - Next >
+> [!nav]
+> [[07 Putting It Through Its Paces]]
+>
+> [[09 References]]

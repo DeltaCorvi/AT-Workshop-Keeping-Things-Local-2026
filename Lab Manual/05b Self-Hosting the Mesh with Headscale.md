@@ -177,4 +177,7 @@ Self-hosting the control plane removes the last third party from the "keep it lo
 
 ---
 
-< Previous - [[05 Tailscale Mesh Networking]] | [[06 Locking It Down with nginx]] - Next >
+> [!nav]
+> [[05 Tailscale Mesh Networking]]
+>
+> [[06 Locking It Down with nginx]]
