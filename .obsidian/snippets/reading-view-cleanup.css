@@ -1,0 +1,20 @@
+/* ==========================================================================
+   Reading-view cleanup (student-facing view)
+   --------------------------------------------------------------------------
+   Only affects full reading view. Edit and live-preview are untouched, so
+   author notes and properties stay visible while you write. !important is
+   deliberate: AnuPpuccin sets these with higher specificity.
+   ========================================================================== */
+
+/* Hide author-only TODO callouts from students (safety net; still remove them) */
+.markdown-reading-view .callout[data-callout="todo"] {
+  display: none !important;
+}
+
+/* Collapse the frontmatter property block (author, updated, venue) */
+.markdown-reading-view .metadata-container,
+.markdown-preview-view .metadata-container,
+.markdown-reading-view .metadata-properties-container,
+.markdown-preview-view .metadata-properties-container {
+  display: none !important;
+}

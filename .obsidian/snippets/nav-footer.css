@@ -1,0 +1,145 @@
+/* ==========================================================================
+   Navigation footer (labeled cards)
+   --------------------------------------------------------------------------
+   Renders the Previous/Next footer as two bordered cards, each with a small
+   direction label above the lesson title.
+
+   Markup: a [!nav] callout holding the two wikilinks, blank quote line between
+   them so they land in separate cards.
+
+       > [!nav]
+       > [[05 Tailscale Mesh Networking]]
+       >
+       > [[07 Putting It Through Its Paces]]
+
+   For a first/last page, leave the unused slot as an empty quote line.
+   ========================================================================== */
+
+.callout[data-callout="nav"] {
+  border: none;
+  background: transparent;
+  padding: 0;
+  margin-top: 2.5rem;
+}
+
+.callout[data-callout="nav"] .callout-title {
+  display: none;
+}
+
+.callout[data-callout="nav"] .callout-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 12px;
+  margin: 0;
+}
+
+.callout[data-callout="nav"] .callout-content > p {
+  margin: 0;
+  flex: 1;
+  display: flex;
+  min-width: 0;
+}
+
+.callout[data-callout="nav"] .callout-content > p:last-child {
+  justify-content: flex-end;
+}
+
+/* Each link becomes a card */
+.callout[data-callout="nav"] .callout-content a {
+  display: block;
+  padding: 10px 14px;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 10px;
+  text-decoration: none;
+  line-height: 1.35;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.callout[data-callout="nav"] .callout-content a:hover {
+  background: var(--background-modifier-hover);
+  border-color: var(--background-modifier-border-hover);
+}
+
+/* Direction label above the title */
+.callout[data-callout="nav"] .callout-content > p:first-child a::before {
+  content: "\2190  Previous";
+  display: block;
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-bottom: 2px;
+}
+
+.callout[data-callout="nav"] .callout-content > p:last-child a::before {
+  content: "Next  \2192";
+  display: block;
+  font-size: 12px;
+  color: var(--text-muted);
+  text-align: right;
+  margin-bottom: 2px;
+}
+
+.callout[data-callout="nav"] .callout-content > p:last-child a {
+  text-align: right;
+}
+
+/* --- Single-card variants for the first and last pages --- */
+.callout[data-callout="navprev"],
+.callout[data-callout="navnext"] {
+  border: none;
+  background: transparent;
+  padding: 0;
+  margin-top: 2.5rem;
+}
+
+.callout[data-callout="navprev"] .callout-title,
+.callout[data-callout="navnext"] .callout-title {
+  display: none;
+}
+
+.callout[data-callout="navprev"] .callout-content,
+.callout[data-callout="navnext"] .callout-content {
+  margin: 0;
+  display: flex;
+}
+
+.callout[data-callout="navprev"] .callout-content { justify-content: flex-start; }
+.callout[data-callout="navnext"] .callout-content { justify-content: flex-end; }
+
+.callout[data-callout="navprev"] .callout-content a,
+.callout[data-callout="navnext"] .callout-content a {
+  display: block;
+  padding: 10px 14px;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 10px;
+  text-decoration: none;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+
+.callout[data-callout="navprev"] .callout-content a:hover,
+.callout[data-callout="navnext"] .callout-content a:hover {
+  background: var(--background-modifier-hover);
+}
+
+.callout[data-callout="navprev"] .callout-content a::before {
+  content: "\2190  Previous";
+  display: block;
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-bottom: 2px;
+}
+
+.callout[data-callout="navnext"] .callout-content a {
+  text-align: right;
+}
+
+.callout[data-callout="navnext"] .callout-content a::before {
+  content: "Next  \2192";
+  display: block;
+  font-size: 12px;
+  color: var(--text-muted);
+  text-align: right;
+  margin-bottom: 2px;
+}

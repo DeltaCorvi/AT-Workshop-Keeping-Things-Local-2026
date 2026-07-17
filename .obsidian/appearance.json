@@ -1,0 +1,15 @@
+{
+  "cssTheme": "AnuPpuccin",
+  "baseFontSizeAction": true,
+  "baseFontSize": 17,
+  "enabledCssSnippets": [
+    "image-alignment",
+    "command-origin",
+    "checkpoints",
+    "nav-footer",
+    "reading-view-cleanup",
+    "code-wrap",
+    "extended-colorschemes"
+  ],
+  "theme": "obsidian"
+}

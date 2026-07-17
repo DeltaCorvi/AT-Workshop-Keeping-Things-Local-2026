@@ -1,0 +1,23 @@
+/* ==========================================================================
+   Checkpoint
+   --------------------------------------------------------------------------
+   End-of-lesson verification checklist students can tick off.
+
+       > [!checkpoint] Checkpoint
+       > You have finished this lesson when all the boxes are ticked.
+       >
+       > - [ ] `ss -tlnp | grep 11434` shows 127.0.0.1 only
+       > - [ ] A curl with no credentials returns 401
+   ========================================================================== */
+
+.callout[data-callout="checkpoint"] {
+  --callout-color: 13, 148, 136;   /* teal */
+  --callout-icon: lucide-check-check;
+}
+
+/* Keep checked items readable. AnuPpuccin strikes through completed tasks,
+   which reads wrong for a verification list, so the checkbox alone marks done. */
+.callout[data-callout="checkpoint"] .task-list-item.is-checked,
+.callout[data-callout="checkpoint"] .task-list-item.is-checked * {
+  text-decoration: none !important;
+}

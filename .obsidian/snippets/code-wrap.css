@@ -1,0 +1,29 @@
+/* ==========================================================================
+   Wrap code, kill horizontal scroll
+   --------------------------------------------------------------------------
+   Long command lines wrap to the next line instead of forcing a horizontal
+   scroll bar. Covers fenced code blocks (including inside callouts) and long
+   inline code. !important is deliberate: the Atom theme sets white-space on
+   code with higher specificity, so the override has to outrank it.
+   ========================================================================== */
+
+/* Reading view: fenced blocks and inline code */
+.markdown-rendered pre,
+.markdown-rendered pre > code,
+.markdown-rendered code {
+  white-space: pre-wrap !important;
+  overflow-wrap: anywhere !important;
+  word-break: normal !important;
+}
+
+.markdown-rendered pre {
+  overflow-x: auto;
+}
+
+/* Live preview */
+.markdown-source-view.mod-cm6 .HyperMD-codeblock,
+.markdown-source-view.mod-cm6 .cm-inline-code {
+  white-space: pre-wrap !important;
+  overflow-wrap: anywhere !important;
+  word-break: normal !important;
+}

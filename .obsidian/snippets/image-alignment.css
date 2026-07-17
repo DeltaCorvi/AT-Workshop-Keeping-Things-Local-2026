@@ -1,0 +1,60 @@
+/* ==========================================================================
+   Image alignment
+   --------------------------------------------------------------------------
+   Align an image left, right, or centered by tagging it with a keyword.
+
+   Wikilink embeds (what the lab manual uses):
+       ![[picture.png|center]]
+       ![[picture.png|left]]
+       ![[picture.png|right]]
+
+   Add a width by appending a second pipe (order does not matter):
+       ![[picture.png|center|400]]
+
+   Standard Markdown images (alt text is the keyword):
+       ![center](assets/picture.png)
+       ![left](assets/picture.png)
+       ![right](assets/picture.png)
+
+   No keyword means no change: images render exactly as they do now.
+   This snippet only affects Obsidian's display, not GitHub or exports.
+   ========================================================================== */
+
+/* --- Internal embeds: ![[file|center]] etc. (reading view + live preview) --- */
+.image-embed[alt="center"] {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.image-embed[alt="left"] {
+  display: block;
+  margin-left: 0;
+  margin-right: auto;
+}
+.image-embed[alt="right"] {
+  display: block;
+  margin-left: auto;
+  margin-right: 0;
+}
+
+/* Make sure the <img> inside the embed follows its container */
+.image-embed[alt="center"] img { display: block; margin: 0 auto; }
+.image-embed[alt="left"]   img { display: block; margin-right: auto; margin-left: 0; }
+.image-embed[alt="right"]  img { display: block; margin-left: auto; margin-right: 0; }
+
+/* --- Standard Markdown images: ![center](path) etc. --- */
+img[alt="center"] {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+img[alt="left"] {
+  display: block;
+  margin-left: 0;
+  margin-right: auto;
+}
+img[alt="right"] {
+  display: block;
+  margin-left: auto;
+  margin-right: 0;
+}
