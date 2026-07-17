@@ -35,21 +35,24 @@ curl -fsSL https://ollama.com/install.sh | sh
 
 On HeartOfGold, the install script already enabled and started Ollama as a systemd service, so it is running by the time the install finishes. Confirm it is responding and see the pre-loaded model:
 
-```bash
-ollama list
-```
+> [!hog] HeartOfGold · frankie
+> ```bash
+> ollama list
+> ```
 
 To check the version:
 
-```shell
-ollama -v
-```
+> [!hog] HeartOfGold · frankie
+> ```shell
+> ollama -v
+> ```
 
 ### Pull a Model
 
-```shell
-ollama pull llama3.2
-```
+> [!hog] HeartOfGold · frankie
+> ```shell
+> ollama pull llama3.2
+> ```
 
 This command can also be used to update a local model. Only the diff will be pulled.
 

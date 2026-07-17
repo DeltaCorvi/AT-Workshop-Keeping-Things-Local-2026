@@ -35,9 +35,10 @@ The key move is that nginx, not Ollama, is now the only thing listening on Heart
 
 In lesson 05 you added a systemd override so Ollama would bind to HeartOfGold's tailnet address. Now that nginx is going to own that address, Ollama should go back to listening only on localhost. Edit the override again:
 
-```shell
-sudo systemctl edit ollama
-```
+> [!hog] HeartOfGold · frankie
+> ```shell
+> sudo systemctl edit ollama
+> ```
 
 Set the bind address back to localhost:
 
@@ -48,16 +49,18 @@ Environment="OLLAMA_HOST=127.0.0.1:11434"
 
 Reload and restart so the change takes effect:
 
-```shell
-sudo systemctl daemon-reload
-sudo systemctl restart ollama
-```
+> [!hog] HeartOfGold · frankie
+> ```shell
+> sudo systemctl daemon-reload
+> sudo systemctl restart ollama
+> ```
 
 Confirm Ollama is once again bound to localhost and nothing else:
 
-```shell
-ss -tlnp | grep 11434
-```
+> [!hog] HeartOfGold · frankie
+> ```shell
+> ss -tlnp | grep 11434
+> ```
 
 You should see `127.0.0.1:11434` and no `100.x.y.z` line. At this exact moment Marvin can no longer reach the model at all, which is expected. nginx will restore that path in a moment, this time with a lock on it.
 
@@ -68,24 +71,27 @@ You should see `127.0.0.1:11434` and no `100.x.y.z` line. At this exact moment M
 
 Install nginx from the distribution's package repository:
 
-```shell
-sudo apt update
-sudo apt install -y nginx
-```
+> [!hog] HeartOfGold · frankie
+> ```shell
+> sudo apt update
+> sudo apt install -y nginx
+> ```
 
 You will also want the `htpasswd` utility to create the credentials file. On Debian and Ubuntu it ships in `apache2-utils`:
 
-```shell
-sudo apt install -y apache2-utils
-```
+> [!hog] HeartOfGold · frankie
+> ```shell
+> sudo apt install -y apache2-utils
+> ```
 
 ## Creating Credentials
 
 Basic authentication reads usernames and hashed passwords from a file. Create one with a single user. The example uses `benjy`, the account you call from on Marvin, but this name is an nginx credential and has nothing to do with any Linux account on either machine.
 
-```shell
-sudo htpasswd -c /etc/nginx/.htpasswd benjy
-```
+> [!hog] HeartOfGold · frankie
+> ```shell
+> sudo htpasswd -c /etc/nginx/.htpasswd benjy
+> ```
 
 The `-c` flag creates the file, so use it only the first time. To add more users later, run the same command without `-c` so you append instead of overwriting. htpasswd prompts for a password and stores only its hash, never the password itself.
 
@@ -96,9 +102,10 @@ The `-c` flag creates the file, so use it only the first time. To add more users
 
 Create a site configuration for the proxy. Put it in `/etc/nginx/sites-available/ollama`:
 
-```shell
-sudo nano /etc/nginx/sites-available/ollama
-```
+> [!hog] HeartOfGold · frankie
+> ```shell
+> sudo nano /etc/nginx/sites-available/ollama
+> ```
 
 Use the following, replacing `100.x.y.z` with HeartOfGold's tailnet address from `tailscale ip -4`:
 
@@ -126,22 +133,25 @@ Three things are worth reading closely here. nginx listens on the tailnet addres
 
 Enable the site by linking it into `sites-enabled`, and remove the default site so it does not shadow yours:
 
-```shell
-sudo ln -s /etc/nginx/sites-available/ollama /etc/nginx/sites-enabled/ollama
-sudo rm /etc/nginx/sites-enabled/default
-```
+> [!hog] HeartOfGold · frankie
+> ```shell
+> sudo ln -s /etc/nginx/sites-available/ollama /etc/nginx/sites-enabled/ollama
+> sudo rm /etc/nginx/sites-enabled/default
+> ```
 
 Test the configuration before you load it. nginx will tell you if anything is malformed:
 
-```shell
-sudo nginx -t
-```
+> [!hog] HeartOfGold · frankie
+> ```shell
+> sudo nginx -t
+> ```
 
 When the test passes, reload nginx so it picks up the new site:
 
-```shell
-sudo systemctl reload nginx
-```
+> [!hog] HeartOfGold · frankie
+> ```shell
+> sudo systemctl reload nginx
+> ```
 
 > [!tip] If nginx Fails to Start After a Reboot
 > nginx binds to a specific tailnet address, which only exists once Tailscale is up. On the lab VMs Tailscale is already running, so this is not an issue today. On your own machines, if nginx ever fails to start on boot with an address error, it started before the tailnet interface was ready. Restarting nginx once Tailscale is up resolves it.
@@ -150,23 +160,26 @@ sudo systemctl reload nginx
 
 Go back to Marvin and repeat the call from lesson 05, with no credentials:
 
-```shell
-curl http://heartofgold:11434/api/tags
-```
+> [!marvin] Marvin · benjy
+> ```shell
+> curl http://heartofgold:11434/api/tags
+> ```
 
 This time you get a `401 Unauthorized` instead of a model list. That refusal is the proof the boundary works. Marvin is still on the mesh, still able to reach HeartOfGold, and is now being turned away because it has not proven who it is.
 
 Now make the same call with credentials, using the username and password you set with htpasswd:
 
-```shell
-curl -u benjy http://heartofgold:11434/api/tags
-```
+> [!marvin] Marvin · benjy
+> ```shell
+> curl -u benjy http://heartofgold:11434/api/tags
+> ```
 
 curl prompts for the password, and you get the JSON list of models back (`llama3.2` and `qwen3.5:4b`). Send a prompt the same way:
 
-```shell
-curl -u benjy http://heartofgold:11434/api/generate -d '{"model":"llama3.2","prompt":"Say hello in one sentence.","stream":false}'
-```
+> [!marvin] Marvin · benjy
+> ```shell
+> curl -u benjy http://heartofgold:11434/api/generate -d '{"model":"llama3.2","prompt":"Say hello in one sentence.","stream":false}'
+> ```
 
 > [!info] Your Lesson 05 Commands Need `-u` Now
 > Every call you made in lesson 05 still works, with one change: it has to carry credentials. Anywhere you ran `curl http://heartofgold:11434/...`, you now run `curl -u benjy http://heartofgold:11434/...`. The same applies to any TUI or web client you point at the service later, each needs to be given the username and password.

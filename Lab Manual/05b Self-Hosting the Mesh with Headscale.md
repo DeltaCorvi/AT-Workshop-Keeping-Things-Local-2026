@@ -55,13 +55,14 @@ In this lab HeartOfGold runs both roles. It keeps running Ollama and also runs H
 
 The Debian package is the recommended install on Ubuntu. It creates a service account, drops a default config, and ships a systemd unit. On HeartOfGold, download the latest release for your architecture and install it:
 
-```shell
-HEADSCALE_VERSION=""   # latest version from the releases page, e.g. 0.29.2, no "v" prefix
-HEADSCALE_ARCH="amd64" # your architecture
-wget --output-document=headscale.deb \
-  "https://github.com/juanfont/headscale/releases/download/v${HEADSCALE_VERSION}/headscale_${HEADSCALE_VERSION}_linux_${HEADSCALE_ARCH}.deb"
-sudo apt install ./headscale.deb
-```
+> [!hog] HeartOfGold · frankie
+> ```shell
+> HEADSCALE_VERSION=""   # latest version from the releases page, e.g. 0.29.2, no "v" prefix
+> HEADSCALE_ARCH="amd64" # your architecture
+> wget --output-document=headscale.deb \
+>   "https://github.com/juanfont/headscale/releases/download/v${HEADSCALE_VERSION}/headscale_${HEADSCALE_VERSION}_linux_${HEADSCALE_ARCH}.deb"
+> sudo apt install ./headscale.deb
+> ```
 
 The current releases are on the [Headscale releases page](https://github.com/juanfont/headscale/releases). Supported systems are Ubuntu 22.04 or newer and Debian 12 or newer.
 
@@ -69,9 +70,10 @@ The current releases are on the [Headscale releases page](https://github.com/jua
 
 Headscale reads its configuration from `/etc/headscale/config.yaml`. The one setting you must get right is `server_url`, the address clients will connect to. Because Marvin reaches HeartOfGold over the lab network, set this to HeartOfGold's LAN address and port `8080`:
 
-```shell
-sudo nano /etc/headscale/config.yaml
-```
+> [!hog] HeartOfGold · frankie
+> ```shell
+> sudo nano /etc/headscale/config.yaml
+> ```
 
 ```yaml
 server_url: http://<HEARTOFGOLD_LAN_IP>:8080
@@ -88,32 +90,36 @@ dns:
 
 Then start the service and confirm it is healthy:
 
-```shell
-sudo systemctl enable --now headscale
-sudo systemctl status headscale
-```
+> [!hog] HeartOfGold · frankie
+> ```shell
+> sudo systemctl enable --now headscale
+> sudo systemctl status headscale
+> ```
 
 ## Creating a User
 
 A node has to belong to a user, so create one for the tailnet. `benjy` matches the client user this lab uses on Marvin, but any name works:
 
-```shell
-sudo headscale users create benjy
-```
+> [!hog] HeartOfGold · frankie
+> ```shell
+> sudo headscale users create benjy
+> ```
 
 Confirm it exists:
 
-```shell
-sudo headscale users list
-```
+> [!hog] HeartOfGold · frankie
+> ```shell
+> sudo headscale users list
+> ```
 
 ## Generating a Pre-Auth Key
 
 Rather than register each node interactively, mint a pre-authenticated key and use it to join both VMs non-interactively. Recent Headscale takes the user's numeric ID, which you can read from `headscale users list`:
 
-```shell
-sudo headscale preauthkeys create --user <USER_ID> --reusable --expiration 1h
-```
+> [!hog] HeartOfGold · frankie
+> ```shell
+> sudo headscale preauthkeys create --user <USER_ID> --reusable --expiration 1h
+> ```
 
 `--reusable` lets the one key enroll both VMs; the short expiration keeps it from lingering. Copy the key it prints.
 
@@ -121,11 +127,12 @@ sudo headscale preauthkeys create --user <USER_ID> --reusable --expiration 1h
 
 Now bring up the `tailscale` client on each VM, pointing it at your Headscale server instead of Tailscale's, and hand it the key. Run this on **both** HeartOfGold and Marvin:
 
-```shell
-sudo tailscale up \
-  --login-server http://<HEARTOFGOLD_LAN_IP>:8080 \
-  --authkey <YOUR_PREAUTH_KEY>
-```
+> [!bothvms] Both VMs
+> ```shell
+> sudo tailscale up \
+>   --login-server http://<HEARTOFGOLD_LAN_IP>:8080 \
+>   --authkey <YOUR_PREAUTH_KEY>
+> ```
 
 The `--login-server` flag makes the standard Tailscale client trust your coordination server instead of the hosted one.
 
@@ -136,15 +143,17 @@ The `--login-server` flag makes the standard Tailscale client trust your coordin
 
 From the server, list the nodes Headscale now coordinates:
 
-```shell
-sudo headscale nodes list
-```
+> [!hog] HeartOfGold · frankie
+> ```shell
+> sudo headscale nodes list
+> ```
 
 You should see both HeartOfGold and Marvin with their `100.x.y.z` addresses. On either VM, the client's own view should agree:
 
-```shell
-tailscale status
-```
+> [!bothvms] Both VMs
+> ```shell
+> tailscale status
+> ```
 
 From here you are back on the lesson 05 path. Return to [[05 Tailscale Mesh Networking]] and follow "Exposing Ollama on the Mesh" and "Verifying the Connection" as written, using HeartOfGold's tailnet address from `tailscale ip -4`.
 

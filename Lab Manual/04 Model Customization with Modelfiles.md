@@ -44,16 +44,18 @@ Two things are doing the work. `temperature 1` keeps the model loose and playful
 
 This model is already built on HeartOfGold, so you can run it right away:
 
-```shell
-ollama run daffy
->>> What's up, doc?
-```
+> [!hog] HeartOfGold · frankie
+> ```shell
+> ollama run daffy
+> >>> What's up, doc?
+> ```
 
 To build it yourself, save the Modelfile text above as `daffy.Modelfile` and run:
 
-```shell
-ollama create daffy -f ./daffy.Modelfile
-```
+> [!hog] HeartOfGold · frankie
+> ```shell
+> ollama create daffy -f ./daffy.Modelfile
+> ```
 
 ## Example 2: A Task Model (quizmaker)
 
@@ -125,10 +127,11 @@ Notice how much more the `SYSTEM` block carries here. It defines a role, a goal,
 
 Like daffy, quizmaker is pre-built on HeartOfGold:
 
-```shell
-ollama run quizmaker
->>> Subject: Tailscale. Learning objective: explain how a mesh VPN differs from a traditional VPN.
-```
+> [!hog] HeartOfGold · frankie
+> ```shell
+> ollama run quizmaker
+> >>> Subject: Tailscale. Learning objective: explain how a mesh VPN differs from a traditional VPN.
+> ```
 
 > [!tip]
 > quizmaker ships at `temperature 1`, which is fine for variety. If you want the questions to come out more consistent and tightly scoped, lower the temperature (for example `PARAMETER temperature 0.4`) and rebuild. That is the [[01 What is an LLM]] temperature idea in practice: structured tasks often want a cooler setting than freewheeling personas do.

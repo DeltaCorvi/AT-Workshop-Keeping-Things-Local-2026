@@ -34,13 +34,14 @@ Back in [[01 What is an LLM]] you met the idea of a harness: the software wrappe
 
 The plainest harness is a single HTTP request. From Marvin, send a one-shot prompt to the API:
 
-```shell
-curl http://heartofgold:11434/api/generate -d '{
-  "model": "llama3.2",
-  "prompt": "Explain what a reverse proxy does, in two sentences.",
-  "stream": false
-}'
-```
+> [!marvin] Marvin · benjy
+> ```shell
+> curl http://heartofgold:11434/api/generate -d '{
+>   "model": "llama3.2",
+>   "prompt": "Explain what a reverse proxy does, in two sentences.",
+>   "stream": false
+> }'
+> ```
 
 You get one JSON object back with the full answer in the `response` field. Drop `"stream": false` and the API streams tokens as they generate, which is what every chat interface is doing under the hood. This is the harness you reach for in scripts: no UI, easy to pipe into `jq`, and it works anywhere `curl` does.
 
@@ -50,10 +51,11 @@ You get one JSON object back with the full answer in the `response` field. Drop 
 
 Point it at HeartOfGold and launch it:
 
-```shell
-export OLLAMA_HOST=http://heartofgold:11434
-oterm
-```
+> [!marvin] Marvin · benjy
+> ```shell
+> export OLLAMA_HOST=http://heartofgold:11434
+> oterm
+> ```
 
 oterm reads `OLLAMA_HOST` to find the server, then lists the models HeartOfGold is serving. Pick `llama3.2`, start a chat, and hold a back-and-forth conversation. Unlike the one-shot `curl`, oterm keeps the thread, so the model sees earlier turns as context. Same model as before, different harness.
 
@@ -61,10 +63,11 @@ oterm reads `OLLAMA_HOST` to find the server, then lists the models HeartOfGold 
 
 [Open WebUI](https://openwebui.com/) is a full browser interface, the closest thing here to the hosted chat apps, except the model stays on your hardware. Run it on Marvin, pointing it at HeartOfGold:
 
-```shell
-export OLLAMA_BASE_URL=http://heartofgold:11434
-open-webui serve
-```
+> [!marvin] Marvin · benjy
+> ```shell
+> export OLLAMA_BASE_URL=http://heartofgold:11434
+> open-webui serve
+> ```
 
 It starts a local server on port `8080` and forwards requests to HeartOfGold's Ollama over the mesh.
 

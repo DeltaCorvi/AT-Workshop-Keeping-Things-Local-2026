@@ -73,17 +73,19 @@ Tailscale also has installers for macOS, Windows, iOS, and Android, available at
 
 On each VM, bring Tailscale up and authenticate it into your tailnet:
 
-```shell
-sudo tailscale up
-```
+> [!bothvms] Both VMs
+> ```shell
+> sudo tailscale up
+> ```
 
 The command prints a URL. Open it in a browser, log in with the account you just created, and that device joins your tailnet. Run this on both HeartOfGold and Marvin, logging into the same account each time so they land in the same tailnet.
 
 Confirm both machines are connected:
 
-```shell
-tailscale status
-```
+> [!bothvms] Both VMs
+> ```shell
+> tailscale status
+> ```
 
 You will see each device with its name and `100.x.y.z` address. The same list appears in the admin console. Because MagicDNS is on by default, each machine also picks up a name, so `heartofgold` and `marvin` resolve to their tailnet addresses without you memorizing the numbers.
 
@@ -96,15 +98,17 @@ By default Ollama listens only on `127.0.0.1`, so nothing off the machine can re
 
 First, find HeartOfGold's tailnet address:
 
-```shell
-tailscale ip -4
-```
+> [!hog] HeartOfGold · frankie
+> ```shell
+> tailscale ip -4
+> ```
 
 Then add a systemd override so Ollama binds to that address. Run:
 
-```shell
-sudo systemctl edit ollama
-```
+> [!hog] HeartOfGold · frankie
+> ```shell
+> sudo systemctl edit ollama
+> ```
 
 and add the following, replacing the address with the one `tailscale ip -4` gave you:
 
@@ -115,16 +119,18 @@ Environment="OLLAMA_HOST=100.x.y.z:11434"
 
 Reload and restart so the change takes effect:
 
-```shell
-sudo systemctl daemon-reload
-sudo systemctl restart ollama
-```
+> [!hog] HeartOfGold · frankie
+> ```shell
+> sudo systemctl daemon-reload
+> sudo systemctl restart ollama
+> ```
 
 Confirm Ollama is now listening on the tailnet address rather than localhost:
 
-```shell
-ss -tlnp | grep 11434
-```
+> [!hog] HeartOfGold · frankie
+> ```shell
+> ss -tlnp | grep 11434
+> ```
 
 You should see it bound to your `100.x.y.z` address on port `11434`, not `127.0.0.1`.
 
@@ -141,17 +147,19 @@ You should see it bound to your `100.x.y.z` address on port `11434`, not `127.0.
 
 Everything is wired up. From Marvin, reach HeartOfGold's Ollama across the mesh:
 
-```shell
-curl http://heartofgold:11434/api/tags
-```
+> [!marvin] Marvin · benjy
+> ```shell
+> curl http://heartofgold:11434/api/tags
+> ```
 
 You should get back a JSON list of the models installed on HeartOfGold (`llama3.2` and `qwen3.5:4b`). That response is the proof: Marvin reached the model on HeartOfGold over the encrypted tailnet, with nothing exposed to the wider network.
 
 To watch it actually generate, send a prompt:
 
-```shell
-curl http://heartofgold:11434/api/generate -d '{"model":"llama3.2","prompt":"Say hello in one sentence.","stream":false}'
-```
+> [!marvin] Marvin · benjy
+> ```shell
+> curl http://heartofgold:11434/api/generate -d '{"model":"llama3.2","prompt":"Say hello in one sentence.","stream":false}'
+> ```
 
 ---
 
