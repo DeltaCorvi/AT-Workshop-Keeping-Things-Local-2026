@@ -1,6 +1,6 @@
 ---
 author: Bronwen Aker
-updated: 2026-07-15
+updated: 2026-07-16
 presentation_type: Workshop
 venue: Antisyphon AI Summit
 ---
@@ -25,36 +25,13 @@ Tailscale solves this with a mesh VPN built on the WireGuard protocol. Each devi
 > Tailscale runs a coordination server that handles identity, key exchange, and access policy. That is the control plane. Your actual traffic, the data plane, flows directly between your devices and is encrypted end to end. Tailscale's servers help your machines find each other, but your private traffic never passes through them.
 
 > [!tip] The Easy Button, and the Fully Local Alternative
-> We use Tailscale here because it gets you a working mesh in about two minutes, and because it earns its place on engagements. Its one tradeoff for a "keep it local" workshop is that the control plane is Tailscale's hosted server, a third party. When you need that control plane inside your own perimeter too, for an internal network or a stricter trust boundary, you self-host it with Headscale and keep the same client and the same steps. See [[05b Self-Hosting the Mesh with Headscale]].
+> We use Tailscale here because it gets you a working mesh in about two minutes, and because it earns its place on engagements. The tradeoff for this workshop is that the *control plane* is Tailscale's hosted server, a third party. When you need that control plane inside your own perimeter too, for an internal network or a stricter trust boundary, you self-host it with Headscale and keep the same client and the same steps. See [[05b Self-Hosting the Mesh with Headscale]].
 
 ## Target Architecture
 
 This is the final architecture once the mesh is up and nginx (lesson 06) is in place. Before nginx exists, Marvin's three interfaces talk to Ollama directly instead of going through the basic auth layer.
 
-```mermaid
-flowchart LR
-    subgraph Marvin["Marvin (client), user: benjy"]
-        direction TB
-        T[Terminal / curl]
-        TUI[TUI chat client]
-        WEB[Web UI]
-    end
-
-    subgraph TS["Tailscale mesh<br/>encrypted · 100.x.y.z"]
-    end
-
-    subgraph HoG["HeartOfGold (server), user: frankie"]
-        direction TB
-        NGINX[nginx<br/>reverse proxy + basic auth]
-        OLLAMA[Ollama<br/>local LLM]
-        NGINX --> OLLAMA
-    end
-
-    T --> TS
-    TUI --> TS
-    WEB --> TS
-    TS --> NGINX
-```
+![[heartofgold_marvin_architecture.png]]
 
 ## Why Tailscale Matters for Red Teamers
 

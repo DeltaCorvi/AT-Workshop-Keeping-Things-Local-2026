@@ -1,6 +1,6 @@
 ---
 author: Bronwen Aker
-updated: 2026-07-14
+updated: 2026-07-16
 presentation_type: Workshop
 venue: Antisyphon AI Summit
 ---
@@ -102,7 +102,7 @@ A raw model only predicts the next token. Everything that makes it feel like a p
 
 Here's how the pieces above fit together in practice, the full journey a single prompt takes, from you, through everything in between, and back.
 
-![The life cycle of a prompt: a prompt travels from the user through the harness, system prompt, tokenizer, and model into an autoregressive generation loop shaped by temperature, then back out through the detokenizer and harness to the user|500](assets/prompt_lifecycle.png)
+![The life cycle of a prompt: a prompt travels from the user through the harness, system prompt, tokenizer, and model into an autoregressive generation loop shaped by temperature, then back out through the detokenizer and harness to the user|500|center](assets/prompt_lifecycle.png)
 
 ### System Prompt
 

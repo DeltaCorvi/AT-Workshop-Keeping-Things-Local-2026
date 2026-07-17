@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 980" font-family="'DejaVu Sans', Arial, sans-serif">
+  <rect x="0" y="0" width="760" height="980" fill="#ffffff"/>
+  <text x="380" y="52" text-anchor="middle" font-size="30" font-weight="700" fill="#0f172a">Authenticated Access with nginx</text>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#475569"/>
+    </marker>
+  </defs>
+
+  <!-- Marvin (client) -->
+  <rect x="180" y="86" width="400" height="150" rx="14" fill="#f8fafc" stroke="#94a3b8" stroke-width="2"/>
+  <text x="380" y="126" text-anchor="middle" font-size="24" font-weight="700" fill="#0f172a">Marvin</text>
+  <text x="380" y="151" text-anchor="middle" font-size="16" fill="#475569">client · user: benjy</text>
+  <rect x="225" y="168" width="310" height="52" rx="10" fill="#475569"/>
+  <text x="380" y="201" text-anchor="middle" font-size="19" font-weight="600" fill="#ffffff">Terminal / curl  -u</text>
+
+  <line x1="380" y1="236" x2="380" y2="286" stroke="#475569" stroke-width="4" marker-end="url(#arrow)"/>
+
+  <!-- Tailscale mesh -->
+  <rect x="230" y="290" width="300" height="104" rx="26" fill="#2563eb"/>
+  <text x="380" y="332" text-anchor="middle" font-size="22" font-weight="700" fill="#ffffff">Tailscale mesh</text>
+  <text x="380" y="361" text-anchor="middle" font-size="16" fill="#dbeafe" font-family="'DejaVu Sans Mono', monospace">encrypted · 100.x.y.z</text>
+
+  <line x1="380" y1="394" x2="380" y2="446" stroke="#475569" stroke-width="4" marker-end="url(#arrow)"/>
+  <text x="398" y="426" text-anchor="start" font-size="15" fill="#64748b">credentials checked here</text>
+
+  <!-- HeartOfGold (server) -->
+  <rect x="140" y="450" width="480" height="452" rx="14" fill="#f8fafc" stroke="#94a3b8" stroke-width="2"/>
+  <text x="380" y="492" text-anchor="middle" font-size="24" font-weight="700" fill="#0f172a">HeartOfGold</text>
+  <text x="380" y="517" text-anchor="middle" font-size="16" fill="#475569">server · user: frankie</text>
+
+  <!-- nginx -->
+  <rect x="190" y="544" width="380" height="128" rx="10" fill="#0d9488"/>
+  <text x="380" y="586" text-anchor="middle" font-size="23" font-weight="700" fill="#ffffff">nginx</text>
+  <text x="380" y="615" text-anchor="middle" font-size="16" fill="#d1fae5">reverse proxy + basic auth</text>
+  <text x="380" y="643" text-anchor="middle" font-size="15" fill="#d1fae5" font-family="'DejaVu Sans Mono', monospace">listens on 100.x.y.z:11434</text>
+
+  <line x1="380" y1="672" x2="380" y2="734" stroke="#475569" stroke-width="4" marker-end="url(#arrow)"/>
+  <text x="398" y="712" text-anchor="start" font-size="15" fill="#64748b">proxy_pass</text>
+
+  <!-- Ollama -->
+  <rect x="190" y="738" width="380" height="128" rx="10" fill="#7c3aed"/>
+  <text x="380" y="780" text-anchor="middle" font-size="23" font-weight="700" fill="#ffffff">Ollama</text>
+  <text x="380" y="809" text-anchor="middle" font-size="16" fill="#ede9fe">local LLM</text>
+  <text x="380" y="837" text-anchor="middle" font-size="15" fill="#ede9fe" font-family="'DejaVu Sans Mono', monospace">127.0.0.1:11434</text>
+
+  <text x="380" y="948" text-anchor="middle" font-size="18" fill="#64748b">The mesh encrypts the path; nginx decides who may use it.</text>
+</svg>

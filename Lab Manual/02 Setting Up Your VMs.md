@@ -1,6 +1,6 @@
 ---
 author: Bronwen Aker
-updated: 2026-07-13
+updated: 2026-07-16
 presentation_type: Workshop
 venue: Antisyphon AI Summit
 ---
