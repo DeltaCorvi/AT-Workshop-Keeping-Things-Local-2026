@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 820" font-family="'DejaVu Sans', Arial, sans-serif">
+  <rect x="0" y="0" width="1500" height="820" fill="#ffffff"/>
+  <text x="750" y="52" text-anchor="middle" font-size="36" font-weight="700" fill="#0f172a">Keeping Things Local: Self-Hosted Mesh with Headscale</text>
+  <text x="750" y="86" text-anchor="middle" font-size="19" fill="#475569">Control plane self-hosted on hardware you own (lab colocates it on HeartOfGold)</text>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#475569"/>
+    </marker>
+    <marker id="ctrl" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#b45309"/>
+    </marker>
+  </defs>
+
+  <!-- Control plane routing (dashed) drawn first so boxes sit on top -->
+  <path d="M 250,318 L 250,128 L 960,128 L 960,324 L 1026,324" fill="none" stroke="#b45309" stroke-width="3" stroke-dasharray="9 6" marker-start="url(#ctrl)" marker-end="url(#ctrl)"/>
+  <text x="605" y="118" text-anchor="middle" font-size="16" fill="#b45309" font-weight="600">control plane: enroll · keys · access policy</text>
+  <line x1="1210" y1="392" x2="1210" y2="372" stroke="#b45309" stroke-width="3" stroke-dasharray="9 6" marker-start="url(#ctrl)" marker-end="url(#ctrl)"/>
+
+  <!-- Marvin panel -->
+  <rect x="70" y="190" width="360" height="360" rx="14" fill="#f8fafc" stroke="#94a3b8" stroke-width="2"/>
+  <text x="250" y="248" text-anchor="middle" font-size="30" font-weight="700" fill="#0f172a">Marvin</text>
+  <text x="250" y="278" text-anchor="middle" font-size="18" fill="#475569">client · user: benjy</text>
+  <rect x="110" y="318" width="280" height="84" rx="10" fill="#475569"/>
+  <text x="250" y="356" text-anchor="middle" font-size="21" font-weight="700" fill="#ffffff">tailscale client</text>
+  <text x="250" y="384" text-anchor="middle" font-size="14" fill="#cbd5e1" font-family="'DejaVu Sans Mono', monospace">--login-server &#8594; HeartOfGold</text>
+  <text x="250" y="480" text-anchor="middle" font-size="16" fill="#475569" font-family="'DejaVu Sans Mono', monospace">tailnet: 100.x.y.z</text>
+
+  <!-- Tailscale mesh pill (data plane) -->
+  <text x="710" y="332" text-anchor="middle" font-size="16" fill="#475569" font-weight="600">data plane</text>
+  <rect x="560" y="350" width="300" height="120" rx="60" fill="#2563eb"/>
+  <text x="710" y="405" text-anchor="middle" font-size="24" font-weight="700" fill="#ffffff">Tailscale mesh</text>
+  <text x="710" y="435" text-anchor="middle" font-size="18" fill="#dbeafe" font-family="'DejaVu Sans Mono', monospace">encrypted · 100.x.y.z</text>
+
+  <!-- Data plane arrows -->
+  <line x1="392" y1="372" x2="558" y2="408" stroke="#475569" stroke-width="4" marker-start="url(#arrow)" marker-end="url(#arrow)"/>
+  <line x1="862" y1="410" x2="1028" y2="424" stroke="#475569" stroke-width="4" marker-start="url(#arrow)" marker-end="url(#arrow)"/>
+
+  <!-- HeartOfGold panel -->
+  <rect x="990" y="150" width="440" height="500" rx="14" fill="#f8fafc" stroke="#94a3b8" stroke-width="2"/>
+  <text x="1210" y="206" text-anchor="middle" font-size="30" font-weight="700" fill="#0f172a">HeartOfGold</text>
+  <text x="1210" y="236" text-anchor="middle" font-size="18" fill="#475569">server · user: frankie</text>
+
+  <rect x="1030" y="278" width="360" height="94" rx="10" fill="#334155"/>
+  <text x="1210" y="312" text-anchor="middle" font-size="22" font-weight="700" fill="#ffffff">Headscale</text>
+  <text x="1210" y="337" text-anchor="middle" font-size="15" fill="#cbd5e1">self-hosted control plane</text>
+  <text x="1210" y="358" text-anchor="middle" font-size="13" fill="#94a3b8">identity · keys · policy</text>
+
+  <rect x="1030" y="392" width="360" height="64" rx="10" fill="#64748b"/>
+  <text x="1210" y="430" text-anchor="middle" font-size="20" font-weight="700" fill="#ffffff">tailscale client</text>
+
+  <line x1="1210" y1="456" x2="1210" y2="476" stroke="#475569" stroke-width="4" marker-start="url(#arrow)" marker-end="url(#arrow)"/>
+
+  <rect x="1030" y="478" width="360" height="94" rx="10" fill="#7c3aed"/>
+  <text x="1210" y="514" text-anchor="middle" font-size="22" font-weight="700" fill="#ffffff">Ollama</text>
+  <text x="1210" y="540" text-anchor="middle" font-size="15" fill="#ede9fe">local LLM · binds to tailnet address</text>
+
+  <!-- Legend -->
+  <line x1="120" y1="700" x2="180" y2="700" stroke="#475569" stroke-width="4" marker-start="url(#arrow)" marker-end="url(#arrow)"/>
+  <text x="196" y="705" font-size="16" fill="#334155">data plane: encrypted WireGuard traffic between nodes</text>
+  <line x1="120" y1="736" x2="180" y2="736" stroke="#b45309" stroke-width="3" stroke-dasharray="9 6" marker-start="url(#ctrl)" marker-end="url(#ctrl)"/>
+  <text x="196" y="741" font-size="16" fill="#334155">control plane: enrollment, keys, and access policy (Headscale)</text>
+
+  <text x="750" y="792" text-anchor="middle" font-size="17" fill="#b45309" font-weight="600">In production, run Headscale on a separate hardened host, not on the workload server.</text>
+</svg>

@@ -61,11 +61,11 @@ Not every model does the same job out of the box. The differences come from what
 
 **Chat models.** Tuned specifically for holding a conversation, with separate system, user, and assistant roles and a chat template that tracks whose turn it is. They are built to carry context across many messages and to honor a system prompt. Often tagged `-chat`.
 
-**Reasoning (or "thinking") models.** Trained to work a problem step by step, out loud, before landing on an answer. If a model ever streams its scratch work at you under a "Thinking..." header, that is one of these. They shine on problems that genuinely need working through, and they are slow or distracting for something that should be a fast, short answer.
+**Reasoning (or "thinking") models.** Trained to work a problem step by step, out loud, before landing on an answer. If a model ever streams its scratch work at you under a "Thinking..." header, that is one of these. They shine on problems that need working through, and they are slow or distracting for something that should be a fast, short answer.
 
 **Specialized models.** Everything tuned for a narrow job: code models (trained heavily on source code for completion and generation), embedding models (which do not chat at all, they turn text into vectors of numbers so software can measure how similar two pieces of text are, the engine behind search and RAG), and vision or multimodal models (which can take images as input, not just text).
 
-> [!info] The instruct/chat line is blurrier than it looks
+> [!info] The Instruct/Chat Line is Blurrier than It Looks
 > Out in the wild these categories bleed together. Plenty of models tagged `-instruct` chat perfectly well across multiple turns, and a lot of "chat" models are really just instruct models with a conversation template bolted on. On top of that, Ollama automatically applies whatever prompt template a model ships with, so you almost never set this by hand. Treat these labels as "what the model was optimized for," not hard rules, and do not lose sleep over which bucket a given model falls into.
 
 ### Open Weights vs. Proprietary Models

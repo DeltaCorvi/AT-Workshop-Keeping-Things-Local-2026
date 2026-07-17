@@ -21,8 +21,11 @@ You have a private LLM on HeartOfGold. You want to use it from Marvin, and later
 
 Tailscale solves this with a mesh VPN built on the WireGuard protocol. Each device you enroll joins a private network called a tailnet and gets a stable address in the `100.x.y.z` range. Devices then talk directly to each other through encrypted tunnels, even when they sit on different networks behind different routers. Nothing is published to the outside world; the two machines simply find each other and connect.
 
-> [!info] Control plane vs data plane
+> [!info] Control Plane vs Data Plane
 > Tailscale runs a coordination server that handles identity, key exchange, and access policy. That is the control plane. Your actual traffic, the data plane, flows directly between your devices and is encrypted end to end. Tailscale's servers help your machines find each other, but your private traffic never passes through them.
+
+> [!tip] The Easy Button, and the Fully Local Alternative
+> We use Tailscale here because it gets you a working mesh in about two minutes, and because it earns its place on engagements. Its one tradeoff for a "keep it local" workshop is that the control plane is Tailscale's hosted server, a third party. When you need that control plane inside your own perimeter too, for an internal network or a stricter trust boundary, you self-host it with Headscale and keep the same client and the same steps. See [[05b Self-Hosting the Mesh with Headscale]].
 
 ## Target Architecture
 
@@ -55,15 +58,15 @@ flowchart LR
 
 ## Why Tailscale Matters for Red Teamers
 
-The same properties that make Tailscale convenient here make it genuinely useful on an engagement. This is why the workshop spends time on it rather than just hardcoding an IP address.
+The same properties that make Tailscale convenient here make it useful on an engagement. This is why the workshop spends time on it rather than just hardcoding an IP address.
 
 - **Persistent, encrypted access.** A Tailscale node on a foothold gives you durable access back to that host. The tunnel is encrypted, survives the host changing networks or IP, and traverses NAT without any inbound ports, so there is nothing listening on the perimeter for a defender to find.
 - **Reaching internal services.** A subnet router advertises an entire internal subnet into your tailnet. From your own box you can then reach hosts on the target's internal network as if you were sitting next to them, without standing up a separate tunnel for every host.
 - **Pivoting with exit nodes.** An exit node routes your traffic out through the foothold, so your requests appear to originate from inside the target environment.
 - **Clean, scoped access.** MagicDNS gives every node a name instead of an IP, and access control lists let you scope exactly which nodes can reach which, so a shared tailnet stays controlled rather than wide open.
 
-> [!warning] Authorization and opsec
-> Use this only on engagements you are authorized for, and stay inside your rules of engagement. Remember that Tailscale's coordination server is a third party that sees device metadata such as names, keys, and connection times, even though it never sees your traffic. Factor that into your opsec.
+> [!warning] Authorization and Opsec
+> Use this only on engagements you are authorized for, and stay inside your rules of engagement. Remember that Tailscale's coordination server is a third party that sees device metadata such as names, keys, and connection times, even though it never sees your traffic. Factor that into your opsec. When that metadata exposure is unacceptable, self-host the control plane with [[05b Self-Hosting the Mesh with Headscale]].
 
 ## Creating a Tailscale Account
 
@@ -71,7 +74,7 @@ Before a device can join a tailnet, there has to be a tailnet for it to join, an
 
 Tailscale does not run its own username and password system. It hands authentication off to an identity provider you already use, such as Google, Microsoft, GitHub, or Apple, over standard OAuth. You pick a provider, log in there, and Tailscale trusts that provider to vouch for who you are.
 
-> [!info] The free plan is enough
+> [!info] The Free Plan is Enough
 > Signing up with a personal email account, for example a `@gmail.com` address, puts you on Tailscale's free Personal plan, which covers everything in this lab, including MagicDNS, exit nodes, and access control lists. It is a real free tier, not a trial.
 
 To register, go to [login.tailscale.com/start](https://login.tailscale.com/start), choose your identity provider, and authenticate. That creates your tailnet and drops you into the admin console at [login.tailscale.com](https://login.tailscale.com/), where every device you enroll will show up.
@@ -107,7 +110,7 @@ tailscale status
 
 You will see each device with its name and `100.x.y.z` address. The same list appears in the admin console. Because MagicDNS is on by default, each machine also picks up a name, so `heartofgold` and `marvin` resolve to their tailnet addresses without you memorizing the numbers.
 
-> [!tip] Use the names, not the numbers
+> [!tip] Use the Names, Not the Numbers
 > Anywhere you would type a tailnet IP, you can use the MagicDNS name instead. `heartofgold` is easier to remember and read than `100.75.98.11`.
 
 ## Exposing Ollama on the Mesh
@@ -148,13 +151,13 @@ ss -tlnp | grep 11434
 
 You should see it bound to your `100.x.y.z` address on port `11434`, not `127.0.0.1`.
 
-> [!info] Using the Ollama CLI on the server after this
+> [!info] Using the Ollama CLI on the Server after This
 > Once Ollama binds to the tailnet address, its own command line on HeartOfGold can no longer reach it at the default localhost. If you want to run `ollama` on HeartOfGold itself, point it at the tailnet address first:
 > ```shell
 > export OLLAMA_HOST=$(tailscale ip -4):11434
 > ```
 
-> [!note] Minimal exposure by design
+> [!note] Minimal Exposure by Design
 > Binding to the tailnet address means the model responds only to devices on your encrypted mesh, and nothing else. [[06 Locking It Down with nginx]] takes the next step: moving Ollama back to localhost and standing up nginx on the mesh with authentication in front of it, so even mesh peers have to prove who they are.
 
 ## Verifying the Connection

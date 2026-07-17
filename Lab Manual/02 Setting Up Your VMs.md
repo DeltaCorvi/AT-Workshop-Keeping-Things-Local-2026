@@ -13,7 +13,7 @@ maxLevel: 3
 
 # Welcome
 
-This course leverages two virtual machines: 
+This course uses two virtual machines: 
 * **HeartOfGold**, which acts as the server, hosting the local LLM that you will install and configure.
 * **Marvin**, which you will use to access it.  
 

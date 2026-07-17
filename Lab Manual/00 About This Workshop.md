@@ -28,6 +28,7 @@ This workshop builds a complete service layer around a local LLM. You start with
 * Ollama: local LLM runtime, pre-installed on server VM
 * Selected LLM models: pre-loaded to avoid bandwidth issues
 * Tailscale: encrypted mesh networking to connect the two VMs securely
+* Headscale (optional): self-hosted coordination server, for running the mesh's control plane on your own hardware
 * nginx: reverse proxy with basic authentication in front of Ollama
 
 ### Lessons
@@ -47,8 +48,11 @@ Build custom models using Modelfiles. Create purpose-specific assistants: system
 ### [[05 Tailscale Mesh Networking]]
 Set up a free Tailscale account, install Tailscale on both VMs, authenticate them into an encrypted mesh, and verify that the client VM can reach Ollama on the server VM over the mesh network. This is the foundation for secure, team-accessible AI services.
 
+### [[05b Self-Hosting the Mesh with Headscale]]
+Optional advanced track. Run the coordination server yourself with Headscale instead of relying on Tailscale's hosted control plane, keeping the entire mesh on hardware you control. Same client, same downstream steps.
+
 ### [[06 Locking It Down with nginx]]
-Put an nginx reverse proxy in front of Ollama with basic authentication. Now your service is not only remote and encrypted, but also access-controlled.
+Put an nginx reverse proxy in front of Ollama with basic authentication. Now your service is remote, encrypted, and access-controlled.
 
 ### [[07 Wrap Up and Q&A]]
 Data sovereignty principles, attack surface considerations, and hardening ideas for production deployments.
