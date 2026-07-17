@@ -76,6 +76,12 @@ The VMware lab VMs, pre-loaded models, and demo videos are **distributed separat
 
 Setting up a free Tailscale account is part of the lab, so no advance signup is needed.
 
+## Viewing the Lab Manual
+
+The lab manual is written as an [Obsidian](https://obsidian.md/) vault, and this repository is that vault. For the experience it was designed for, open the repository folder in Obsidian rather than reading the files on GitHub. In Obsidian the manual renders as intended, with its callouts, the labels showing which VM each command runs on, the checkpoints at the end of each lesson, and the Previous and Next navigation.
+
+To get the full styling, enable the bundled CSS snippets under Settings > Appearance > CSS snippets. The Markdown stays perfectly readable on GitHub or in any plain Markdown viewer, just without the Obsidian formatting.
+
 ## Workshop Modules
 
 The lab manual is organized into sequential modules. Each builds on the last.

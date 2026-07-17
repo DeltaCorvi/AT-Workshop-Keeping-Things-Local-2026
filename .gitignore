@@ -2,8 +2,10 @@
 misc_resources/
 Lab Manual/assets/*.mp4
 
-# Obsidian vault config, local to this machine
-.obsidian/
+# Obsidian: share the vault config (theme, snippets, plugin settings) so the
+# manual renders as intended, but not the per-machine session layout.
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
 .trash/
 
 # OS noise
