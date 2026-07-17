@@ -161,6 +161,14 @@ To watch it actually generate, send a prompt:
 > curl http://heartofgold:11434/api/generate -d '{"model":"llama3.2","prompt":"Say hello in one sentence.","stream":false}'
 > ```
 
+> [!checkpoint] Checkpoint
+> You have finished this lesson when all of the boxes below are ticked. Work through them in order, and if one does not hold, go back to the section it came from before moving on. Tick each box as you confirm it.
+>
+> - [ ] `tailscale status` on both VMs lists HeartOfGold and Marvin with `100.x.y.z` addresses
+> - [ ] The MagicDNS name `heartofgold` resolves from Marvin
+> - [ ] On HeartOfGold, `ss -tlnp | grep 11434` shows Ollama bound to the tailnet address
+> - [ ] From Marvin, `curl http://heartofgold:11434/api/tags` returns the JSON model list
+
 ---
 
 < Previous - [[04 Model Customization with Modelfiles]] | [[06 Locking It Down with nginx]] - Next >

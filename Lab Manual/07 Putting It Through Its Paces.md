@@ -89,6 +89,13 @@ Run it fully offline. Once the model is pulled, none of this needs internet. In 
 > [!warning] Authorized Use Only
 > The red team uses above assume an engagement you are authorized for, inside your rules of engagement. Local generation removes the third-party record, but it does not remove your responsibility for how the output gets used.
 
+> [!checkpoint] Checkpoint
+> You have finished this lesson when all of the boxes below are ticked. Work through them in order, and if one does not hold, go back to the section it came from before moving on. Tick each box as you confirm it.
+>
+> - [ ] From Marvin, the one-shot `curl` to `/api/generate` returns an answer
+> - [ ] `oterm` connects to HeartOfGold and holds a multi-turn conversation
+> - [ ] Open WebUI, reached from your host browser at `http://marvin:8080`, chats with `llama3.2`
+
 ---
 
 < Previous - [[06 Locking It Down with nginx]] | [[08 Wrap Up and Q&A]] - Next >

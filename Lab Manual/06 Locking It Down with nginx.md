@@ -195,6 +195,14 @@ The pattern in this lesson, an authenticating reverse proxy in front of a plain 
 > [!warning] Basic Auth Is the Floor, Not the Ceiling
 > This lesson gives you one clean layer of identity, which is a large improvement over none. It is not the strongest option. A single shared credential does not tell one caller from another, and it cannot be revoked per client without changing it for everyone. The steps up from here are mutual TLS, where each client presents its own certificate, or a token-issuing proxy that can mint and revoke per-client credentials. Basic auth over the mesh is a solid floor to build on, not the last word.
 
+> [!checkpoint] Checkpoint
+> You have finished this lesson when all of the boxes below are ticked. Work through them in order, and if one does not hold, go back to the section it came from before moving on. Tick each box as you confirm it.
+>
+> - [x] On HeartOfGold, `ss -tlnp | grep 11434` shows `127.0.0.1:11434` and no `100.x.y.z` line
+> - [x] From Marvin, a credential-free `curl http://heartofgold:11434/api/tags` returns `401 Unauthorized`
+> - [ ] The same call with `curl -u benjy` returns the JSON model list
+> - [ ] A prompt sent with `curl -u benjy` to `/api/generate` comes back with a `response`
+
 ---
 
 < Previous - [[05 Tailscale Mesh Networking]] | [[07 Putting It Through Its Paces]] - Next >

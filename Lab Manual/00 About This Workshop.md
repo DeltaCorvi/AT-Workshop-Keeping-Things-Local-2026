@@ -31,7 +31,7 @@ This workshop builds a complete service layer around a local LLM. You start with
 * Headscale (optional): self-hosted coordination server, for running the mesh's control plane on your own hardware
 * nginx: reverse proxy with basic authentication in front of Ollama
 
-### Lessons
+## Lessons
 
 ### [[01 What is an LLM]]
 Brief overview of LLM history, capabilities, and limitations. Fundamental terminology and concepts you need for the rest of the workshop.

@@ -85,6 +85,13 @@ A quick reference for the commands you will reach for most with Ollama:
 | `ollama create <name> -f <Modelfile>` | Build a custom model (see [[04 Model Customization with Modelfiles]]) |
 | `ollama -v`                           | Print the version                                                     |
 
+> [!checkpoint] Checkpoint
+> You have finished this lesson when all of the boxes below are ticked. Work through them in order, and if one does not hold, go back to the section it came from before moving on. Tick each box as you confirm it.
+>
+> - [ ] On HeartOfGold, `ollama list` shows the pre-loaded `llama3.2`
+> - [ ] `ollama -v` prints a version number
+> - [ ] `ollama pull <model>` downloads a model, or confirms one is already present
+
 ---
 
 < Previous - [[02 Setting Up Your VMs]] | [[04 Model Customization with Modelfiles]] - Next >

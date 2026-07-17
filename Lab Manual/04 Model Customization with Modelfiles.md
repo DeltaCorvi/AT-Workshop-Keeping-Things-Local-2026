@@ -140,6 +140,13 @@ Like daffy, quizmaker is pre-built on HeartOfGold:
 
 Try modifying one of these. Change Daffy's character, or tighten quizmaker's output format, then rebuild with `ollama create` and run it. Because everything builds on the pre-loaded `llama3.2`, your edits take effect in seconds with nothing to download.
 
+> [!checkpoint] Checkpoint
+> You have finished this lesson when all of the boxes below are ticked. Work through them in order, and if one does not hold, go back to the section it came from before moving on. Tick each box as you confirm it.
+>
+> - [ ] On HeartOfGold, `ollama run daffy` answers in Daffy's voice
+> - [ ] `ollama run quizmaker` generates review questions from a subject and learning objective
+> - [ ] `ollama create <name> -f <Modelfile>` rebuilds a model from an edited Modelfile
+
 ---
 
 < Previous - [[03 Working with Ollama]] | [[05 Tailscale Mesh Networking]] - Next >

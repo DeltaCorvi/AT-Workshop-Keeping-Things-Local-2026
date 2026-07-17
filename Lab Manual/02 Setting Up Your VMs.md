@@ -154,6 +154,14 @@ Unlike when you install a new VM from scratch, this VM has already been built an
 
 
 
+> [!checkpoint] Checkpoint
+> You have finished this lesson when all of the boxes below are ticked. Work through them in order, and if one does not hold, go back to the section it came from before moving on. Tick each box as you confirm it.
+>
+> - [ ] Both VMs extract from the archive into their own folders, side by side
+> - [ ] HeartOfGold and Marvin both power on and boot to Ubuntu in VMware
+> - [ ] You can log in to HeartOfGold as `frankie` and to Marvin as `benjy`
+> - [ ] Both VMs are running at the same time
+
 ---
 
 < Previous - [[01 What is an LLM]] | [[03 Working with Ollama]] - Next >

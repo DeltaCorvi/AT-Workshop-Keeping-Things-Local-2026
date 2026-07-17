@@ -167,6 +167,14 @@ Self-hosting the control plane removes the last third party from the "keep it lo
 > [!warning] You Now Own the Uptime
 > Removing the third party means you take on its job. If the Headscale host is down or unreachable, new nodes cannot enroll and existing keys cannot be re-authed. Existing tunnels keep running, but treat the control-plane host as infrastructure you are responsible for keeping alive.
 
+> [!checkpoint] Checkpoint
+> You have finished this lesson when all of the boxes below are ticked. Work through them in order, and if one does not hold, go back to the section it came from before moving on. Tick each box as you confirm it.
+>
+> - [ ] Headscale is running on HeartOfGold (`systemctl status headscale` reports active)
+> - [ ] `sudo headscale nodes list` shows both HeartOfGold and Marvin with `100.x.y.z` addresses
+> - [ ] `tailscale status` on each VM agrees with that list
+> - [ ] From Marvin you can reach HeartOfGold over the self-hosted mesh, by tailnet IP or FQDN
+
 ---
 
 < Previous - [[05 Tailscale Mesh Networking]] | [[06 Locking It Down with nginx]] - Next >
