@@ -86,19 +86,19 @@ To get the full styling, enable the bundled CSS snippets under Settings > Appear
 
 The lab manual is organized into sequential modules. Each builds on the last.
 
-| # | Module | What it covers |
-|---|--------|----------------|
-| 00 | [About This Workshop](Lab%20Manual/00%20About%20This%20Workshop.md) | Orientation, tools, and how the labs fit together |
-| 01 | [What is an LLM](Lab%20Manual/01%20What%20is%20an%20LLM.md) | LLM history, capabilities, limitations, and core terminology |
-| 02 | [Setting Up Your VMs](Lab%20Manual/02%20Setting%20Up%20Your%20VMs.md) | Import and configure the server and client VMs; basic networking |
-| 03 | [Working with Ollama](Lab%20Manual/03%20Working%20with%20Ollama.md) | Install Ollama, pull and run models, and the commands you'll use most |
-| 04 | [Model Customization with Modelfiles](Lab%20Manual/04%20Model%20Customization%20with%20Modelfiles.md) | Build purpose-specific assistants with system prompts and parameter tuning |
-| 05 | [Tailscale Mesh Networking](Lab%20Manual/05%20Tailscale%20Mesh%20Networking.md) | Stand up an encrypted mesh and reach Ollama across it |
+| #   | Module                                                                                                     | What it covers                                                                                        |
+| --- | ---------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| 00  | [About This Workshop](Lab%20Manual/00%20About%20This%20Workshop.md)                                        | Orientation, tools, and how the labs fit together                                                     |
+| 01  | [What is an LLM](Lab%20Manual/01%20What%20is%20an%20LLM.md)                                                | LLM history, capabilities, limitations, and core terminology                                          |
+| 02  | [Setting Up Your VMs](Lab%20Manual/02%20Setting%20Up%20Your%20VMs.md)                                      | Import and configure the server and client VMs; basic networking                                      |
+| 03  | [Working with Ollama](Lab%20Manual/03%20Working%20with%20Ollama.md)                                        | Install Ollama, pull and run models, and the commands you'll use most                                 |
+| 04  | [Model Customization with Modelfiles](Lab%20Manual/04%20Model%20Customization%20with%20Modelfiles.md)      | Build purpose-specific assistants with system prompts and parameter tuning                            |
+| 05  | [Tailscale Mesh Networking](Lab%20Manual/05%20Tailscale%20Mesh%20Networking.md)                            | Stand up an encrypted mesh and reach Ollama across it                                                 |
 | 05b | [Self-Hosting the Mesh with Headscale](Lab%20Manual/05b%20Self-Hosting%20the%20Mesh%20with%20Headscale.md) | *Optional.* Run the mesh's control plane yourself with Headscale instead of Tailscale's hosted server |
-| 06 | [Locking It Down with nginx](Lab%20Manual/06%20Locking%20It%20Down%20with%20nginx.md) | Add an nginx reverse proxy with authentication in front of Ollama |
-| 07 | [Putting It Through Its Paces](Lab%20Manual/07%20Putting%20It%20Through%20Its%20Paces.md) | Reach the model three ways (terminal, TUI, web UI), then use it on sensitive-data and red team tasks |
-| 08 | [Wrap Up and Q&A](Lab%20Manual/08%20Wrap%20Up%20and%20Q%26A.md) | Data sovereignty, attack surface, and hardening for production |
-| 09 | [References](Lab%20Manual/09%20References.md) | Supplemental material, including the full history of AI |
+| 06  | [Locking It Down with nginx](Lab%20Manual/06%20Locking%20It%20Down%20with%20nginx.md)                      | Add an nginx reverse proxy with authentication in front of Ollama                                     |
+| 07  | [Putting It Through Its Paces](Lab%20Manual/07%20Putting%20It%20Through%20Its%20Paces.md)                  | Reach the model three ways (terminal, TUI, web UI), then use it on sensitive-data and red team tasks  |
+| 08  | [Wrap Up and Loose Ends](Lab%20Manual/08%20Wrap%20Up%20and%20Loose%20Ends.md)                                            | Data sovereignty, attack surface, and hardening for production                                        |
+| 09  | [References](Lab%20Manual/09%20References.md)                                                              | Supplemental material, including the full history of AI                                               |
 
 ## Repository Layout
 

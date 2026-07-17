@@ -11,7 +11,7 @@ minLevel: 0
 maxLevel: 3
 ```
 
-# Wrap Up and Q&A
+# Wrap Up and Loose Ends
 
 [Content to be developed]
 

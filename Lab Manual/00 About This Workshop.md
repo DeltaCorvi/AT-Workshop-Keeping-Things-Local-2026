@@ -57,7 +57,7 @@ Put an nginx reverse proxy in front of Ollama with basic authentication. Now you
 ### [[07 Putting It Through Its Paces]]
 Reach the same served model from Marvin three ways, with a terminal client, a TUI, and a web UI, then use it on the tasks that make local AI worth it: sensitive data and authorized red team work.
 
-### [[08 Wrap Up and Q&A]]
+### [[08 Wrap Up and Loose Ends]]
 Data sovereignty principles, attack surface considerations, and hardening ideas for production deployments.
 
 ### [[09 References]]

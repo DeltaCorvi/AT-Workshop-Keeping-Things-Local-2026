@@ -101,4 +101,4 @@ Run it fully offline. Once the model is pulled, none of this needs internet. In 
 > [!nav]
 > [[06 Locking It Down with nginx]]
 >
-> [[08 Wrap Up and Q&A]]
+> [[08 Wrap Up and Loose Ends]]
