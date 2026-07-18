@@ -45,14 +45,18 @@ You are Daffy Duck from Looney Tunes and Merrie Melodies. Answer as Daffy, only.
 
 Two things are doing the work. `temperature 1` keeps the model loose and playful, which suits a cartoon character. The `SYSTEM` line pins the persona so every reply stays in voice.
 
-HeartOfGold has all the ingredients you need to make your own version of Daffy Duck using local copies of `daffy_modelfile.md` and `llama3.2`. The customized models are not built for you, so your first step is to build `daffy` from its Modelfile:
+HeartOfGold has all the ingredients you need to make your own version of Daffy Duck using local copies of `Modelfile.daffy` and `llama3.2`. The customized models are not built for you, so your first step is to build `daffy` from its Modelfile:
 
 > [!hog] HeartOfGold · frankie
 > ```shell
-> ollama create daffy -f daffy_modelfile.md
+> ollama create daffy -f Modelfile.daffy
 > ```
 
-`ollama create` reads the Modelfile, applies it to the `llama3.2` base, and registers the result as a new model named `daffy`. Because `llama3.2` is already pulled, this finishes in a second or two with nothing to download. Now run it:
+`ollama create` reads the Modelfile, applies it to the `llama3.2` base, and registers the result as a new model named `daffy`. Because `llama3.2` is already pulled, this finishes in a second or two with nothing to download.
+
+That filename is worth a glance. Following Ollama's own convention it is `Modelfile.daffy`, not `daffy.md` or `daffy.txt`. The part after the dot is a label for humans, not an extension the system relies on. Unlike Windows, Linux does not use it to decide what a file is or how to open it, and `ollama create -f` reads the file whatever it is named. Here it simply tells you which model the recipe builds.
+
+Now run it:
 
 > [!hog] HeartOfGold · frankie
 > ```shell
@@ -61,7 +65,7 @@ HeartOfGold has all the ingredients you need to make your own version of Daffy D
 > ```
 
 > [!todo] Confirm the model files location before distribution
-> These `ollama create` commands assume the Modelfiles are in the current working directory. Confirm where the `model files` folder lands on the shipped HeartOfGold image and whether students need to `cd` into it first (mind the space in the folder name). Also decide whether to keep the `_modelfile.md` names or rename to `daffy.Modelfile` / `quizmaker.Modelfile`; if you rename, update these commands and the checkpoint.
+> These `ollama create` commands assume the Modelfiles are in the current working directory. Confirm where the `model files` folder lands on the shipped HeartOfGold image and whether students need to `cd` into it first (mind the space in the folder name).
 
 ## Example 2: A Task Model (quizmaker)
 
@@ -131,11 +135,11 @@ INPUT:
 
 Notice how much more the `SYSTEM` block carries here. It defines a role, a goal, explicit steps, and a strict output format. The lines after `INPUT:` are left blank on purpose. The student supplies the subject and learning objectives at run time, and the model fills in the questions.
 
-Build quizmaker the same way, from its shipped Modelfile `quizmaker_modelfile.md`:
+Build quizmaker the same way, from its shipped Modelfile `Modelfile.quizmaker`:
 
 > [!hog] HeartOfGold · frankie
 > ```shell
-> ollama create quizmaker -f quizmaker_modelfile.md
+> ollama create quizmaker -f Modelfile.quizmaker
 > ```
 
 Then run it:
@@ -156,8 +160,8 @@ Try modifying one of these. Change Daffy's character, or tighten quizmaker's out
 > [!checkpoint] Checkpoint
 > You have finished this lesson when all of the boxes below are ticked. Work through them in order, and if one does not hold, go back to the section it came from before moving on. Tick each box as you confirm it.
 >
-> - [ ] On HeartOfGold, `ollama create daffy -f daffy_modelfile.md` builds without error and `ollama run daffy` answers in Daffy's voice
-> - [ ] `ollama create quizmaker -f quizmaker_modelfile.md` builds and `ollama run quizmaker` generates review questions from a subject and learning objective
+> - [ ] On HeartOfGold, `ollama create daffy -f Modelfile.daffy` builds without error and `ollama run daffy` answers in Daffy's voice
+> - [ ] `ollama create quizmaker -f Modelfile.quizmaker` builds and `ollama run quizmaker` generates review questions from a subject and learning objective
 > - [ ] Editing a Modelfile and re-running `ollama create` produces the changed behavior
 
 ---

@@ -86,7 +86,7 @@ You will also want the `htpasswd` utility to create the credentials file. It shi
 
 ## Creating Credentials
 
-Now that you have nginx
+Now that you have the nginx web server up and running, and you've got the Apache utilities to help with 
 
 Basic authentication reads usernames and hashed passwords from a file. Create one with a single user. The example uses `benjy`, the account you call from on Marvin, but this name is an nginx credential and has nothing to do with any Linux account on either machine.
 
