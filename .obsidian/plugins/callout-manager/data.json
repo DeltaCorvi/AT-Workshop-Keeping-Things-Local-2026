@@ -1,7 +1,29 @@
 {
   "callouts": {
     "custom": [],
-    "settings": {}
+    "settings": {
+      "bothvms": [
+        {
+          "changes": {}
+        },
+        {
+          "condition": {
+            "colorScheme": "light"
+          },
+          "changes": {
+            "color": "40, 51, 67"
+          }
+        },
+        {
+          "condition": {
+            "colorScheme": "dark"
+          },
+          "changes": {
+            "color": "86, 103, 129"
+          }
+        }
+      ]
+    }
   },
   "calloutDetection": {
     "obsidian": true,

@@ -17,6 +17,8 @@ This course uses two virtual machines:
 * **HeartOfGold**, which acts as the server, hosting the local LLM that you will install and configure.
 * **Marvin**, which you will use to access it.  
 
+
+
 The connection between them is established and maintained using Tailscale, an encrypted mesh networking tool that lets two machines reach each other securely without manual VPN configuration or exposing services to the open internet. For penetration testers and red teamers, this is the same technique used to maintain persistent, encrypted access to internal services during an engagement. Here, we're using it to reach a private LLM instead.
 
 

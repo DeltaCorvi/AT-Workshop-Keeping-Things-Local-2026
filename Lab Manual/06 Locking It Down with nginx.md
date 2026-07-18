@@ -21,7 +21,7 @@ The mesh gives you two things: the traffic between Marvin and HeartOfGold is enc
 
 That is the distinction worth sitting with: encryption is not authentication. Encryption protects the conversation from anyone outside it. Authentication decides who is allowed to start a conversation in the first place. The mesh handles the former. Nothing so far handles the latter.
 
-nginx closes that gap. You put it on HeartOfGold as a reverse proxy in front of Ollama, turn on HTTP basic authentication, and now every request has to carry valid credentials before nginx will pass it back to the model. A device being on the mesh is no longer enough. It has to prove who it is. That is a second, independent layer sitting behind the first, which is the whole idea behind defense in depth: if one control fails or is bypassed, the next one is still standing.
+nginx (pronounced "engine x") is a web server: a program that listens for HTTP requests and returns responses. It can serve its own content, but it is just as commonly used as a reverse proxy, standing in front of another service and forwarding requests to it. That reverse proxy role is what closes the gap here. You put nginx on HeartOfGold in front of Ollama, turn on HTTP basic authentication, and now every request has to carry valid credentials before nginx will pass it back to the model. A device being on the mesh is no longer enough. It has to prove who it is. That is a second, independent layer sitting behind the first, which is the whole idea behind defense in depth: if one control fails or is bypassed, the next one is still standing.
 
 ## Target Architecture
 
@@ -33,7 +33,7 @@ The key move is that nginx, not Ollama, is now the only thing listening on Heart
 
 ## Moving Ollama Back to Localhost
 
-In lesson 05 you added a systemd override so Ollama would bind to HeartOfGold's tailnet address. Now that nginx is going to own that address, Ollama should go back to listening only on localhost. Edit the override again:
+In lesson 05 you added a `systemd` override so Ollama would bind to HeartOfGold's tailnet address. Now that nginx is going to own that address, Ollama should go back to listening only on localhost. Edit the override again:
 
 > [!hog] HeartOfGold · frankie
 > ```shell
@@ -77,7 +77,7 @@ Install nginx from the distribution's package repository:
 > sudo apt install -y nginx
 > ```
 
-You will also want the `htpasswd` utility to create the credentials file. On Debian and Ubuntu it ships in `apache2-utils`:
+You will also want the `htpasswd` utility to create the credentials file. It ships in `apache2-utils`, a small collection of command line tools that come bundled with the Apache web server. Do not let the name worry you: installing this package does not install or run Apache, and it does not interfere with nginx. You are only pulling in that one utility. On Debian and Ubuntu:
 
 > [!hog] HeartOfGold · frankie
 > ```shell
@@ -85,6 +85,8 @@ You will also want the `htpasswd` utility to create the credentials file. On Deb
 > ```
 
 ## Creating Credentials
+
+Now that you have nginx
 
 Basic authentication reads usernames and hashed passwords from a file. Create one with a single user. The example uses `benjy`, the account you call from on Marvin, but this name is an nginx credential and has nothing to do with any Linux account on either machine.
 
