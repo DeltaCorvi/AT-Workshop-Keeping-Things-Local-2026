@@ -1,5 +1,5 @@
 {
-  "cssTheme": "AnuPpuccin",
+  "cssTheme": "",
   "baseFontSizeAction": true,
   "baseFontSize": 17,
   "enabledCssSnippets": [
@@ -11,5 +11,5 @@
     "code-wrap",
     "extended-colorschemes"
   ],
-  "theme": "obsidian"
+  "theme": "system"
 }

@@ -92,6 +92,13 @@ You will see each device with its name and `100.x.y.z` address. The same list ap
 > [!tip] Use the Names, Not the Numbers
 > Anywhere you would type a tailnet IP, you can use the MagicDNS name instead. `heartofgold` is easier to remember and read than `100.75.98.11`.
 
+> [!tip] Hot Tip: Drive HeartOfGold from Marvin over SSH
+> Now that both machines are on the tailnet, you no longer have to sit at HeartOfGold's headless console for the rest of this lab. From Marvin, open a terminal and connect:
+> ```shell
+> ssh frankie@heartofgold
+> ```
+> Every HeartOfGold command from here on can run inside that SSH session, and its output lands in Marvin's terminal, where you can select and copy it like any other text. That sidesteps the headless copy/paste problem entirely, including grabbing the tailnet IP in the next step. If the connection is refused, make sure the SSH server is installed and running on HeartOfGold with `sudo apt install -y openssh-server` and `sudo systemctl enable --now ssh`.
+
 ## Exposing Ollama on the Mesh
 
 By default Ollama listens only on `127.0.0.1`, so nothing off the machine can reach it, including Marvin. You will bind it to HeartOfGold's tailnet address instead, so the model answers only over the encrypted mesh and not on the VM's other interfaces.
@@ -102,6 +109,9 @@ First, find HeartOfGold's tailnet address:
 > ```shell
 > tailscale ip -4
 > ```
+
+> [!tip] Write This Address Down Now!
+> The command you just typed is going to return an IP address, but because HeartOfGold is headless, there is no easy copy/paste from its console. Capture the IP address before you continue: Jot the four octets on paper, or take a screenshot of the hypervisor console window on your host so you can read the address back while you type.
 
 Then add a systemd override so Ollama binds to that address. Run:
 
