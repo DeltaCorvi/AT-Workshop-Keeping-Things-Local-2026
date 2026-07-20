@@ -37,12 +37,12 @@ Here is the download link: TBD
 
 ### System Requirements
 
-This workshop requires HeartOfGold and Marvin running at the same time. The two VMs are not symmetric, so host requirements are a sum of both, not a flat doubling:
+This workshop requires HeartOfGold and Marvin running at the same time, so host requirements are the sum of both VMs plus overhead for your host OS and VMware. Both VMs are set to 8 GB RAM each, which puts the VM total at 16 GB and the practical host minimum at 24 GB.
 
-- **Marvin (client, headless):** confirmed at 8 GB RAM, 2 processors, 20 GB disk.
-- **HeartOfGold (server):** TBD. Depends on which model(s) it needs to run.
+- **Marvin (client, headless):** 8 GB RAM, 2 processors, 20 GB disk.
+- **HeartOfGold (server):** 8 GB RAM. Disk and core count to be finalized once the model set is locked.
 
-> [!todo] Reminder to self: fill in HeartOfGold's confirmed RAM/disk/cores once it's built and tested, then update the host minimums below (currently Marvin's 8 GB/20 GB plus a TBD placeholder for HeartOfGold, plus host OS overhead).
+> [!todo] Reminder to self: confirm HeartOfGold's final disk and core count once it is built and tested, then reconcile the disk and CPU rows below. RAM is settled at 8 GB per VM, host minimum 24 GB.
 
 ---
 #### VMware Workstation 17 (Windows)
@@ -50,7 +50,7 @@ This workshop requires HeartOfGold and Marvin running at the same time. The two 
 | Component    | Minimum                                      | Recommended                                |
 | ------------ | -------------------------------------------- | ------------------------------------------ |
 | **CPU**      | 64-bit, 4 cores (2 for Marvin + TBD for HeartOfGold), virtualization support (Intel VT-x / AMD-V) enabled in BIOS/UEFI | Quad-core+ 64-bit (Intel i5/i7 or Ryzen 5+) |
-| **RAM**      | 8 GB (Marvin) + TBD (HeartOfGold) + host overhead | TBD once HeartOfGold is finalized  |
+| **RAM**      | 24 GB (8 GB Marvin + 8 GB HeartOfGold + host overhead) | 32 GB or more |
 | **Disk**     | 20 GB (Marvin) + TBD (HeartOfGold)           | SSD, TBD once HeartOfGold is finalized |
 | **Host OS**  | Windows 10/11 64-bit                         | Windows 10/11 64-bit                       |
 | **Display**  | 1280×800                                     | 1920×1080 or higher                        |
@@ -62,7 +62,7 @@ This workshop requires HeartOfGold and Marvin running at the same time. The two 
 | Component    | Minimum                            | Recommended                                          |
 | ------------ | ---------------------------------- | ---------------------------------------------------- |
 | **CPU**      | Quad-core Intel (64-bit) or Apple Silicon, virtualization support enabled | Quad-core Intel i5/i7/i9 or Apple Silicon (M1/M2/M3) |
-| **RAM**      | 8 GB (Marvin) + TBD (HeartOfGold) + host overhead | TBD once HeartOfGold is finalized |
+| **RAM**      | 24 GB (8 GB Marvin + 8 GB HeartOfGold + host overhead) | 32 GB or more |
 | **Disk**     | 20 GB (Marvin) + TBD (HeartOfGold) | SSD, TBD once HeartOfGold is finalized        |
 | **Host OS**  | macOS 12 (Monterey) or later       | Latest macOS (Ventura / Sonoma)                      |
 | **Display**  | 1280×800                           | 1920×1080 or higher                                  |

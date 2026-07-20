@@ -61,7 +61,7 @@ No prior experience with Ollama, Tailscale, or nginx is needed. Every tool is in
 
 VMware and the lab VMs are provided. You need a laptop that can run two virtual machines at the same time:
 
-- 16 GB RAM minimum (24 GB or more recommended)
+- 24 GB RAM minimum (32 GB or more recommended)
 - 60 GB free disk space
 - CPU with virtualization support enabled in BIOS/UEFI
 - Reliable internet connection (required for model downloads and Tailscale)

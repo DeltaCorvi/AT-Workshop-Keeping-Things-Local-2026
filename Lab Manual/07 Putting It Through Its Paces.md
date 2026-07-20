@@ -22,13 +22,14 @@ This lesson reaches out to one served LLM model from Marvin in three different w
 Back in [[01 What is an LLM]] you met the idea of a harness: the software wrapped around a raw model that turns it into something you can actually talk to. HeartOfGold serves exactly one model over the mesh. Everything in this lesson is a different harness in front of that same endpoint. The terminal, the TUI, and the web UI are three faces on one service, not three separate installs of the model.
 
 > [!note] Prerequisites for This Lesson
-> The three clients (curl, oterm, and Open WebUI) are already installed on Marvin. Each one talks to HeartOfGold at its tailnet address, so the mesh from [[05 Tailscale Mesh Networking]] has to be up. Confirm Marvin can reach the model before you start:
+> The three clients (curl, oterm, and Open WebUI) are already installed on Marvin. Each one reaches HeartOfGold at its tailnet address, so the mesh from [[05 Tailscale Mesh Networking]] has to be up. Because [[06 Locking It Down with nginx]] put nginx and basic auth in front of Ollama, every call now has to carry the credentials you set with `htpasswd`. Confirm Marvin can reach the model before you start:
 > ```shell
-> curl http://heartofgold:11434/api/tags
+> curl -u benjy http://heartofgold:11434/api/tags
 > ```
+> curl prompts for the password, then returns the JSON model list. Drop the `-u benjy` and you get a `401 Unauthorized` instead, which is lesson 06 doing its job.
 
-> [!todo] Reconcile the endpoint with lesson 06 before distribution
-> This lesson currently points every client at `heartofgold:11434`, the direct mesh endpoint from lesson 05. Once [[06 Locking It Down with nginx]] is finalized, the model sits behind nginx on its port with basic auth, so update the host and port here and add credentials to each client (`curl -u`, and `http://user:pass@host` for oterm and Open WebUI).
+> [!info] Same Endpoint, Now with Credentials
+> nginx took over HeartOfGold's tailnet address on the same port `11434` that Ollama listened on in lesson 05, so the address you call does not change: it is still `heartofgold:11434`. What changed is that every client now has to authenticate. curl carries credentials with `-u benjy`. The TUI and web UI take them in the URL, as `http://benjy:<password>@heartofgold:11434`. Substitute the password you set with `htpasswd` wherever you see `<password>`.
 
 ## Harness One: The Terminal
 
@@ -36,7 +37,7 @@ The plainest harness is a single HTTP request. From Marvin, send a one-shot prom
 
 > [!marvin] Marvin · benjy
 > ```shell
-> curl http://heartofgold:11434/api/generate -d '{
+> curl -u benjy http://heartofgold:11434/api/generate -d '{
 >   "model": "llama3.2",
 >   "prompt": "Explain what a reverse proxy does, in two sentences.",
 >   "stream": false
@@ -53,11 +54,11 @@ Point it at HeartOfGold and launch it:
 
 > [!marvin] Marvin · benjy
 > ```shell
-> export OLLAMA_HOST=http://heartofgold:11434
+> export OLLAMA_URL=http://benjy:<password>@heartofgold:11434
 > oterm
 > ```
 
-oterm reads `OLLAMA_HOST` to find the server, then lists the models HeartOfGold is serving. Pick `llama3.2`, start a chat, and hold a back-and-forth conversation. Unlike the one-shot `curl`, oterm keeps the thread, so the model sees earlier turns as context. Same model as before, different harness.
+oterm reads `OLLAMA_URL` to find the server, and the `benjy:<password>` prefix hands nginx the basic-auth credentials on every request. It then lists the models HeartOfGold is serving. Pick `llama3.2`, start a chat, and hold a back-and-forth conversation. Unlike the one-shot `curl`, oterm keeps the thread, so the model sees earlier turns as context. Same model as before, different harness.
 
 ## Harness Three: The Web UI
 
@@ -65,11 +66,11 @@ oterm reads `OLLAMA_HOST` to find the server, then lists the models HeartOfGold 
 
 > [!marvin] Marvin · benjy
 > ```shell
-> export OLLAMA_BASE_URL=http://heartofgold:11434
+> export OLLAMA_BASE_URL=http://benjy:<password>@heartofgold:11434
 > open-webui serve
 > ```
 
-It starts a local server on port `8080` and forwards requests to HeartOfGold's Ollama over the mesh.
+It starts a local server on port `8080` and forwards requests to HeartOfGold's Ollama over the mesh, passing the `benjy` credentials to nginx on each one. If you would rather not keep the password in an environment variable, leave it out of `OLLAMA_BASE_URL` and set the connection instead under Open WebUI's Admin Settings, in Connections, where it takes the same URL with credentials.
 
 > [!tip] Reaching a Web UI on a Headless VM
 > Marvin has no desktop, so open the interface from your host's browser instead. Point it at Marvin's address on port `8080`, for example `http://marvin:8080` over the tailnet, or Marvin's VMware IP. The first visit asks you to create a local admin account; that account lives on Marvin, not in any cloud.
@@ -92,7 +93,7 @@ Run it fully offline. Once the model is pulled, none of this needs internet. In 
 > [!checkpoint] Checkpoint
 > You have finished this lesson when all of the boxes below are ticked. Work through them in order, and if one does not hold, go back to the section it came from before moving on. Tick each box as you confirm it.
 >
-> - [ ] From Marvin, the one-shot `curl` to `/api/generate` returns an answer
+> - [ ] From Marvin, the one-shot `curl -u benjy` to `/api/generate` returns an answer
 > - [ ] `oterm` connects to HeartOfGold and holds a multi-turn conversation
 > - [ ] Open WebUI, reached from your host browser at `http://marvin:8080`, chats with `llama3.2`
 

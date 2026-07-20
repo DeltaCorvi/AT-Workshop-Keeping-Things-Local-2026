@@ -86,7 +86,7 @@ You will also want the `htpasswd` utility to create the credentials file. It shi
 
 ## Creating Credentials
 
-Now that you have the nginx web server up and running, and you've got the Apache utilities to help with 
+That is the hard part done. Ollama is back on localhost, nginx is installed and running, and the `htpasswd` utility is on hand. Everything the reverse proxy needs is now in place except the one thing that gives it a reason to exist: a set of credentials to check. So before you wire nginx up as the proxy, you will create that credentials file, then point nginx at it in the next section.
 
 Basic authentication reads usernames and hashed passwords from a file. Create one with a single user. The example uses `benjy`, the account you call from on Marvin, but this name is an nginx credential and has nothing to do with any Linux account on either machine.
 
