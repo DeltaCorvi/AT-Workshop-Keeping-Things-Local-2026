@@ -42,6 +42,17 @@
 .image-embed[alt="left"]   img { display: block; margin-right: auto; margin-left: 0; }
 .image-embed[alt="right"]  img { display: block; margin-left: auto; margin-right: 0; }
 
+/* --- Global size cap: no image wider than 75% of the content width --- */
+/* Target the embed class (identical in reading + live preview) and plain
+   markdown images, so the cap applies regardless of which view is active. */
+.image-embed img,
+.internal-embed img,
+.markdown-preview-view img,
+.markdown-source-view.mod-cm6 .cm-content img {
+  max-width: 75% !important;
+  height: auto !important;
+}
+
 /* --- Standard Markdown images: ![center](path) etc. --- */
 img[alt="center"] {
   display: block;

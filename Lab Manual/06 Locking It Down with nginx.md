@@ -21,7 +21,7 @@ The mesh gives you two things: the traffic between Marvin and HeartOfGold is enc
 
 That is the distinction worth sitting with: encryption is not authentication. Encryption protects the conversation from anyone outside it. Authentication decides who is allowed to start a conversation in the first place. The mesh handles the former. Nothing so far handles the latter.
 
-nginx (pronounced "engine x") is a web server: a program that listens for HTTP requests and returns responses. It can serve its own content, but it is just as commonly used as a reverse proxy, standing in front of another service and forwarding requests to it. That reverse proxy role is what closes the gap here. You put nginx on HeartOfGold in front of Ollama, turn on HTTP basic authentication, and now every request has to carry valid credentials before nginx will pass it back to the model. A device being on the mesh is no longer enough. It has to prove who it is. That is a second, independent layer sitting behind the first, which is the whole idea behind defense in depth: if one control fails or is bypassed, the next one is still standing.
+[[10 Glossary#nginx|nginx]] (pronounced "engine x") is a web server: a program that listens for HTTP requests and returns responses. It can serve its own content, but it is just as commonly used as a [[10 Glossary#Reverse Proxy|reverse proxy]], standing in front of another service and forwarding requests to it. That reverse proxy role is what closes the gap here. You put nginx on HeartOfGold in front of Ollama, turn on [[10 Glossary#HTTP Basic Authentication|HTTP basic authentication]], and now every request has to carry valid credentials before nginx will pass it back to the model. A device being on the mesh is no longer enough. It has to prove who it is. That is a second, independent layer sitting behind the first, which is the whole idea behind [[10 Glossary#Defense in Depth|defense in depth]]: if one control fails or is bypassed, the next one is still standing.
 
 ## Target Architecture
 
@@ -33,7 +33,7 @@ The key move is that nginx, not Ollama, is now the only thing listening on Heart
 
 ## Moving Ollama Back to Localhost
 
-In lesson 05 you added a `systemd` override so Ollama would bind to HeartOfGold's tailnet address. Now that nginx is going to own that address, Ollama should go back to listening only on localhost. Edit the override again:
+In lesson 05 you added a `systemd` override so Ollama would bind to HeartOfGold's tailnet address. Now that nginx is going to own that address, Ollama should go back to listening only on [[10 Glossary#localhost (Loopback)|localhost]]. Edit the override again:
 
 > [!hog] HeartOfGold · frankie
 > ```shell
@@ -112,7 +112,7 @@ The `-c` flag creates the file, so use it only the first time. Add the second wi
 > sudo htpasswd /etc/nginx/.htpasswd trillian
 > ```
 
-htpasswd prompts for a password each time and stores only its hash, never the password itself. Check your work:
+[[10 Glossary#htpasswd|htpasswd]] prompts for a password each time and stores only its hash, never the password itself. Check your work:
 
 > [!hog] HeartOfGold · frankie
 > ```shell

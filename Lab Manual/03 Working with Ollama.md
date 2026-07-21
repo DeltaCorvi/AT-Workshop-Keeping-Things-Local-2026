@@ -17,7 +17,7 @@ maxLevel: 3
 [Ollama](https://ollama.com/) is an excellent way to get started with using and customizing local LLMs. It is available on multiple platforms, is easy to install, has extensive documentation, and is well supported. 
 
 > [!NOTE]
-> This VM already has Ollama and one small model, `llama3.2`, installed. This information is for your reference in case you decide to install Ollama on a host or other system later. 
+> This VM already has [[10 Glossary#Ollama|Ollama]] and one small model, `llama3.2`, installed. This information is for your reference in case you decide to install Ollama on a host or other system later. 
 
 ### Installation
 
@@ -33,7 +33,7 @@ curl -fsSL https://ollama.com/install.sh | sh
 > When Ollama is installed on virtual machines, it is not able to access any GPUs present on your system. The good news is that you can set up Ollama on a host system easily. For more information, go to [ollama.com/download/](https://ollama.com/download/).
 ### Verify Ollama is Running
 
-On HeartOfGold, the install script already enabled and started Ollama as a systemd service, so it is running by the time the install finishes. Confirm it is responding and see the pre-loaded model:
+On HeartOfGold, the install script already enabled and started Ollama as a [[10 Glossary#systemd|systemd]] service, so it is running by the time the install finishes. Confirm it is responding and see the pre-loaded model:
 
 > [!hog] HeartOfGold · frankie
 > ```bash

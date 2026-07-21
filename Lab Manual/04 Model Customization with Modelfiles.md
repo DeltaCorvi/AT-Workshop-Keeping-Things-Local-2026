@@ -13,7 +13,7 @@ maxLevel: 3
 
 ## What a Modelfile Does
 
-A Modelfile is the recipe Ollama uses to turn an existing base model into a customized one. You are not retraining anything. You wrap a base model in a standing configuration: which model to start from, how it should behave, and how adventurous its output should be.
+A [[10 Glossary#Modelfile|Modelfile]] is the recipe Ollama uses to turn an existing base model into a customized one. You are not retraining anything. You wrap a base model in a standing configuration: which model to start from, how it should behave, and how adventurous its output should be.
 
 Three directives do most of the work:
 
@@ -154,7 +154,7 @@ Then run it:
 > ```
 
 > [!tip]
-> quizmaker ships at `temperature 1`, which is fine for variety. If you want the questions to come out more consistent and tightly scoped, lower the temperature (for example `PARAMETER temperature 0.4`) and rebuild. That is the [[01 What is an LLM]] temperature idea in practice: structured tasks often want a cooler setting than freewheeling personas do.
+> quizmaker ships at `temperature 1`, which is fine for variety. If you want the questions to come out more consistent and tightly scoped, lower the [[10 Glossary#Temperature|temperature]] (for example `PARAMETER temperature 0.4`) and rebuild. That is the [[01 What is an LLM]] temperature idea in practice: structured tasks often want a cooler setting than freewheeling personas do.
 
 ## Build Your Own
 

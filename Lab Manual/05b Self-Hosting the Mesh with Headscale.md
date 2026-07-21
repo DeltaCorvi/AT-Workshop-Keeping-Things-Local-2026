@@ -32,7 +32,7 @@ Both give you the same encrypted WireGuard mesh, the same `tailscale` client, an
 
 With **Tailscale**, that control plane is Tailscale's hosted service. It is audited, well run, and it never sees your traffic, but it is still a third party you depend on to be reachable and trustworthy. Choose it when you want to be meshed in two minutes, and on a red team engagement when you just need durable encrypted access back to a foothold and do not want to stand up infrastructure.
 
-With **Headscale**, you run the control plane yourself. It is an open-source reimplementation of Tailscale's coordination server, and standard Tailscale clients connect to it instead of to Tailscale's cloud. Choose it when the control plane itself has to live inside your network: an internal service on gear you own, a stricter trust boundary, an environment with no outbound dependency on an external provider, or anywhere "no third-party dependencies" has to be true.
+With **[[10 Glossary#Headscale|Headscale]]**, you run the control plane yourself. It is an open-source reimplementation of Tailscale's coordination server, and standard Tailscale clients connect to it instead of to Tailscale's cloud. Choose it when the control plane itself has to live inside your network: an internal service on gear you own, a stricter trust boundary, an environment with no outbound dependency on an external provider, or anywhere "no third-party dependencies" has to be true.
 
 > [!note] Same Security, Different Trust Boundary
 > Headscale and Tailscale use the same WireGuard cryptography, so neither is more secure on the wire. Headscale is the more sovereign choice because it moves the last third party, the coordination server, onto hardware you control. The question is where your trust boundary sits, not which one encrypts better.
@@ -51,7 +51,7 @@ Only two things change: there is no Tailscale account, and the client points at 
 
 In this lab HeartOfGold runs both roles. It keeps running Ollama and also runs Headscale, so the coordination server sits on the same box you already control. Marvin stays a pure client. Both VMs then enroll into the tailnet that HeartOfGold coordinates.
 
-![Self-hosted mesh with Headscale: control plane and data plane](assets/headscale_selfhosted_architecture.png)
+![[headscale_selfhosted_architecture.png|center]]
 
 > [!warning] The Lab Colocates; Production Should Not
 > Running Headscale on HeartOfGold is a lab simplification to avoid standing up a third VM. In a real deployment, put Headscale on its own dedicated, minimal, hardened host, separate from the workload. The control plane holds identity, keys, and the access policy for your entire tailnet, so if the workload host is compromised you do not want the coordination server to fall with it. Separating them contains a compromise, lets you patch or reboot the LLM box without breaking enrollment for every node, and keeps the control plane's attack surface small and distinct.
@@ -119,7 +119,7 @@ Confirm it exists:
 
 ## Generating a Pre-Auth Key
 
-Rather than register each node interactively, mint a pre-authenticated key and use it to join both VMs non-interactively. Recent Headscale takes the user's numeric ID, which you can read from `headscale users list`:
+Rather than register each node interactively, mint a [[10 Glossary#Pre-Auth Key|pre-authenticated key]] and use it to join both VMs non-interactively. Recent Headscale takes the user's numeric ID, which you can read from `headscale users list`:
 
 > [!hog] HeartOfGold · frankie
 > ```shell

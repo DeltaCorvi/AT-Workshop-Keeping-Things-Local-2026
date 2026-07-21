@@ -19,7 +19,7 @@ This course uses two virtual machines:
 
 
 
-The connection between them is established and maintained using Tailscale, an encrypted mesh networking tool that lets two machines reach each other securely without manual VPN configuration or exposing services to the open internet. For penetration testers and red teamers, this is the same technique used to maintain persistent, encrypted access to internal services during an engagement. Here, we're using it to reach a private LLM instead.
+The connection between them is established and maintained using [[10 Glossary#Tailscale|Tailscale]], an encrypted mesh networking tool that lets two machines reach each other securely without manual VPN configuration or exposing services to the open internet. For penetration testers and red teamers, this is the same technique used to maintain persistent, encrypted access to internal services during an engagement. Here, we're using it to reach a private LLM instead.
 
 
 ## Setting Up VMware 
@@ -32,13 +32,6 @@ This lab is set up to use VMware Workstation Pro or VMware Fusion Pro. The two V
 VMware itself you download from Broadcom. Both Workstation Pro and Fusion Pro are now free for personal, educational, and commercial use, with no license key required, but the download sits behind a free Broadcom Support Portal account:
 
 [support.broadcom.com/group/ecx/productdownloads](https://support.broadcom.com/group/ecx/productdownloads?subfamily=VMware+Workstation+Pro&freeDownloads=true)
-
-<!--
-> [!warning] Register with Broadcom Well Before the Workshop
-> New Broadcom Support Portal accounts are screened by their export compliance team before download access is granted, and that review has been reported to take **weeks**, not minutes. Creating your account the night before will not work. If you intend to run the VMs on your own hardware, register now, confirm you can actually reach the download, and only then worry about the rest of this page.
->
-> If you would rather not deal with that at all, use the hosted VMs provided for the workshop instead. Nothing in this manual depends on running the labs locally.
--->
 
 None of the software included in the VMs requires a license for personal use. Some applications do have requirements for commercial or enterprise use. You should be able to make use of the VMs and the software on them for a long time after this course is over.
 

@@ -19,10 +19,10 @@ Up to now everything has lived on a single VM. HeartOfGold runs Ollama, and you 
 
 You have a private LLM on HeartOfGold. You want to use it from Marvin, and later from your laptop, your phone, or a teammate's box, without doing any of the things that usually make a service reachable: no opening firewall ports, no port forwarding on a router, no exposing Ollama to the local network or the public internet. Every one of those options widens your attack surface, which is exactly what this workshop is trying to avoid.
 
-Tailscale solves this with a mesh VPN built on the WireGuard protocol. Each device you enroll joins a private network called a tailnet and gets a stable address in the `100.x.y.z` range. Devices then talk directly to each other through encrypted tunnels, even when they sit on different networks behind different routers. Nothing is published to the outside world; the two machines simply find each other and connect.
+Tailscale solves this with a [[10 Glossary#Mesh VPN|mesh VPN]] built on the [[10 Glossary#WireGuard|WireGuard]] protocol. Each device you enroll joins a private network called a [[10 Glossary#Tailnet|tailnet]] and gets a stable address in the `100.x.y.z` range. Devices then talk directly to each other through encrypted tunnels, even when they sit on different networks behind different routers. Nothing is published to the outside world; the two machines simply find each other and connect.
 
 > [!info] Control Plane vs Data Plane
-> Tailscale runs a coordination server that handles identity, key exchange, and access policy. That is the control plane. Your actual traffic, the data plane, flows directly between your devices and is encrypted end to end. Tailscale's servers help your machines find each other, but your private traffic never passes through them.
+> Tailscale runs a [[10 Glossary#Coordination Server|coordination server]] that handles identity, key exchange, and access policy. That is the [[10 Glossary#Control Plane|control plane]]. Your actual traffic, the [[10 Glossary#Data Plane|data plane]], flows directly between your devices and is encrypted end to end. Tailscale's servers help your machines find each other, but your private traffic never passes through them.
 
 > [!tip] The Easy Button, and the Fully Local Alternative
 > We use Tailscale here because it gets you a working mesh in about two minutes, and because it earns its place on engagements. The tradeoff for this workshop is that the *control plane* is Tailscale's hosted server, a third party. When you need that control plane inside your own perimeter too, for an internal network or a stricter trust boundary, you self-host it with Headscale and keep the same client and the same steps. See [[05b Self-Hosting the Mesh with Headscale]].
@@ -31,16 +31,16 @@ Tailscale solves this with a mesh VPN built on the WireGuard protocol. Each devi
 
 This is the final architecture once the mesh is up and nginx (lesson 06) is in place. Before nginx exists, Marvin's two interfaces talk to Ollama directly instead of going through the basic auth layer.
 
-![[heartofgold_marvin_architecture.png]]
+![[heartofgold_marvin_architecture.png|center]]
 
 ## Why Tailscale Matters for Red Teamers
 
 The same properties that make Tailscale convenient here make it useful on an engagement. This is why the workshop spends time on it rather than just hardcoding an IP address.
 
 - **Persistent, encrypted access.** A Tailscale node on a foothold gives you durable access back to that host. The tunnel is encrypted, survives the host changing networks or IP, and traverses NAT without any inbound ports, so there is nothing listening on the perimeter for a defender to find.
-- **Reaching internal services.** A subnet router advertises an entire internal subnet into your tailnet. From your own box you can then reach hosts on the target's internal network as if you were sitting next to them, without standing up a separate tunnel for every host.
-- **Pivoting with exit nodes.** An exit node routes your traffic out through the foothold, so your requests appear to originate from inside the target environment.
-- **Clean, scoped access.** MagicDNS gives every node a name instead of an IP, and access control lists let you scope exactly which nodes can reach which, so a shared tailnet stays controlled rather than wide open.
+- **Reaching internal services.** A [[10 Glossary#Subnet Router|subnet router]] advertises an entire internal subnet into your tailnet. From your own box you can then reach hosts on the target's internal network as if you were sitting next to them, without standing up a separate tunnel for every host.
+- **Pivoting with exit nodes.** An [[10 Glossary#Exit Node|exit node]] routes your traffic out through the foothold, so your requests appear to originate from inside the target environment.
+- **Clean, scoped access.** [[10 Glossary#MagicDNS|MagicDNS]] gives every node a name instead of an IP, and [[10 Glossary#Access Control List (ACL)|access control lists]] let you scope exactly which nodes can reach which, so a shared tailnet stays controlled rather than wide open.
 
 > [!warning] Authorization and Opsec
 > Use this only on engagements you are authorized for, and stay inside your rules of engagement. Remember that Tailscale's coordination server is a third party that sees device metadata such as names, keys, and connection times, even though it never sees your traffic. Factor that into your opsec. When that metadata exposure is unacceptable, self-host the control plane with [[05b Self-Hosting the Mesh with Headscale]].

@@ -22,7 +22,7 @@ This lesson reaches out to one served LLM model from Marvin in two different way
 Back in [[01 What is an LLM]] you met the idea of a harness: the software wrapped around a raw model that turns it into something you can actually talk to. HeartOfGold serves exactly one model over the mesh. Everything in this lesson is a different harness in front of that same endpoint. The terminal and the web UI are two faces on one service, not two separate installs of the model.
 
 > [!note] Prerequisites for This Lesson
-> Both clients (curl and Open WebUI) are already installed on Marvin. Each one reaches HeartOfGold at its tailnet address, so the mesh from [[05 Tailscale Mesh Networking]] has to be up. Because [[06 Locking It Down with nginx]] put nginx and basic auth in front of Ollama, every call now has to carry credentials, and the only credentials that work are the two you created with `htpasswd` in that lesson. 
+> Both clients (curl and [[10 Glossary#Open WebUI|Open WebUI]]) are already installed on Marvin. Each one reaches HeartOfGold at its tailnet address, so the mesh from [[05 Tailscale Mesh Networking]] has to be up. Because [[06 Locking It Down with nginx]] put nginx and basic auth in front of Ollama, every call now has to carry credentials, and the only credentials that work are the two you created with `htpasswd` in that lesson. 
 > 
 > * If you changed the usernames, substitute yours throughout. 
 > * Have both passwords to hand before you start. 

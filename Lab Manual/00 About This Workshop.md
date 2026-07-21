@@ -21,7 +21,7 @@ Large language models are powerful tools, but they come with a tradeoff: send yo
 
 This workshop builds a complete service layer around a local LLM. You start with Ollama on a single VM, then expand to a two-VM setup connected over an encrypted mesh network, then lock it down with authentication. Each section builds on the previous one.
 
-![[heartofgold_marvin_architecture.png]]
+![[heartofgold_marvin_architecture.png|center]]
 ### Tools We Will be Using
 
 * VMware Virtual Machine (Workstation or Fusion): two Linux VMs
@@ -85,6 +85,9 @@ Data sovereignty principles, attack surface considerations, and hardening ideas 
 
 ### [[09 References]]
 Supplemental material not essential to the hands-on lab, including the full history of AI.
+
+### [[10 Glossary]]
+Canonical, quick-reference definitions of the tools, protocols, and concepts used across the manual. The first use of a term in a lesson links here.
 
 ---
 

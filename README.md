@@ -59,7 +59,7 @@ No prior experience with Ollama, Tailscale, or nginx is needed. Every tool is in
 
 ## System Requirements
 
-The lab VMs are provided. VMware Workstation Pro and Fusion Pro are free but you download them yourself from Broadcom, which requires a free Broadcom Support Portal account. **Register early.** New accounts go through an export compliance review that can take weeks, so an account created shortly before the workshop may not have download access in time. See [Lesson 02](Lab%20Manual/02%20Setting%20Up%20Your%20VMs.md) for the link and details.
+The lab VMs are provided. VMware Workstation Pro and Fusion Pro are free for personal, educational, and commercial use, with no license key required, but you download them yourself from Broadcom, which requires a free Broadcom Support Portal account. See [Lesson 02](Lab%20Manual/02%20Setting%20Up%20Your%20VMs.md) for the link.
 
 To run the VMs locally you need a laptop that can run two virtual machines at the same time:
 
@@ -103,6 +103,7 @@ The lab manual is organized into sequential modules. Each builds on the last.
 | 07  | [Putting It All Together](Lab%20Manual/07%20Putting%20It%20All%20Together.md)                  | Reach the model two ways (terminal, web UI), then use it on sensitive-data and red team tasks  |
 | 08  | [Wrap Up and Loose Ends](Lab%20Manual/08%20Wrap%20Up%20and%20Loose%20Ends.md)                                            | Data sovereignty, attack surface, and hardening for production                                        |
 | 09  | [References](Lab%20Manual/09%20References.md)                                                              | Supplemental material, including the full history of AI                                               |
+| 10  | [Glossary](Lab%20Manual/10%20Glossary.md)                                                                  | Canonical quick-reference definitions of the tools, protocols, and concepts used across the manual    |
 
 ## Repository Layout
 
@@ -110,7 +111,7 @@ The lab manual is organized into sequential modules. Each builds on the last.
 .
 ├── README.md                 This file
 ├── LICENSE                   CC BY 4.0
-├── Lab Manual/               The workshop modules (00–09) and images
+├── Lab Manual/               The workshop modules (00–10) and images
 │   └── assets/               Diagrams and screenshots used in the manual
 ├── assets/                   Architecture and login diagrams
 └── model files/              Example Modelfiles (daffy, quizmaker)
