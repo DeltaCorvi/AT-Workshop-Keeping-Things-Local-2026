@@ -29,7 +29,7 @@ Tailscale solves this with a mesh VPN built on the WireGuard protocol. Each devi
 
 ## Target Architecture
 
-This is the final architecture once the mesh is up and nginx (lesson 06) is in place. Before nginx exists, Marvin's three interfaces talk to Ollama directly instead of going through the basic auth layer.
+This is the final architecture once the mesh is up and nginx (lesson 06) is in place. Before nginx exists, Marvin's two interfaces talk to Ollama directly instead of going through the basic auth layer.
 
 ![[heartofgold_marvin_architecture.png]]
 
@@ -97,7 +97,7 @@ You will see each device with its name and `100.x.y.z` address. The same list ap
 > ```shell
 > ssh frankie@heartofgold
 > ```
-> Every HeartOfGold command from here on can run inside that SSH session, and its output lands in Marvin's terminal, where you can select and copy it like any other text. That sidesteps the headless copy/paste problem entirely, including grabbing the tailnet IP in the next step. If the connection is refused, make sure the SSH server is installed and running on HeartOfGold with `sudo apt install -y openssh-server` and `sudo systemctl enable --now ssh`.
+> Every HeartOfGold command from here on can run inside that SSH session, and its output lands in Marvin's terminal, where you can select and copy it like any other text. That sidesteps the headless copy/paste problem entirely, including grabbing the tailnet IP in the next step. HeartOfGold ships with its SSH server running, so this should connect straight away. If it is refused, confirm the service is up with `sudo systemctl status ssh`, and if it is missing entirely, `sudo apt install -y openssh-server` then `sudo systemctl enable --now ssh`.
 >
 > Two terminal windows side by side works well: one logged in to Marvin, one holding the SSH session to HeartOfGold. With the manual open on Marvin, you can copy a command straight into whichever window it belongs to.
 >
@@ -166,7 +166,7 @@ Everything is wired up. From Marvin, reach HeartOfGold's Ollama across the mesh:
 > curl http://heartofgold:11434/api/tags
 > ```
 
-You should get back a JSON list of the models installed on HeartOfGold (`llama3.2` and `qwen3.5:4b`). That response is the proof: Marvin reached the model on HeartOfGold over the encrypted tailnet, with nothing exposed to the wider network.
+You should get back a JSON list of the models installed on HeartOfGold, which is `llama3.2` unless you pulled others in lesson 03. That response is the proof: Marvin reached the model on HeartOfGold over the encrypted tailnet, with nothing exposed to the wider network.
 
 To watch it actually generate, send a prompt:
 

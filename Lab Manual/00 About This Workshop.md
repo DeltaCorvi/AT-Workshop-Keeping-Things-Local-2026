@@ -26,9 +26,9 @@ This workshop builds a complete service layer around a local LLM. You start with
 
 * VMware Virtual Machine (Workstation or Fusion): two Linux VMs
 * Ollama: local LLM runtime, pre-installed on server VM
-* Selected LLM models: pre-loaded to avoid bandwidth issues
+* `llama3.2`: pre-loaded on the server VM to avoid bandwidth issues
 * Tailscale: encrypted mesh networking to connect the two VMs securely
-* Headscale (optional): self-hosted coordination server, for running the mesh's control plane on your own hardware
+* Headscale (extracurricular, not installed): self-hosted coordination server, for running the mesh's control plane on your own hardware after the workshop
 * nginx: reverse proxy with basic authentication in front of Ollama
 
 ## How to Read the Command Boxes
@@ -72,13 +72,13 @@ Build custom models using Modelfiles. Create purpose-specific assistants: system
 Set up a free Tailscale account, install Tailscale on both VMs, authenticate them into an encrypted mesh, and verify that the client VM can reach Ollama on the server VM over the mesh network. This is the foundation for secure, team-accessible AI services.
 
 ### [[05b Self-Hosting the Mesh with Headscale]]
-Optional advanced track. Run the coordination server yourself with Headscale instead of relying on Tailscale's hosted control plane, keeping the entire mesh on hardware you control. Same client, same downstream steps.
+Extracurricular advanced track, for after the workshop. Run the coordination server yourself with Headscale instead of relying on Tailscale's hosted control plane, keeping the entire mesh on hardware you control. Headscale is not installed on the lab VMs, so this one you build yourself. Same client, same downstream steps.
 
 ### [[06 Locking It Down with nginx]]
 Put an nginx reverse proxy in front of Ollama with basic authentication. Now your service is remote, encrypted, and access-controlled.
 
 ### [[07 Putting It All Together]]
-Reach the same served model from Marvin three ways, with a terminal client, a TUI, and a web UI, then use it on the tasks that make local AI worth it: sensitive data and authorized red team work.
+Reach the same served model from Marvin two ways, with a terminal client and a web UI, then use it on the tasks that make local AI worth it: sensitive data and authorized red team work.
 
 ### [[08 Wrap Up and Loose Ends]]
 Data sovereignty principles, attack surface considerations, and hardening ideas for production deployments.

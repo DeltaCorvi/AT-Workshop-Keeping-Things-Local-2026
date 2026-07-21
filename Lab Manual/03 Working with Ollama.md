@@ -17,7 +17,7 @@ maxLevel: 3
 [Ollama](https://ollama.com/) is an excellent way to get started with using and customizing local LLMs. It is available on multiple platforms, is easy to install, has extensive documentation, and is well supported. 
 
 > [!NOTE]
-> This VM already has Ollama and one or two small models installed. This information is for your reference in case you decide to install Ollama on a host or other system later. 
+> This VM already has Ollama and one small model, `llama3.2`, installed. This information is for your reference in case you decide to install Ollama on a host or other system later. 
 
 ### Installation
 

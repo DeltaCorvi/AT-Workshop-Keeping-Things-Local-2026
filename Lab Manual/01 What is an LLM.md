@@ -96,7 +96,7 @@ Compute tokens are what hosted AI services meter and bill for. When you use Chat
 
 ### Harness
 
-A raw model only predicts the next token. Everything that makes it feel like a product, a chat window, memory of the conversation so far, the ability to call tools, a command line you type into, is provided by software wrapped around the model. That wrapping is often called a "harness". Ollama itself is a harness: it loads a model's weights, exposes them through a local API, and gives you a CLI to talk to it. Later in this workshop you'll put different harnesses in front of the same served model: a terminal client, a TUI (a text user interface, meaning menus and panels you drive with the keyboard right inside the terminal), and a web interface, each offering a different way to reach the same underlying model.
+A raw model only predicts the next token. Everything that makes it feel like a product, a chat window, memory of the conversation so far, the ability to call tools, a command line you type into, is provided by software wrapped around the model. That wrapping is often called a "harness". Ollama itself is a harness: it loads a model's weights, exposes them through a local API, and gives you a CLI to talk to it. Later in this workshop you'll put two different harnesses in front of the same served model: a terminal client and a web interface, each offering a different way to reach the same underlying model. Those two are a starting point rather than the whole catalog. Anything that can make an HTTP request to the model can be a harness, from a shell script to an editor plugin to a chat app on your phone, and once the service is running you can point as many of them at it as you like.
 
 #### The Life Cycle of a Prompt
 

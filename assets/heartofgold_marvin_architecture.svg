@@ -12,16 +12,14 @@
   <text x="380" y="136" text-anchor="middle" font-size="24" font-weight="700" fill="#0f172a">Marvin</text>
   <text x="380" y="162" text-anchor="middle" font-size="15" fill="#475569">client · user: benjy</text>
   <g fill="#475569">
-    <rect x="110" y="185" width="165" height="64" rx="10"/>
-    <rect x="298" y="185" width="165" height="64" rx="10"/>
-    <rect x="485" y="185" width="165" height="64" rx="10"/>
+    <rect x="160" y="185" width="200" height="64" rx="10"/>
+    <rect x="400" y="185" width="200" height="64" rx="10"/>
   </g>
   <g fill="#ffffff" font-size="16" font-weight="600" text-anchor="middle">
-    <text x="192" y="222">Terminal / curl</text>
-    <text x="380" y="222">TUI chat client</text>
-    <text x="567" y="222">Web UI</text>
+    <text x="260" y="222">Terminal / curl</text>
+    <text x="500" y="222">Web UI</text>
   </g>
-  <text x="380" y="280" text-anchor="middle" font-size="14" fill="#475569">8 GB RAM · 2 vCPU · headless</text>
+  <text x="380" y="280" text-anchor="middle" font-size="14" fill="#475569">8 GB RAM · 2 vCPU · Ubuntu desktop</text>
 
   <line x1="380" y1="304" x2="380" y2="380" stroke="#475569" stroke-width="4" marker-start="url(#arrow)" marker-end="url(#arrow)"/>
 
@@ -49,7 +47,7 @@
   <text x="380" y="890" text-anchor="middle" font-size="22" font-weight="700" fill="#ffffff">Ollama</text>
   <text x="380" y="919" text-anchor="middle" font-size="16" fill="#ede9fe">local LLM</text>
 
-  <text x="380" y="984" text-anchor="middle" font-size="14" fill="#475569">RAM/disk: TBD</text>
+  <text x="380" y="984" text-anchor="middle" font-size="14" fill="#475569">8 GB RAM · 2 vCPU · 30 GB disk</text>
 
   <text x="380" y="1068" text-anchor="middle" font-size="18" fill="#64748b">Final-state architecture, after the nginx lab (lesson 06) is complete.</text>
 </svg>

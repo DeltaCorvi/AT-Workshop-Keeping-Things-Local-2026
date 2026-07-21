@@ -88,29 +88,27 @@ You will also want the `htpasswd` utility to create the credentials file. It shi
 
 That is the hard part done. Ollama is back on localhost, nginx is installed and running, and the `htpasswd` utility is on hand. Everything the reverse proxy needs is now in place except the one thing that gives it a reason to exist: a set of credentials to check. So before you wire nginx up as the proxy, you will create that credentials file, then point nginx at it in the next section.
 
-Basic authentication reads usernames and hashed passwords from a file. You will create three entries in that file rather than one, because the next lesson, [[07 Putting It All Together]], reaches this service from three different clients and each one gets its own set of credentials. That costs you two extra commands here and pays off in that lesson, where HeartOfGold can tell the three callers apart.
+Basic authentication reads usernames and hashed passwords from a file. You will create two entries in that file rather than one, because the next lesson, [[07 Putting It All Together]], reaches this service from two different clients and each one gets its own set of credentials. That costs you one extra command here and pays off in that lesson, where HeartOfGold can tell the callers apart.
 
 > [!note] One Credential per Client
 > | Credential | Client |
 > | --- | --- |
-> | `ford` | `curl`, a plain one-shot HTTP request |
-> | `zaphod` | oterm, a chat client that runs in the terminal |
+> | `zaphod` | `curl`, a plain one-shot HTTP request |
 > | `trillian` | Open WebUI, a chat client that runs in a browser |
 >
-> Basic auth gives all three identical access, so this is not about restricting what any one client can do. It is about being able to tell them apart in the logs and revoke them separately.
+> Basic auth gives both identical access, so this is not about restricting what any one client can do. It is about being able to tell them apart in the logs and revoke them separately.
 
 Create the file with the first user:
 
 > [!hog] HeartOfGold · frankie
 > ```shell
-> sudo htpasswd -c /etc/nginx/.htpasswd ford
+> sudo htpasswd -c /etc/nginx/.htpasswd zaphod
 > ```
 
-The `-c` flag creates the file, so use it only the first time. Add the other two without it, so you append instead of overwriting:
+The `-c` flag creates the file, so use it only the first time. Add the second without it, so you append instead of overwriting:
 
 > [!hog] HeartOfGold · frankie
 > ```shell
-> sudo htpasswd /etc/nginx/.htpasswd zaphod
 > sudo htpasswd /etc/nginx/.htpasswd trillian
 > ```
 
@@ -121,13 +119,13 @@ htpasswd prompts for a password each time and stores only its hash, never the pa
 > sudo cat /etc/nginx/.htpasswd
 > ```
 
-Three lines, each a username followed by a hash. If you see only one, you used `-c` more than once and overwrote the file. Run the two commands above again without it.
+Two lines, each a username followed by a hash. If you see only one, you used `-c` more than once and overwrote the file. Run the second command above again without it.
 
 > [!warning] These Are Credentials, Not Linux Accounts
-> `ford`, `zaphod`, and `trillian` exist only inside `.htpasswd`. They are not users on HeartOfGold or on Marvin, they have no home directories, and you cannot log in to anything with them. This is worth being clear about because you are still logged in to Marvin as `benjy` and to HeartOfGold as `frankie` the whole time, and those accounts have nothing to do with the credentials nginx checks.
+> `zaphod` and `trillian` exist only inside `.htpasswd`. They are not users on HeartOfGold or on Marvin, they have no home directories, and you cannot log in to anything with them. This is worth being clear about because you are still logged in to Marvin as `benjy` and to HeartOfGold as `frankie` the whole time, and those accounts have nothing to do with the credentials nginx checks.
 
 > [!tip]- What Passwords Should You Use?
-> For this lab, pick three short, memorable passwords and write down which one goes with which username. You will type them repeatedly for the rest of the workshop, and every failed call from Marvin looks identical whether the credential is wrong or the proxy is misconfigured, which makes a forgotten password an expensive way to lose ten minutes. These VMs are disposable and live only on your own machine, so weak lab passwords cost you nothing.
+> For this lab, pick two short, memorable passwords and write down which one goes with which username. You will type them repeatedly for the rest of the workshop, and every failed call from Marvin looks identical whether the credential is wrong or the proxy is misconfigured, which makes a forgotten password an expensive way to lose ten minutes. These VMs are disposable and live only on your own machine, so weak lab passwords cost you nothing.
 >
 > Nothing about that advice survives contact with production. Each of these entries is really a service account, and in production each should be long, random, generated by a password manager, and stored there rather than on a sticky note. Each should also be rotated on a schedule and revoked the moment it turns up somewhere it should not be, such as a config file in a repository or a shell history. What does carry over from the lab is the shape of the arrangement: one credential per client, so that a single compromised or retired client costs you one revocation rather than a password change for everything at once. The value of any one of them is set by what it protects. Yours here protect a toy model server on a private mesh. The next one you set might protect an inference endpoint holding customer data.
 
@@ -227,18 +225,18 @@ Now make the same call with credentials, using the username and password you set
 
 > [!marvin] Marvin · benjy
 > ```shell
-> curl -u ford http://heartofgold:11434/api/tags
+> curl -u zaphod http://heartofgold:11434/api/tags
 > ```
 
-curl prompts for the password, and you get the JSON list of models back (`llama3.2` and `qwen3.5:4b`). Send a prompt the same way:
+curl prompts for the password, and you get the JSON list of models back, the same list you saw in lesson 05. Send a prompt the same way:
 
 > [!marvin] Marvin · benjy
 > ```shell
-> curl -u ford http://heartofgold:11434/api/generate -d '{"model":"llama3.2","prompt":"Say hello in one sentence.","stream":false}'
+> curl -u zaphod http://heartofgold:11434/api/generate -d '{"model":"llama3.2","prompt":"Say hello in one sentence.","stream":false}'
 > ```
 
 > [!info] Your Lesson 05 Commands Need `-u` Now
-> Every call you made in lesson 05 still works, with one change: it has to carry credentials. Anywhere you ran `curl http://heartofgold:11434/...`, you now run `curl -u ford http://heartofgold:11434/...`. The same applies to every other client you point at the service, which is why you created the `zaphod` and `trillian` entries alongside `ford`. Each one gets used in [[07 Putting It All Together]].
+> Every call you made in lesson 05 still works, with one change: it has to carry credentials. Anywhere you ran `curl http://heartofgold:11434/...`, you now run `curl -u zaphod http://heartofgold:11434/...`. The same applies to every other client you point at the service, which is why you created the `trillian` entry alongside `zaphod`. Both get used in [[07 Putting It All Together]].
 
 ## Why This Matters for Red Teamers
 
@@ -254,11 +252,11 @@ The pattern in this lesson, an authenticating reverse proxy in front of a plain 
 > [!checkpoint] Checkpoint
 > You have finished this lesson when all of the boxes below are ticked. Work through them in order, and if one does not hold, go back to the section it came from before moving on. Tick each box as you confirm it.
 >
-> - [ ] `sudo cat /etc/nginx/.htpasswd` on HeartOfGold shows three lines, `ford`, `zaphod`, and `trillian`, and you have all three passwords written down
+> - [ ] `sudo cat /etc/nginx/.htpasswd` on HeartOfGold shows two lines, `zaphod` and `trillian`, and you have both passwords written down
 > - [ ] On HeartOfGold, `ss -tlnp | grep 11434` shows two listeners, `127.0.0.1:11434` owned by `ollama` and `100.x.y.z:11434` owned by `nginx`
 > - [ ] From Marvin, a credential-free `curl http://heartofgold:11434/api/tags` returns `401 Unauthorized`
-> - [ ] The same call with `curl -u ford` returns the JSON model list
-> - [ ] A prompt sent with `curl -u ford` to `/api/generate` comes back with a `response`
+> - [ ] The same call with `curl -u zaphod` returns the JSON model list
+> - [ ] A prompt sent with `curl -u zaphod` to `/api/generate` comes back with a `response`
 
 ---
 

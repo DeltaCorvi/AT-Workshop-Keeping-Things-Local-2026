@@ -15,8 +15,16 @@ maxLevel: 3
 
 [[05 Tailscale Mesh Networking]] got you a working mesh in a couple of minutes by leaning on Tailscale's hosted coordination server. That is the fast path, and for most of this lab it is the right one. This lesson is the alternative for when you do not want to depend on anyone else's server at all: you run the coordination server yourself, on hardware you control, using [Headscale](https://headscale.net/).
 
-> [!info] This Lesson is Optional
-> Nothing later in the workshop requires Headscale. If you completed the Tailscale mesh in lesson 05, you already have everything [[06 Locking It Down with nginx]] needs. Come here when you want the whole stack, control plane included, inside your own perimeter.
+> [!info] This Lesson is Extracurricular
+> Headscale is **not installed on the lab VMs** and nothing later in the workshop requires it. If you completed the Tailscale mesh in lesson 05, you already have everything [[06 Locking It Down with nginx]] needs, and you should carry on there.
+>
+> This lesson is here for afterwards. It is a complete, working walkthrough you can run on your own hardware, or on these VMs once the workshop is over, when you want the whole stack, control plane included, inside your own perimeter. Everything below assumes you are installing Headscale yourself.
+>
+> The authoritative sources, which will outlive this manual:
+>
+> * [headscale.net](https://headscale.net/) for the project and its documentation
+> * [Headscale releases](https://github.com/juanfont/headscale/releases) for current versions and packages
+> * [Headscale on GitHub](https://github.com/juanfont/headscale) for the source and issue tracker
 
 ## Tailscale or Headscale: Which and When
 
@@ -49,9 +57,6 @@ In this lab HeartOfGold runs both roles. It keeps running Ollama and also runs H
 > Running Headscale on HeartOfGold is a lab simplification to avoid standing up a third VM. In a real deployment, put Headscale on its own dedicated, minimal, hardened host, separate from the workload. The control plane holds identity, keys, and the access policy for your entire tailnet, so if the workload host is compromised you do not want the coordination server to fall with it. Separating them contains a compromise, lets you patch or reboot the LLM box without breaking enrollment for every node, and keeps the control plane's attack surface small and distinct.
 
 ## Installing Headscale on HeartOfGold
-
-> [!note]
-> On the lab VMs Headscale is already installed and configured, so you can skim this section and pick up at "Creating a User." It is here so you can reproduce the setup on your own hardware later.
 
 The Debian package is the recommended install on Ubuntu. It creates a service account, drops a default config, and ships a systemd unit. On HeartOfGold, download the latest release for your architecture and install it:
 

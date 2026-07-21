@@ -26,6 +26,9 @@ The connection between them is established and maintained using Tailscale, an en
 
 This lab is set up to use VMware Workstation Pro or VMware Fusion Pro. The two VM images are provided as a zip archive ahead of the workshop, and registered students receive that download link via email.
 
+**[Download the workshop files from Dropbox](https://www.dropbox.com/scl/fo/ws0q6m0ex4zs7aij9158c/APeV-FmjEznsiUrv2jkdek8?rlkey=a96mi9cgq4hj1686h6fpzsyt9&st=pqt2x9c4&dl=0)**
+
+
 VMware itself you download from Broadcom. Both Workstation Pro and Fusion Pro are now free for personal, educational, and commercial use, with no license key required, but the download sits behind a free Broadcom Support Portal account:
 
 [support.broadcom.com/group/ecx/productdownloads](https://support.broadcom.com/group/ecx/productdownloads?subfamily=VMware+Workstation+Pro&freeDownloads=true)
@@ -39,26 +42,24 @@ VMware itself you download from Broadcom. Both Workstation Pro and Fusion Pro ar
 
 None of the software included in the VMs requires a license for personal use. Some applications do have requirements for commercial or enterprise use. You should be able to make use of the VMs and the software on them for a long time after this course is over.
 
-> [!todo] Reminder to self: add the VM archive download link here before final delivery of course assets. Delivery method is not yet finalized, and hosted VMs may make this section largely moot.
+> [!todo] Reminder to self: the Dropbox download link is in place above. Still open: whether hosted VMs become the primary delivery path, which would make most of this section moot, and replacing `filename.zip` below with the real archive name.
 
 
 ### System Requirements
 
 This workshop requires HeartOfGold and Marvin running at the same time, so host requirements are the sum of both VMs plus overhead for your host OS and VMware. Both VMs are set to 8 GB RAM each, which puts the VM total at 16 GB and the practical host minimum at 24 GB.
 
-- **Marvin (client, headless):** 8 GB RAM, 2 processors, 20 GB disk.
-- **HeartOfGold (server):** 8 GB RAM. Disk and core count to be finalized once the model set is locked.
-
-> [!todo] Reminder to self: confirm HeartOfGold's final disk and core count once it is built and tested, then reconcile the disk and CPU rows below. RAM is settled at 8 GB per VM, host minimum 24 GB.
+- **Marvin (client, Ubuntu desktop):** 8 GB RAM, 2 processors, 20 GB disk.
+- **HeartOfGold (server, headless):** 8 GB RAM, 2 processors, 30 GB disk.
 
 ---
 #### VMware Workstation Pro (Windows)
 
 | Component    | Minimum                                      | Recommended                                |
 | ------------ | -------------------------------------------- | ------------------------------------------ |
-| **CPU**      | 64-bit, 4 cores (2 for Marvin + TBD for HeartOfGold), virtualization support (Intel VT-x / AMD-V) enabled in BIOS/UEFI | Quad-core+ 64-bit (Intel i5/i7 or Ryzen 5+) |
+| **CPU**      | 64-bit, 4 cores (2 for Marvin + 2 for HeartOfGold), virtualization support (Intel VT-x / AMD-V) enabled in BIOS/UEFI | Quad-core+ 64-bit (Intel i5/i7 or Ryzen 5+) |
 | **RAM**      | 24 GB (8 GB Marvin + 8 GB HeartOfGold + host overhead) | 32 GB or more |
-| **Disk**     | 20 GB (Marvin) + TBD (HeartOfGold)           | SSD, TBD once HeartOfGold is finalized |
+| **Disk**     | 20 GB (Marvin) + 30 GB (HeartOfGold)           | SSD, 60 GB or more free |
 | **Host OS**  | Windows 10/11 64-bit                         | Windows 10/11 64-bit                       |
 | **Display**  | 1280×800                                     | 1920×1080 or higher                        |
 | **GPU (3D)** | DirectX 11 / OpenGL 4.3 capable              | DirectX 11 capable GPU                     |
@@ -70,7 +71,7 @@ This workshop requires HeartOfGold and Marvin running at the same time, so host 
 | ------------ | ---------------------------------- | ---------------------------------------------------- |
 | **CPU**      | Quad-core Intel (64-bit) or Apple Silicon, virtualization support enabled | Quad-core Intel i5/i7/i9 or Apple Silicon (M1/M2/M3) |
 | **RAM**      | 24 GB (8 GB Marvin + 8 GB HeartOfGold + host overhead) | 32 GB or more |
-| **Disk**     | 20 GB (Marvin) + TBD (HeartOfGold) | SSD, TBD once HeartOfGold is finalized        |
+| **Disk**     | 20 GB (Marvin) + 30 GB (HeartOfGold) | SSD, 60 GB or more free        |
 | **Host OS**  | macOS 12 (Monterey) or later       | Latest macOS (Ventura / Sonoma)                      |
 | **Display**  | 1280×800                           | 1920×1080 or higher                                  |
 | **GPU (3D)** | Metal-capable GPU (for Intel Macs) | Metal-capable GPU / Apple Silicon GPU                |
@@ -159,6 +160,28 @@ Unlike when you install a new VM from scratch, this VM has already been built an
 - Password: `LLMs4evr`
 
 
+## Reading the Manual on Marvin
+
+You do not have to keep this manual open on your own computer. A copy of it is already on Marvin, and reading it there is easier once the labs get going, because you can copy a command straight from the manual into the terminal beside it.
+
+Log in to Marvin and look at the desktop. **Obsidian** is the app that displays the manual. Open it and it lands on lesson 00, with the whole manual in the sidebar. Everything renders the way it was meant to: the colored command boxes that tell you which machine a command belongs to, the checkpoints at the end of each lesson, and the Previous and Next links at the bottom of every page.
+
+The manual itself lives at `~/Documents/Antisyphon/AT-Workshop-Keeping-Things-Local-2026` if you ever want to find the files directly.
+
+> [!tip] Two Windows, Side by Side
+> The setup most people settle on is Obsidian on one half of Marvin's screen and a terminal on the other. From [[05 Tailscale Mesh Networking]] onward you will also have a second terminal holding an SSH session to HeartOfGold, so the manual, the Marvin shell, and the HeartOfGold shell are all visible at once.
+
+### Getting the Latest Version
+
+The manual gets corrections. There is a **Update Lab Manual** icon on Marvin's desktop that fetches the newest version from GitHub. Double-click it, and a terminal window opens and reports what it did.
+
+You do not need to run it to start the workshop. Reach for it if you are told a lesson has been fixed, or if something in the manual clearly disagrees with what you are seeing on screen.
+
+> [!warning] Updating Clears Your Ticked Checkpoints
+> Ticking a checkpoint box actually edits the manual file it sits in, so updating replaces those edits along with everything else. If you have been ticking boxes as you go, an update will clear them.
+>
+> This only affects the manual. Your VMs, your models, and everything you have built in the labs are untouched. The updater tells you before it does anything and gives you the chance to back out, so nothing is lost by accident.
+
 *That's it! We're ready to roll!*
 
 
@@ -170,6 +193,7 @@ Unlike when you install a new VM from scratch, this VM has already been built an
 > - [ ] HeartOfGold and Marvin both power on and boot to Ubuntu in VMware
 > - [ ] You can log in to HeartOfGold as `frankie` and to Marvin as `benjy`
 > - [ ] Both VMs are running at the same time
+> - [ ] Obsidian opens on Marvin and shows this manual
 
 ---
 
