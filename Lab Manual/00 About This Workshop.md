@@ -31,6 +31,29 @@ This workshop builds a complete service layer around a local LLM. You start with
 * Headscale (optional): self-hosted coordination server, for running the mesh's control plane on your own hardware
 * nginx: reverse proxy with basic authentication in front of Ollama
 
+## How to Read the Command Boxes
+
+You will be working on two machines, so every command in this manual is wrapped in a colored box that names the machine it belongs to and the user you run it as.
+
+> [!hog] HeartOfGold · frankie
+> ```shell
+> ollama list
+> ```
+
+> [!marvin] Marvin · benjy
+> ```shell
+> curl http://heartofgold:11434/api/tags
+> ```
+
+> [!bothvms] Both VMs
+> ```shell
+> tailscale status
+> ```
+
+The label names the machine the command **runs on**, not the window you happen to be typing into. Those are usually the same thing, but not always. From [[05 Tailscale Mesh Networking]] onward you have the option of driving HeartOfGold over SSH from a terminal on Marvin, and once you do, a `HeartOfGold · frankie` command gets typed into a window sitting on Marvin. The label is still correct. It is telling you which machine will execute it.
+
+If you are ever unsure which machine a shell belongs to, the prompt tells you: `frankie@heartofgold` or `benjy@marvin`.
+
 ## Lessons
 
 ### [[01 What is an LLM]]
@@ -54,7 +77,7 @@ Optional advanced track. Run the coordination server yourself with Headscale ins
 ### [[06 Locking It Down with nginx]]
 Put an nginx reverse proxy in front of Ollama with basic authentication. Now your service is remote, encrypted, and access-controlled.
 
-### [[07 Putting It Through Its Paces]]
+### [[07 Putting It All Together]]
 Reach the same served model from Marvin three ways, with a terminal client, a TUI, and a web UI, then use it on the tasks that make local AI worth it: sensitive data and authorized red team work.
 
 ### [[08 Wrap Up and Loose Ends]]

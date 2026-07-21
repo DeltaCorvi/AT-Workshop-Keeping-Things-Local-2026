@@ -59,7 +59,9 @@ No prior experience with Ollama, Tailscale, or nginx is needed. Every tool is in
 
 ## System Requirements
 
-VMware and the lab VMs are provided. You need a laptop that can run two virtual machines at the same time:
+The lab VMs are provided. VMware Workstation Pro and Fusion Pro are free but you download them yourself from Broadcom, which requires a free Broadcom Support Portal account. **Register early.** New accounts go through an export compliance review that can take weeks, so an account created shortly before the workshop may not have download access in time. See [Lesson 02](Lab%20Manual/02%20Setting%20Up%20Your%20VMs.md) for the link and details.
+
+To run the VMs locally you need a laptop that can run two virtual machines at the same time:
 
 - 24 GB RAM minimum (32 GB or more recommended)
 - 60 GB free disk space
@@ -96,7 +98,7 @@ The lab manual is organized into sequential modules. Each builds on the last.
 | 05  | [Tailscale Mesh Networking](Lab%20Manual/05%20Tailscale%20Mesh%20Networking.md)                            | Stand up an encrypted mesh and reach Ollama across it                                                 |
 | 05b | [Self-Hosting the Mesh with Headscale](Lab%20Manual/05b%20Self-Hosting%20the%20Mesh%20with%20Headscale.md) | *Optional.* Run the mesh's control plane yourself with Headscale instead of Tailscale's hosted server |
 | 06  | [Locking It Down with nginx](Lab%20Manual/06%20Locking%20It%20Down%20with%20nginx.md)                      | Add an nginx reverse proxy with authentication in front of Ollama                                     |
-| 07  | [Putting It Through Its Paces](Lab%20Manual/07%20Putting%20It%20Through%20Its%20Paces.md)                  | Reach the model three ways (terminal, TUI, web UI), then use it on sensitive-data and red team tasks  |
+| 07  | [Putting It All Together](Lab%20Manual/07%20Putting%20It%20All%20Together.md)                  | Reach the model three ways (terminal, TUI, web UI), then use it on sensitive-data and red team tasks  |
 | 08  | [Wrap Up and Loose Ends](Lab%20Manual/08%20Wrap%20Up%20and%20Loose%20Ends.md)                                            | Data sovereignty, attack surface, and hardening for production                                        |
 | 09  | [References](Lab%20Manual/09%20References.md)                                                              | Supplemental material, including the full history of AI                                               |
 

@@ -98,6 +98,10 @@ You will see each device with its name and `100.x.y.z` address. The same list ap
 > ssh frankie@heartofgold
 > ```
 > Every HeartOfGold command from here on can run inside that SSH session, and its output lands in Marvin's terminal, where you can select and copy it like any other text. That sidesteps the headless copy/paste problem entirely, including grabbing the tailnet IP in the next step. If the connection is refused, make sure the SSH server is installed and running on HeartOfGold with `sudo apt install -y openssh-server` and `sudo systemctl enable --now ssh`.
+>
+> Two terminal windows side by side works well: one logged in to Marvin, one holding the SSH session to HeartOfGold. With the manual open on Marvin, you can copy a command straight into whichever window it belongs to.
+>
+> Once you do this, both windows are on your Marvin desktop, so watch the command boxes rather than the window. A `HeartOfGold · frankie` box means the command runs on HeartOfGold, which now means the SSH window. The shell prompt is the tiebreaker: `frankie@heartofgold` or `benjy@marvin`.
 
 ## Exposing Ollama on the Mesh
 

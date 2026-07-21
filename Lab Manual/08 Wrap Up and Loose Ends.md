@@ -18,6 +18,6 @@ maxLevel: 3
 ---
 
 > [!nav]
-> [[07 Putting It Through Its Paces]]
+> [[07 Putting It All Together]]
 >
 > [[09 References]]

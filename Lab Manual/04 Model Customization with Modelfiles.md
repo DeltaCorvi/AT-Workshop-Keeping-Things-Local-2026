@@ -45,6 +45,9 @@ You are Daffy Duck from Looney Tunes and Merrie Melodies. Answer as Daffy, only.
 
 Two things are doing the work. `temperature 1` keeps the model loose and playful, which suits a cartoon character. The `SYSTEM` line pins the persona so every reply stays in voice.
 
+> [!note]
+> While some might think this exercise is silly of frivolous, the point is to demonstrate how small edits to a model file can have dramatic effects. Now imaging customizing an LLM model file with the skills and capabilities you need for a very specific project? What traits, skills, or characteristics would you want to build into your own Igor? 
+
 HeartOfGold has all the ingredients you need to make your own version of Daffy Duck using local copies of `Modelfile.daffy` and `llama3.2`. The customized models are not built for you, so your first step is to build `daffy` from its Modelfile:
 
 > [!hog] HeartOfGold · frankie
@@ -64,8 +67,8 @@ Now run it:
 > >>> What's up, doc?
 > ```
 
-> [!todo] Confirm the model files location before distribution
-> These `ollama create` commands assume the Modelfiles are in the current working directory. Confirm where the `model files` folder lands on the shipped HeartOfGold image and whether students need to `cd` into it first (mind the space in the folder name).
+> [!note] Where the Modelfiles Live
+> `Modelfile.daffy` and `Modelfile.quizmaker` ship in frankie's home directory, which is where you land when you log in to HeartOfGold. The `ollama create` commands in this lesson read from the current working directory, so they work as written with no `cd` first. Confirm with `ls Mod*` if you are not sure where you are.
 
 ## Example 2: A Task Model (quizmaker)
 

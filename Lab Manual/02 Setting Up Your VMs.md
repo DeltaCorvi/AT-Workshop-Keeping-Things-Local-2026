@@ -24,15 +24,22 @@ The connection between them is established and maintained using Tailscale, an en
 
 ## Setting Up VMware 
 
-This lab is set up to use VMware Workstation Pro version 17, or VMware Fusion 13. Installers and course files, including both VM images, will be provided as a zip archive ahead of the workshop. Registered students will receive the download link via email.
+This lab is set up to use VMware Workstation Pro or VMware Fusion Pro. The two VM images are provided as a zip archive ahead of the workshop, and registered students receive that download link via email.
 
-VMware and VMware Fusion installation files are available for download. 
+VMware itself you download from Broadcom. Both Workstation Pro and Fusion Pro are now free for personal, educational, and commercial use, with no license key required, but the download sits behind a free Broadcom Support Portal account:
 
-None of the software included in the VM requires a license for personal use. Some applications do have requirements for commercial or enterprise use. You should be able to make use of the VM and the software on it for a long time after this course is over. 
+[support.broadcom.com/group/ecx/productdownloads](https://support.broadcom.com/group/ecx/productdownloads?subfamily=VMware+Workstation+Pro&freeDownloads=true)
 
-Here is the download link: TBD
+<!--
+> [!warning] Register with Broadcom Well Before the Workshop
+> New Broadcom Support Portal accounts are screened by their export compliance team before download access is granted, and that review has been reported to take **weeks**, not minutes. Creating your account the night before will not work. If you intend to run the VMs on your own hardware, register now, confirm you can actually reach the download, and only then worry about the rest of this page.
+>
+> If you would rather not deal with that at all, use the hosted VMs provided for the workshop instead. Nothing in this manual depends on running the labs locally.
+-->
 
-> [!todo] Reminder to self: add the actual download link here before final delivery of course assets. Likely to be a personal Dropbox link again, but delivery method is not yet finalized.
+None of the software included in the VMs requires a license for personal use. Some applications do have requirements for commercial or enterprise use. You should be able to make use of the VMs and the software on them for a long time after this course is over.
+
+> [!todo] Reminder to self: add the VM archive download link here before final delivery of course assets. Delivery method is not yet finalized, and hosted VMs may make this section largely moot.
 
 
 ### System Requirements
@@ -45,7 +52,7 @@ This workshop requires HeartOfGold and Marvin running at the same time, so host 
 > [!todo] Reminder to self: confirm HeartOfGold's final disk and core count once it is built and tested, then reconcile the disk and CPU rows below. RAM is settled at 8 GB per VM, host minimum 24 GB.
 
 ---
-#### VMware Workstation 17 (Windows)
+#### VMware Workstation Pro (Windows)
 
 | Component    | Minimum                                      | Recommended                                |
 | ------------ | -------------------------------------------- | ------------------------------------------ |
@@ -57,7 +64,7 @@ This workshop requires HeartOfGold and Marvin running at the same time, so host 
 | **GPU (3D)** | DirectX 11 / OpenGL 4.3 capable              | DirectX 11 capable GPU                     |
 
 ---
-#### VMware Fusion 13 (macOS):
+#### VMware Fusion Pro (macOS)
 
 | Component    | Minimum                            | Recommended                                          |
 | ------------ | ---------------------------------- | ---------------------------------------------------- |
@@ -81,11 +88,11 @@ This workshop requires HeartOfGold and Marvin running at the same time, so host 
 
 ### Installing VMware
 
-Included in the file bundle for this workshop you will find installer files for VMware Workstation and VMware Fusion. Sorry, no support for VirtualBox at this time. 
+Download the installer from Broadcom using the link above. Sorry, no support for VirtualBox at this time.
 
-- Find the installer appropriate to the operating system for the host on which you will be running the virtual machine. 
-- Copy the installer file to the host system. 
-- Double click on the file and follow the prompts to complete the installation process.
+- Sign in to the Broadcom Support Portal, creating a free account if you do not have one.
+- Choose the installer appropriate to the operating system of the host you will run the virtual machines on: Workstation Pro for Windows or Linux, Fusion Pro for macOS.
+- Run the installer and follow the prompts to complete the installation.
 
 ### Installing the VM
 
