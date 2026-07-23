@@ -1,19 +1,40 @@
 {
   "callouts": {
     "custom": [
-      "bothvms"
+      "bothvms",
+      "side-quest",
+      "hog",
+      "marvin"
     ],
     "settings": {
-      "bothvms": [
+      "hog": [
         {
-          "changes": {}
+          "changes": {
+            "icon": "lucide-server",
+            "color": "202, 138, 4"
+          }
+        }
+      ],
+      "marvin": [
+        {
+          "changes": {
+            "icon": "lucide-laptop",
+            "color": "37, 99, 235"
+          }
+        }
+      ],
+      "side-quest": [
+        {
+          "changes": {
+            "icon": "lucide-sword"
+          }
         },
         {
           "condition": {
             "colorScheme": "light"
           },
           "changes": {
-            "color": "40, 51, 67"
+            "color": "68, 207, 110"
           }
         },
         {
@@ -21,7 +42,37 @@
             "colorScheme": "dark"
           },
           "changes": {
-            "color": "86, 103, 129"
+            "color": "255, 255, 0"
+          }
+        }
+      ],
+      "important": [
+        {
+          "changes": {
+            "color": "233, 151, 63"
+          }
+        }
+      ],
+      "bothvms": [
+        {
+          "changes": {
+            "icon": "lucide-boxes"
+          }
+        },
+        {
+          "condition": {
+            "colorScheme": "light"
+          },
+          "changes": {
+            "color": "71, 85, 105"
+          }
+        },
+        {
+          "condition": {
+            "colorScheme": "dark"
+          },
+          "changes": {
+            "color": "255, 255, 255"
           }
         }
       ]

@@ -8,22 +8,22 @@ venue: Antisyphon AI Summit
 ```table-of-contents
 title: # Table of Contents
 minLevel: 0
-maxLevel: 5
+maxLevel: 3
 ```
 
 # Ok, So What IS AI?!?
 
- Simply put, [[10 Glossary#Artificial Intelligence (AI)|AI]] is a vast discipline within computer science aimed at creating systems to perform tasks that we normally think of as requiring human intelligence to perform. AI includes fields like robotics, computer vision, natural language processing (used to translate voice to text and vice versa), expert systems, etc.
+Simply put, [[10 Glossary#Artificial Intelligence (AI)|AI]] is a vast discipline within computer science aimed at creating systems to perform tasks that we normally think of as requiring human intelligence to perform. AI includes fields like robotics, computer vision, natural language processing (used to translate voice to text and vice versa), expert systems, etc.
 
-In a very real way, the technologies developed for handling and analyzing large quantities of data paved the way for what we currently call artificial intelligence.[^1] 
- 
-![[AI Venn.png]]
+In a very real way, the technologies developed for handling and analyzing large quantities of data paved the way for what we currently call artificial intelligence.[^1]
+
+![[AI Venn.png|center]]
 
 ## Where Do LLMs Fit In?
 
-[[10 Glossary#Large Language Model (LLM)|LLMs]] are a subset of [[10 Glossary#Generative AI|generative AI]]. LLMs only deal with text, whereas diffusion models deal with imagery. LLMs are probabilistic, which is a fancy way of saying that everything they "create" is generated based on probabilities. How likely it is that you're going to get one answer versus another depends on not just what your prompt was, but also on a lot of math that goes on both inside the model and in the supporting the software that helps you interact with it.[^2]
+[[10 Glossary#Large Language Model (LLM)|LLMs]] are a subset of [[10 Glossary#Generative AI|generative AI]]. LLMs only deal with text, whereas diffusion models deal with imagery. LLMs are probabilistic, which is a fancy way of saying that everything they "create" is generated based on probabilities. How likely it is that you're going to get one answer versus another depends on not just what your prompt was, but also on a lot of math that goes on both inside the model and in the supporting software that helps you interact with it.[^2]
 
-The current trend with the innovators in LLM development is to follow the "bigger is always better" headspace, training their proprietary models on massive amounts of data from diverse sources. Not surprisingly, most of the LLMs you will find available (ChatGPT, Claude, Copilot, Gemini) are general purpose. You can use them for anything from learning more about a historical concept to finding the perfect rice pudding recipe. You can also do some limited customization (e.g., Custom GPTs), But you are limited to whatever customization features are being provided by the AI provider. More importantly for a lot of people, anytime you use one of these hosted chat bots, you have no control over what happens to your data once you send it across to them.
+The current trend with the innovators in LLM development is to follow the "bigger is always better" headspace, training their proprietary models on massive amounts of data from diverse sources. Not surprisingly, most of the LLMs you will find available (ChatGPT, Claude, Copilot, Gemini) are general purpose. You can use them for anything from learning more about a historical concept to finding the perfect rice pudding recipe. You can also do some limited customization (e.g., Custom GPTs), but you are limited to whatever customization features are being provided by the AI provider. More importantly for a lot of people, anytime you use one of these hosted chatbots, you have no control over what happens to your data once you send it across to them.
 
 Regardless, easy access to large language models and their chatbots has popularized artificial intelligence more than ever before.
 
@@ -59,11 +59,11 @@ Not every model does the same job out of the box. The differences come from what
 
 **Chat models.** Tuned specifically for holding a conversation, with separate system, user, and assistant roles and a chat template that tracks whose turn it is. They are built to carry context across many messages and to honor a [[10 Glossary#System Prompt|system prompt]]. Often tagged `-chat`.
 
-**Reasoning (or "thinking") models.** Trained to work a problem step by step, out loud, before landing on an answer. If a model ever streams its scratch work at you under a "Thinking..." header, that is one of these. They shine on problems that need working through, and they are slow or distracting for something that should be a fast, short answer.
+**[[10 Glossary#Reasoning Model|Reasoning]] (or "thinking") models.** Trained to work a problem step by step, out loud, before landing on an answer. If a model ever streams its scratch work at you under a "Thinking..." header, that is one of these. They shine on problems that need working through, and they are slow or distracting for something that should be a fast, short answer.
 
-**Specialized models.** Everything tuned for a narrow job: code models (trained heavily on source code for completion and generation), embedding models (which do not chat at all, they turn text into vectors of numbers so software can measure how similar two pieces of text are, the engine behind search and RAG), and vision or multimodal models (which can take images as input, not just text).
+**Specialized models.** Everything tuned for a narrow job: code models (trained heavily on source code for completion and generation), [[10 Glossary#Embedding Model|embedding models]] (which do not chat at all, they turn text into vectors of numbers so software can measure how similar two pieces of text are, the engine behind search and RAG), and vision or multimodal models (which can take images as input, not just text).
 
-> [!info] The Instruct/Chat Line is Blurrier than It Looks
+> [!info] The instruct/chat line is blurrier than it looks
 > Out in the wild these categories bleed together. Plenty of models tagged `-instruct` chat perfectly well across multiple turns, and a lot of "chat" models are really just instruct models with a conversation template bolted on. On top of that, Ollama automatically applies whatever prompt template a model ships with, so you almost never set this by hand. Treat these labels as "what the model was optimized for," not hard rules, and do not lose sleep over which bucket a given model falls into.
 
 ### Open Weights vs. Proprietary Models
@@ -104,23 +104,13 @@ Here's how the pieces above fit together in practice, the full journey a single 
 
 ### System Prompt
 
-A system prompt is a standing instruction that shapes how a model behaves: its persona, tone, or constraints, set once by whoever configures the harness rather than repeated by the user in every message. When you build a custom model with a Modelfile in the Ollama lab, the SYSTEM block is exactly this: instructions the harness feeds the model before your conversation ever starts.
+A system prompt is a standing instruction that shapes how a model behaves: its persona, tone, or constraints, set once by whoever configures the harness rather than repeated by the user in every message. When you build a custom model with a [[10 Glossary#Modelfile|Modelfile]] in the Ollama lab, the SYSTEM block is exactly this: instructions the harness feeds the model before your conversation ever starts.
 
 ### Temperature
 
-Temperature controls how predictable versus creative a model's output is. Low temperature produces more focused, consistent answers; high temperature produces more varied, unexpected ones. You'll set this directly as a parameter when building a custom model with a Modelfile.
+[[10 Glossary#Temperature|Temperature]] controls how predictable versus creative a model's output is. Low temperature produces more focused, consistent answers; high temperature produces more varied, unexpected ones. You'll set this directly as a parameter when building a custom model with a Modelfile.
 
-
-
-
-
-
-
-
-
-
-
-[^1]: I personally hate the term "artificial intelligence" because, 1) since these are digital tools it should be obvious that they're artificial, and 2) the reality is that they are anything but intelligent. 
+[^1]: I personally hate the term "artificial intelligence" because, 1) since these are digital tools it should be obvious that they're artificial, and 2) the reality is that they are anything but intelligent.
 
 [^2]: As previously mentioned, if you want to get really deep into the weeds about the data science of how LLMs work, check out *[AI for Cybersecurity Professionals with Joff Thyer and Derek Banks](https://www.antisyphontraining.com/product/ai-for-cybersecurity-professionals-with-joff-thyer-and-derek-banks/)*.
 
@@ -130,7 +120,3 @@ Temperature controls how predictable versus creative a model's output is. Low te
 > [[00 About This Workshop]]
 >
 > [[02 Setting Up Your VMs]]
-
-
-
-
