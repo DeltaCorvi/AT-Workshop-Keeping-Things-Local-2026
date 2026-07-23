@@ -1,6 +1,6 @@
 ---
 author: Bronwen Aker
-updated: 2026-07-16
+updated: 2026-07-22
 presentation_type: Workshop
 venue: Antisyphon AI Summit
 ---
@@ -11,23 +11,19 @@ minLevel: 0
 maxLevel: 3
 ```
 
-# Welcome
+# Meet HeartOfGold and Marvin
 
-This course uses two virtual machines: 
-* **HeartOfGold**, which acts as the server, hosting the local LLM that you will install and configure.
-* **Marvin**, which you will use to access it.  
-
-
+This course uses two virtual machines:
+* **HeartOfGold**, which acts as the server, hosting the local [[10 Glossary#Large Language Model (LLM)|LLM]] that you will install and configure.
+* **Marvin**, which you will use to access it.
 
 The connection between them is established and maintained using [[10 Glossary#Tailscale|Tailscale]], an encrypted mesh networking tool that lets two machines reach each other securely without manual VPN configuration or exposing services to the open internet. For penetration testers and red teamers, this is the same technique used to maintain persistent, encrypted access to internal services during an engagement. Here, we're using it to reach a private LLM instead.
 
-
-## Setting Up VMware 
+## Setting Up VMware
 
 This lab is set up to use VMware Workstation Pro or VMware Fusion Pro. The two VM images are provided as a zip archive ahead of the workshop, and registered students receive that download link via email.
 
 **[Download the workshop files from Dropbox](https://www.dropbox.com/scl/fo/ws0q6m0ex4zs7aij9158c/APeV-FmjEznsiUrv2jkdek8?rlkey=a96mi9cgq4hj1686h6fpzsyt9&st=pqt2x9c4&dl=0)**
-
 
 VMware itself you download from Broadcom. Both Workstation Pro and Fusion Pro are now free for personal, educational, and commercial use, with no license key required, but the download sits behind a free Broadcom Support Portal account:
 
@@ -35,8 +31,7 @@ VMware itself you download from Broadcom. Both Workstation Pro and Fusion Pro ar
 
 None of the software included in the VMs requires a license for personal use. Some applications do have requirements for commercial or enterprise use. You should be able to make use of the VMs and the software on them for a long time after this course is over.
 
-> [!todo] Reminder to self: the Dropbox download link is in place above. Still open: whether hosted VMs become the primary delivery path, which would make most of this section moot, and replacing `filename.zip` below with the real archive name.
-
+> [!todo] Reminder to self: the Dropbox download link is in place above. Still open: whether hosted VMs become the primary delivery path, which would make most of this section moot.
 
 ### System Requirements
 
@@ -72,10 +67,10 @@ This workshop requires HeartOfGold and Marvin running at the same time, so host 
 ---
 
 > [!warning] If you have Apple Silicon (M1/M2/M3):
->- Only **ARM-based guest OSes** are supported (ARM Linux, Windows 11 ARM).
->- Intel x86 guest OSes (e.g., older Windows/Linux ISOs) will not run under Fusion on Apple Silicon..
+> - Only **ARM-based guest OSes** are supported (ARM Linux, Windows 11 ARM).
+> - Intel x86 guest OSes (e.g., older Windows/Linux ISOs) will not run under Fusion on Apple Silicon.
 
-> [!info] About RAM... 
+> [!info] About RAM...
 > Theoretically, RAM stands for "random access memory", but in reality it stands for "rarely adequate memory"! 😉 In short, if you have the system resources to increase the amount of RAM allocated to your VM, DO IT!
 
 ---
@@ -90,57 +85,57 @@ Download the installer from Broadcom using the link above. Sorry, no support for
 
 ### Installing the VM
 
-Unlike when you install a new VM from scratch, this VM has already been built and customized to have all the software installed that you need to complete the activities in this workshop. 
+Unlike when you install a new VM from scratch, this VM has already been built and customized to have all the software installed that you need to complete the activities in this workshop.
 
 > [!warning]
 > The default unzipping utilities on both Macs and Windows systems are typically not able to handle large archive files like the ones we create when using VMs. It is recommended that you install either 7-Zip or Keka, depending on your host OS.
 
-### Running a Linux Virtual Machine in VMware 
+### Running a Linux Virtual Machine in VMware
 
-1. **Download the VM archive**    
-    - In the files you downloaded, find `filename.zip`. This single archive contains both VMs.
-2. **Install or verify extraction software**    
-    - **Windows:** Install [7-Zip](https://www.7-zip.org/) if it’s not already on your system.        
+1. **Download the VM archive**
+    - In the files you downloaded, find the archive, a single `.zip` that contains both VMs.
+2. **Install or verify extraction software**
+    - **Windows:** Install [7-Zip](https://www.7-zip.org/) if it’s not already on your system.
     - **Mac:** Install [Keka](https://www.keka.io/) if it’s not already on your system.
-        
-3. **Extract the archive**    
-    - Choose a location where you want the VMs to live and run from.        
-        - Example: a dedicated folder such as `C:\VMs\`, or your **Desktop** if that’s easiest.            
-        - You can move it later, but it’s best to pick the permanent location now.            
-    - **Windows:** Right-click the `.zip` file → **7-Zip → Extract Here** (or extract to your chosen folder).        
-    - **Mac:** Right-click the `.zip` file → **Open With → Keka** → extract to your chosen folder.        
+
+3. **Extract the archive**
+    - Choose a location where you want the VMs to live and run from.
+        - Example: a dedicated folder such as `C:\VMs\`, or your **Desktop** if that’s easiest.
+        - You can move it later, but it’s best to pick the permanent location now.
+    - **Windows:** Right-click the `.zip` file → **7-Zip → Extract Here** (or extract to your chosen folder).
+    - **Mac:** Right-click the `.zip` file → **Open With → Keka** → extract to your chosen folder.
     - You should end up with two VM folders side by side, one for **HeartOfGold** and one for **Marvin**. Keep them together under the same parent folder.
-        
-4. **Open VMware Workstation**    
+
+4. **Open VMware Workstation**
     - Start **VMware Workstation**. You'll use this same window to open both VMs.
-        
-5. **Open a VM**    
-    - In VMware, go to **File → Open…**        
-    - Browse to the VM folder you extracted, either **HeartOfGold** or **Marvin**.        
-    - Select the file ending in `.vmx` 
-        
-6. **Start the VM**    
-    - Click **Power on this virtual machine**.        
+
+5. **Open a VM**
+    - In VMware, go to **File → Open…**
+    - Browse to the VM folder you extracted, either **HeartOfGold** or **Marvin**.
+    - Select the file ending in `.vmx`
+
+6. **Start the VM**
+    - Click **Power on this virtual machine**.
     - Ubuntu will boot and be ready to use.
 
-> [!info] Repeat steps 5 and 6 for the second VM. Both HeartOfGold and Marvin need to be powered on at the same time for this workshop, and VMware Workstation can run them side by side without issue.
+> [!info] Do This for Both VMs
+> Repeat steps 5 and 6 for the second VM. Both HeartOfGold and Marvin need to be powered on at the same time for this workshop, and VMware Workstation can run them side by side without issue.
 
 ---
 
 ### Troubleshooting Tips
 
-- **If you accidentally open the wrong file**:    
+- **If you accidentally open the wrong file**:
     - Always select the `.vmx` file, not `.vmdk` or other files.
-        
-- **If VMware asks “Did you move or copy this VM?”**:    
-    - Choose **“I copied it”**.        
-    - This ensures VMware assigns new IDs so the VM won’t conflict with others.
-        
-- **If you want to move the VM later**:    
-    - Shut down the VM first.        
-    - Move the entire folder (not just some files) to the new location.        
-    - Open VMware → **File → Open…** → select the `.vmx` file in its new location.
 
+- **If VMware asks “Did you move or copy this VM?”**:
+    - Choose **“I copied it”**.
+    - This ensures VMware assigns new IDs so the VM won’t conflict with others.
+
+- **If you want to move the VM later**:
+    - Shut down the VM first.
+    - Move the entire folder (not just some files) to the new location.
+    - Open VMware → **File → Open…** → select the `.vmx` file in its new location.
 
 ## Logging into the VMs
 
@@ -151,7 +146,6 @@ Unlike when you install a new VM from scratch, this VM has already been built an
 **Marvin** (client):
 - Username: `benjy`
 - Password: `LLMs4evr`
-
 
 ## Reading the Manual on Marvin
 
@@ -170,14 +164,12 @@ The manual gets corrections. There is a **Update Lab Manual** icon on Marvin's d
 
 You do not need to run it to start the workshop. Reach for it if you are told a lesson has been fixed, or if something in the manual clearly disagrees with what you are seeing on screen.
 
-> [!warning] Updating Clears Your Ticked Checkpoints
+> [!warning] Updating clears your ticked checkpoints
 > Ticking a checkpoint box actually edits the manual file it sits in, so updating replaces those edits along with everything else. If you have been ticking boxes as you go, an update will clear them.
 >
 > This only affects the manual. Your VMs, your models, and everything you have built in the labs are untouched. The updater tells you before it does anything and gives you the chance to back out, so nothing is lost by accident.
 
 *That's it! We're ready to roll!*
-
-
 
 > [!checkpoint] Checkpoint
 > You have finished this lesson when all of the boxes below are ticked. Work through them in order, and if one does not hold, go back to the section it came from before moving on. Tick each box as you confirm it.

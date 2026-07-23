@@ -4,7 +4,8 @@
       "bothvms",
       "side-quest",
       "hog",
-      "marvin"
+      "marvin",
+      "hey-claude"
     ],
     "settings": {
       "hog": [
@@ -73,6 +74,14 @@
           },
           "changes": {
             "color": "255, 255, 255"
+          }
+        }
+      ],
+      "hey-claude": [
+        {
+          "changes": {
+            "icon": "lucide-bot",
+            "color": "158, 158, 158"
           }
         }
       ]

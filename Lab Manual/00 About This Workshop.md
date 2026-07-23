@@ -17,7 +17,10 @@ Thank you for signing up for *Keeping Things Local: Build It, Mesh It, Lock It* 
 
 Large language models are powerful tools, but they come with a tradeoff: send your data to OpenAI, Anthropic, Microsoft, or Google to get results. For security practitioners, penetration testers, and anyone handling sensitive or client data, that's a problem. This workshop shows you how to build a working alternative: a private AI service running entirely on hardware you control, accessible securely across your team or engagement, with authentication built in. 
 
-No more black boxes. You control how many or how few dependencies you use. 
+No more black boxes. No more token limits. No more sudden changes in what you can or can't do using the LLM.
+
+You control the entire lifecycle, from user to harness to prompt 
+You control how many or how few dependencies you use. 
 
 It's your data. Shouldn't it be your rules?
 
@@ -27,10 +30,15 @@ This workshop builds a complete service layer around a local LLM. You start with
 
 ![[heartofgold_marvin_architecture.png|center]]
 
-## Tools We Will Be Using
+## Tools We Will Use
 
-* 
-* VMware Virtual Machine (Workstation or Fusion): two Linux VMs
+> [!hey-claude]
+> organize the tools list below to reflect when things ae related, like Tailscale and Headscale are both encrypted mesh networking tools. also, doublecheck to see if any important tools have been left out by accident.
+
+
+* Virtual Machines (VMs):
+	* Cloud VMs via MetaCTF/Skillbit (details TBA)
+	* VMware on student host (Workstation or Fusion): two Linux VMs
 * Ollama: local LLM runtime, pre-installed on server VM
 * `llama3.2`: pre-loaded on the server VM to avoid bandwidth issues
 * Tailscale: encrypted mesh networking to connect the two VMs securely

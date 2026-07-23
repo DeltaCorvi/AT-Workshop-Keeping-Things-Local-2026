@@ -1,6 +1,6 @@
 ---
 author: Bronwen Aker
-updated: 2026-07-15
+updated: 2026-07-22
 presentation_type: Workshop
 venue: Antisyphon AI Summit
 ---
@@ -11,17 +11,16 @@ minLevel: 0
 maxLevel: 3
 ```
 
+## Setting Up Ollama
 
-## Setting Up Ollama 
-
-[Ollama](https://ollama.com/) is an excellent way to get started with using and customizing local LLMs. It is available on multiple platforms, is easy to install, has extensive documentation, and is well supported. 
+[Ollama](https://ollama.com/) is an excellent way to get started with using and customizing local [[10 Glossary#Large Language Model (LLM)|LLMs]]. It is available on multiple platforms, is easy to install, has extensive documentation, and is well supported.
 
 > [!NOTE]
-> This VM already has [[10 Glossary#Ollama|Ollama]] and one small model, `llama3.2`, installed. This information is for your reference in case you decide to install Ollama on a host or other system later. 
+> HeartOfGold already has [[10 Glossary#Ollama|Ollama]] and one small model, `llama3.2`, installed. This information is for your reference in case you decide to install Ollama on a host or other system later.
 
 ### Installation
 
-Ollama is easy to install, whether you're on Mac, Windows, or Linux. 
+Ollama is easy to install, whether you're on Mac, Windows, or Linux.
 
 To install Ollama on Linux, run the following command:
 
@@ -31,12 +30,13 @@ curl -fsSL https://ollama.com/install.sh | sh
 
 > [!info]
 > When Ollama is installed on virtual machines, it is not able to access any GPUs present on your system. The good news is that you can set up Ollama on a host system easily. For more information, go to [ollama.com/download/](https://ollama.com/download/).
+
 ### Verify Ollama is Running
 
 On HeartOfGold, the install script already enabled and started Ollama as a [[10 Glossary#systemd|systemd]] service, so it is running by the time the install finishes. Confirm it is responding and see the pre-loaded model:
 
 > [!hog] HeartOfGold · frankie
-> ```bash
+> ```shell
 > ollama list
 > ```
 
