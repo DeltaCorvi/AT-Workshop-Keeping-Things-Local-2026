@@ -1,6 +1,6 @@
 ---
 author: Bronwen Aker
-updated: 2026-07-16
+updated: 2026-07-22
 presentation_type: Workshop
 venue: Antisyphon AI Summit
 ---
@@ -10,8 +10,6 @@ title: # Table of Contents
 minLevel: 0
 maxLevel: 3
 ```
-
-# Self-Hosting the Mesh with Headscale
 
 [[05 Tailscale Mesh Networking]] got you a working mesh in a couple of minutes by leaning on Tailscale's hosted coordination server. That is the fast path, and for most of this lab it is the right one. This lesson is the alternative for when you do not want to depend on anyone else's server at all: you run the coordination server yourself, on hardware you control, using [Headscale](https://headscale.net/).
 

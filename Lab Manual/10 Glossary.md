@@ -1,6 +1,6 @@
 ---
 author: Bronwen Aker
-updated: 2026-07-21
+updated: 2026-07-22
 presentation_type: Workshop
 venue: Antisyphon AI Summit
 ---
@@ -10,8 +10,6 @@ title: # Table of Contents
 minLevel: 0
 maxLevel: 3
 ```
-
-# Glossary
 
 Quick reference for the tools, protocols, and concepts used in this manual. The first time a term appears in a lesson it is introduced in place; the entries here are the canonical definition so you can jump straight to one without hunting for where it was first mentioned. Link to an entry from a lesson with `[[10 Glossary#term]]`.
 

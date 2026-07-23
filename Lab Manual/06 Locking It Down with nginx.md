@@ -1,6 +1,6 @@
 ---
 author: Bronwen Aker
-updated: 2026-07-16
+updated: 2026-07-22
 presentation_type: Workshop
 venue: Antisyphon AI Summit
 ---
@@ -10,8 +10,6 @@ title: # Table of Contents
 minLevel: 0
 maxLevel: 3
 ```
-
-# Locking It Down with nginx
 
 At the end of [[05 Tailscale Mesh Networking]] you reached HeartOfGold's model from Marvin over the encrypted mesh, and nothing was exposed to the wider network. That is real progress, but there is a gap hiding in it. Anyone, or anything, already on the tailnet can hit Ollama with no credentials at all. This lesson closes that gap by putting nginx in front of Ollama and requiring callers to authenticate, so reaching the mesh is no longer the same as reaching the model.
 

@@ -1,6 +1,6 @@
 ---
 author: Bronwen Aker
-updated: 2026-07-16
+updated: 2026-07-22
 presentation_type: Workshop
 venue: Antisyphon AI Summit
 ---
@@ -10,8 +10,6 @@ title: # Table of Contents
 minLevel: 0
 maxLevel: 3
 ```
-
-# Tailscale Mesh Networking
 
 Up to now everything has lived on a single VM. HeartOfGold runs Ollama, and you talk to it from HeartOfGold itself. The point of this workshop is a service you can actually reach from somewhere else, securely, so this lesson connects a second machine, Marvin, to HeartOfGold over an encrypted mesh network built with [Tailscale](https://tailscale.com/).
 

@@ -1,6 +1,6 @@
 ---
 author: Bronwen Aker
-updated: 2026-07-16
+updated: 2026-07-22
 presentation_type: Workshop
 venue: Antisyphon AI Summit
 ---
@@ -30,6 +30,15 @@ This workshop builds a complete service layer around a local LLM. You start with
 * Tailscale: encrypted mesh networking to connect the two VMs securely
 * Headscale (extracurricular, not installed): self-hosted coordination server, for running the mesh's control plane on your own hardware after the workshop
 * nginx: reverse proxy with basic authentication in front of Ollama
+
+## Reading This Manual
+
+This manual was written as an [Obsidian](https://obsidian.md/) vault. As such, everything is written using markdown, but if you use a reader other than Obsidian, it probably won't look they way it was intended. 
+
+In Obsidian everything renders the way it was designed to: the colored command boxes described below, the checkpoints at the end of each lesson, and the Previous and Next links at the bottom of every page. If the full styling did not load correctly on launch, enable the bundled CSS snippets under *Settings > Appearance > CSS snippets*.
+
+> [!NOTE] A Copy of the Manual is Already Waiting for You
+> You do not have to set any of this up yourself. Obsidian is installed on the desktop VM with this manual already loaded and ready to use. There is even a handy tool to help you pull updates. You'll get the details in [[02 Setting Up Your VMs]].
 
 ## How to Read the Command Boxes
 
@@ -84,7 +93,7 @@ Reach the same served model from Marvin two ways, with a terminal client and a w
 Data sovereignty principles, attack surface considerations, and hardening ideas for production deployments.
 
 ### [[09 References]]
-Supplemental material not essential to the hands-on lab, including the full history of AI.
+Every external resource cited in the manual, gathered in one place, with a few further-reading links worth following past the lab.
 
 ### [[10 Glossary]]
 Canonical, quick-reference definitions of the tools, protocols, and concepts used across the manual. The first use of a term in a lesson links here.

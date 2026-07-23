@@ -1,6 +1,6 @@
 ---
 author: Bronwen Aker
-updated: 2026-07-16
+updated: 2026-07-22
 presentation_type: Workshop
 venue: Antisyphon AI Summit
 ---
@@ -10,8 +10,6 @@ title: # Table of Contents
 minLevel: 0
 maxLevel: 3
 ```
-
-# Putting It All Together
 
 You have built the whole stack: a model on HeartOfGold, an encrypted mesh, and authentication in front of it. Now let's use it! 
 
@@ -37,7 +35,9 @@ Back in [[01 What is an LLM]] you met the idea of a harness: the software wrappe
 
 ## Harness One: The Terminal
 
-The plainest harness is a single HTTP request. From Marvin, send a one-shot prompt to the API:
+The plainest harness is a single HTTP request. 
+
+From Marvin, send a one-shot prompt to the API:
 
 > [!marvin] Marvin · benjy
 > ```shell
@@ -52,20 +52,32 @@ You get one JSON object back with the full answer in the `response` field. Drop 
 
 ## Harness Two: The Web UI
 
-[Open WebUI](https://openwebui.com/) is a full browser interface, the closest thing here to the hosted chat apps, except the model stays on your hardware. Run it on Marvin, pointing it at HeartOfGold:
+[Open WebUI](https://openwebui.com/) is a full browser interface, the closest thing here to the hosted chat apps, except the model stays on your hardware. It is already installed on Marvin, so there is nothing to set up first. You start the service, create a local account, then point it across the mesh at HeartOfGold from inside the interface.
+
+Start the service on Marvin:
 
 > [!marvin] Marvin · benjy
 > ```shell
-> export OLLAMA_BASE_URL=http://trillian:<password>@heartofgold:11434
 > open-webui serve
 > ```
 
-It starts a local server on port `8080` and forwards requests to HeartOfGold's Ollama over the mesh, passing the `trillian` credentials to nginx on each one. If you would rather not keep the password in an environment variable, leave it out of `OLLAMA_BASE_URL` and set the connection instead under Open WebUI's Admin Settings, in Connections, where it takes the same URL with credentials.
+It brings up a local server on port `8080`. On its own it looks for an Ollama running on Marvin, and there is none, because Marvin is a pure client. So it starts with no models until you give it a connection. That connection is the whole point of this harness: the model lives on HeartOfGold, and you reach it over the mesh.
 
-> [!tip] Opening the Web UI on Marvin
-> Open WebUI is running on Marvin, so open Firefox on Marvin's desktop and go to `http://localhost:8080`. The first visit asks you to create a local admin account. That account lives on Marvin, not in any cloud, and it is separate from both your Linux login and the nginx credentials.
+Do the rest in the browser:
 
-Once you are in, pick `llama3.2` and chat. You now have the same model behind a polished web front end and a raw `curl`, both reaching one endpoint on HeartOfGold.
+1. Open Firefox on Marvin's desktop and go to `http://localhost:8080`. The first visit asks you to create a local admin account, so create one now.
+2. Open **Admin Settings** from your account menu, then go to **Connections**.
+3. Under **Ollama**, open **Manage** (the wrench icon), and set the connection URL to `http://trillian:<password>@heartofgold:11434`, using the `trillian` password you created in [[06 Locking It Down with nginx]]. Save it.
+4. Confirm the connection. Open WebUI shows a green indicator when HeartOfGold answers, which means nginx accepted the `trillian` credentials over the mesh. If it stays red, either the mesh is down or the password is wrong.
+5. Open a new chat, pick `llama3.2` from the model selector, and send a prompt.
+
+> [!tip] The Admin Account Is Local
+> The account you just created lives on Marvin, not in any cloud, and it is separate from both your Linux login and the nginx credentials. It controls who may use this copy of Open WebUI, while the `trillian` credential controls what Open WebUI is allowed to ask of HeartOfGold. Two different gates.
+
+You now have the same model behind a polished web front end and a raw `curl`, both reaching one endpoint on HeartOfGold.
+
+> [!tip] Baking In the Connection
+> You can set the connection before the interface ever loads by putting it in the environment first: run `export OLLAMA_BASE_URL=http://trillian:<password>@heartofgold:11434` on the line before `open-webui serve`. Same URL, same credentials. Setting it in the interface instead keeps the password out of your shell history.
 
 ## Seeing Both from the Other Side
 
@@ -94,34 +106,37 @@ Two harnesses, one model, and HeartOfGold knows which is which. Try one more thi
 
 That line comes back with a `401` and a `-` where the username would be, because nginx had nobody to record. Press `Ctrl+C` to stop following the log.
 
-> [!info] Why Separate Credentials Were Worth the Trouble
-> Basic auth does not let you give `zaphod` and `trillian` different levels of access; both can do everything. What separate credentials buy is everything that depends on telling callers apart. You can see which client is responsible for which traffic, and you can revoke one without disturbing the other, since deleting a single line from `.htpasswd` locks out one caller and leaves the rest working. A single shared credential gives you neither. This is the difference between authentication that identifies and authentication that merely admits.
+### Why Separate Credentials Were Worth the Trouble
 
-> [!tip] What a Red Teamer Reads Here
-> This log is also a record of your own activity, written by the service you are authorized to be using. On an engagement the same file is evidence: which accounts were used, from which addresses, with which tooling. Notice that the user agent field gives each client away even before you look at the username, so `curl` in a log is visible as `curl`. Defenders hunt on exactly that. It cuts both ways, and both directions are worth understanding.
+Basic auth does not let you give `zaphod` and `trillian` different levels of access; both can do everything. What separate credentials buy is everything that depends on telling callers apart. You can see which client is responsible for which traffic, and you can revoke one without disturbing the other, since deleting a single line from `.htpasswd` locks out one caller and leaves the rest working. A single shared credential gives you neither. This is the difference between authentication that identifies and authentication that merely admits.
 
-> [!tip] If You Have the Time: Make the Log Talk
-> Two callers is enough to show the mechanism, but not enough to make the log interesting. If you finish early, or want something to take home, add more credentials and generate your own traffic.
->
-> Create a few more accounts on HeartOfGold, naming them for what they would represent in a real deployment rather than for which app you happen to be using:
->
-> > [!hog] HeartOfGold · frankie
-> > ```shell
-> > sudo htpasswd /etc/nginx/.htpasswd backup-job
-> > sudo htpasswd /etc/nginx/.htpasswd monitoring
-> > sudo htpasswd /etc/nginx/.htpasswd analyst-laptop
-> > ```
->
-> Then go make noise with them from Marvin. Send single prompts, send bursts, send a few in a loop with `sleep` between them, hit different endpoints, and deliberately fail some authentications by typing the wrong password. Mix `curl` in with the Open WebUI traffic you are already generating.
->
-> Now read what you produced, and see how much it gives away:
->
-> * Which callers look like a human typing, and which look like something on a timer? Regular intervals are a tell.
-> * Can you spot the failed logins? What does a run of `401` lines against one username look like, and how would that read to a defender at three in the morning?
-> * Does the user agent field agree with the story the username tells? A credential named `monitoring` making requests with a browser user agent is worth a second look.
-> * If you had to revoke exactly one caller right now, could you tell from this log alone which one to cut?
->
-> None of this needs new software. It is the same nginx, the same log file, and credentials you can create in one command each. The point is that identity in the log is the difference between knowing that your service was used and knowing who used it.
+### What a Red Teamer Reads Here
+
+This log is also a record of your own activity, written by the service you are authorized to be using. On an engagement the same file is evidence: which accounts were used, from which addresses, with which tooling. Notice that the user agent field gives each client away even before you look at the username, so `curl` in a log is visible as `curl`. Defenders hunt on exactly that. It cuts both ways, and both directions are worth understanding.
+
+### If You Have the Time: Make the Log Talk
+
+Two callers is enough to show the mechanism, but not enough to make the log interesting. If you finish early, or want something to take home, add more credentials and generate your own traffic.
+
+Create a few more accounts on HeartOfGold, naming them for what they would represent in a real deployment rather than for which app you happen to be using:
+
+> [!hog] HeartOfGold · frankie
+> ```shell
+> sudo htpasswd /etc/nginx/.htpasswd backup-job
+> sudo htpasswd /etc/nginx/.htpasswd monitoring
+> sudo htpasswd /etc/nginx/.htpasswd analyst-laptop
+> ```
+
+Then go make noise with them from Marvin. Send single prompts, send bursts, send a few in a loop with `sleep` between them, hit different endpoints, and deliberately fail some authentications by typing the wrong password. Mix `curl` in with the Open WebUI traffic you are already generating.
+
+Now read what you produced, and see how much it gives away:
+
+* Which callers look like a human typing, and which look like something on a timer? Regular intervals are a tell.
+* Can you spot the failed logins? What does a run of `401` lines against one username look like, and how would that read to a defender at three in the morning?
+* Does the user agent field agree with the story the username tells? A credential named `monitoring` making requests with a browser user agent is worth a second look.
+* If you had to revoke exactly one caller right now, could you tell from this log alone which one to cut?
+
+None of this needs new software. It is the same nginx, the same log file, and credentials you can create in one command each. The point is that identity in the log is the difference between knowing that your service was used and knowing who used it.
 
 ## What Makes This Worth It
 

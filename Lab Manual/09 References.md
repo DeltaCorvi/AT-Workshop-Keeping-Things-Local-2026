@@ -1,42 +1,59 @@
 ---
 author: Bronwen Aker
-updated: 2026-07-16
+updated: 2026-07-22
 presentation_type: Workshop
 venue: Antisyphon AI Summit
 ---
 
-```table-of-contents
-title: # Table of Contents
-minLevel: 0
-maxLevel: 3
-```
+Every external resource cited in this manual, gathered in one place, plus a few worth reading past the lab. Each entry notes where it comes up and why you would return to it. Entries are listed alphabetically by name.
 
-# Time for Some History
+**[7-Zip](https://www.7-zip.org/)**
+The Windows extraction tool lesson 02 recommends for unpacking the large VM archive, since the built in unzipper struggles with files that size.
 
-If you haven't been involved in technology and technology innovation for a long time, say decades, you might not be aware that artificial intelligence has been around for a very long time.
+**[AI for Cybersecurity Professionals, with Joff Thyer and Derek Banks](https://www.antisyphontraining.com/product/ai-for-cybersecurity-professionals-with-joff-thyer-and-derek-banks/)**
+The Antisyphon course to reach for when you want the data science of how LLMs actually work, past the working knowledge [[01 What is an LLM]] gives you.
 
-Using ChatGPT, I generated this timeline of events from the time the term "artificial intelligence" was first coined through present day.
+**[Headscale](https://headscale.net/)**
+The self-hosted coordination server from the extracurricular [[05b Self-Hosting the Mesh with Headscale]]. Source is on [GitHub](https://github.com/juanfont/headscale), and current packages are on the [releases page](https://github.com/juanfont/headscale/releases).
 
-- **1956**: John McCarthy coins the term _Artificial Intelligence_ at the Dartmouth Conference.    
-- **1960s to 1970s**: Early symbolic AI and “expert systems” emerge, but limited by computing power.    
-- **1980s**: Expert systems gain traction in business; AI winter follows due to cost and limitations.    
-- **1997**: IBM’s _Deep Blue_ defeats world chess champion Garry Kasparov.    
-- **2000s**: Machine learning and statistical approaches begin outperforming symbolic AI.    
-- **2012**: Breakthrough in deep learning with AlexNet winning ImageNet competition.    
-- **2016**: Google DeepMind’s _AlphaGo_ defeats Go champion Lee Sedol.    
-- **2020s**: Rapid advances in generative and large-scale AI:    
-    - **2020**: OpenAI releases GPT-3, showing unprecedented natural language generation.        
-    - **2021**: Codex powers GitHub Copilot, bringing AI-assisted coding into mainstream use.    
-    - **2022**: Diffusion models (e.g., DALL·E 2, Stable Diffusion, MidJourney[^1]) popularize AI image generation.        
-    - **2022**: ChatGPT launches, sparking global awareness of conversational AI.        
-    - **2023**: OpenAI releases GPT-4, expanding multimodal capabilities (text and images).        
-    - **2023 to 2024**: Major tech firms integrate AI assistants into office tools, search engines, and operating systems.        
-    - **2024 to 2025**: Growth of open-source LLMs (LLaMA, Mistral, Falcon, etc.) alongside enterprise-grade AI governance and safety research.        
+**[How Tailscale Works](https://tailscale.com/blog/how-tailscale-works)**
+Background on the control plane, the data plane, and NAT traversal, the concepts lesson 05 leans on when it explains why nothing gets exposed to the wider network.
 
-### TL;DR
-AI, first defined in 1956, has progressed from symbolic reasoning to machine learning and deep learning, experiencing multiple cycles of hype and disappointment. Recent advances in large-scale generative and multimodal models have brought widespread adoption, alongside significant concerns over accuracy, bias, security, and governance.
+**[Keka](https://www.keka.io/)**
+The macOS equivalent of 7-Zip, for extracting the VM archive on a Mac.
 
-[^1]: For the record, Midjourney was my gateway drug into AI. https://www.midjourney.com/
+**[Midjourney](https://www.midjourney.com/)**
+The image generation service mentioned in passing in lesson 01, an example of the diffusion model branch of generative AI rather than the text branch this workshop lives in.
+
+**[nginx auth_basic module](https://nginx.org/en/docs/http/ngx_http_auth_basic_module.html)**
+Reference for the `auth_basic` and `auth_basic_user_file` directives you configure in [[06 Locking It Down with nginx]]. The broader [nginx documentation index](https://nginx.org/en/docs/) covers the reverse proxy directives alongside them.
+
+**[Obsidian](https://obsidian.md/)**
+The Markdown application this manual is written for and read in on Marvin. Introduced in [[00 About This Workshop]].
+
+**[Ollama](https://ollama.com/)**
+The local LLM runtime the whole lab is built on. Platform installers and the Linux install script are at [ollama.com/download](https://ollama.com/download/). Introduced in [[03 Working with Ollama]].
+
+**[Ollama Modelfile reference](https://github.com/ollama/ollama/blob/main/docs/modelfile.md)**
+Full syntax for the `FROM`, `PARAMETER`, and `SYSTEM` directives you meet in [[04 Model Customization with Modelfiles]], along with every other directive Ollama supports.
+
+**[Open WebUI](https://openwebui.com/)**
+The browser chat interface you point at HeartOfGold in [[07 Putting It All Together]], close in feel to a hosted chat app but reaching a model on your own hardware.
+
+**[Open WebUI documentation](https://docs.openwebui.com/)**
+Setup, configuration, and the details of connecting to an Ollama backend, for when you take Open WebUI past the single connection configured in the lab.
+
+**[Tailscale](https://tailscale.com/)**
+The mesh VPN that connects Marvin to HeartOfGold in [[05 Tailscale Mesh Networking]]. Create the free account the lesson needs at [login.tailscale.com/start](https://login.tailscale.com/start).
+
+**[Tailscale access control lists](https://tailscale.com/kb/1018/acls)**
+Scoping which nodes on a tailnet may reach which others, the ACL idea referenced in lessons 05 and 06 as the mesh level counterpart to putting auth on a service.
+
+**[VMware Workstation Pro and Fusion Pro (Broadcom)](https://support.broadcom.com/group/ecx/productdownloads?subfamily=VMware+Workstation+Pro&freeDownloads=true)**
+The hypervisor that runs the two lab VMs, free for personal use behind a Broadcom account. Setup is covered in [[02 Setting Up Your VMs]].
+
+**[WireGuard](https://www.wireguard.com/)**
+The VPN protocol underneath both Tailscale and Headscale. The [technical whitepaper](https://www.wireguard.com/papers/wireguard.pdf) covers the protocol and its cryptography in depth if you want to understand what the mesh is actually doing on the wire.
 
 ---
 

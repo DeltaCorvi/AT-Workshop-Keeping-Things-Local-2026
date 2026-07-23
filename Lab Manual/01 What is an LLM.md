@@ -1,6 +1,6 @@
 ---
 author: Bronwen Aker
-updated: 2026-07-16
+updated: 2026-07-22
 presentation_type: Workshop
 venue: Antisyphon AI Summit
 ---
@@ -10,8 +10,6 @@ title: # Table of Contents
 minLevel: 0
 maxLevel: 5
 ```
-
-> [!info] Curious about the full history of AI, from 1956 to present? See [[09 References]].
 
 # Ok, So What IS AI?!?
 
