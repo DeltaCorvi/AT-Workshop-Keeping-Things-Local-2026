@@ -5,7 +5,8 @@
       "side-quest",
       "hog",
       "marvin",
-      "hey-claude"
+      "hey-claude",
+      "squirrel"
     ],
     "settings": {
       "hog": [
@@ -82,6 +83,36 @@
           "changes": {
             "icon": "lucide-bot",
             "color": "158, 158, 158"
+          }
+        }
+      ],
+      "squirrel": [
+        {
+          "changes": {
+            "icon": "lucide-squirrel"
+          }
+        },
+        {
+          "condition": {
+            "colorScheme": "light"
+          },
+          "changes": {
+            "color": "139, 69, 19"
+          }
+        },
+        {
+          "condition": {
+            "colorScheme": "dark"
+          },
+          "changes": {
+            "color": "198, 142, 82"
+          }
+        }
+      ],
+      "tip": [
+        {
+          "changes": {
+            "color": "208, 181, 48"
           }
         }
       ]

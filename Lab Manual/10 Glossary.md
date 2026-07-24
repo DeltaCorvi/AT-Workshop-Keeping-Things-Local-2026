@@ -1,15 +1,9 @@
 ---
 author: Bronwen Aker
-updated: 2026-07-22
+updated: 2026-07-23
 presentation_type: Workshop
 venue: Antisyphon AI Summit
 ---
-
-```table-of-contents
-title: # Table of Contents
-minLevel: 0
-maxLevel: 3
-```
 
 Quick reference for the tools, protocols, and concepts used in this manual. The first time a term appears in a lesson it is introduced in place; the entries here are the canonical definition so you can jump straight to one without hunting for where it was first mentioned. Link to an entry from a lesson with `[[10 Glossary#term]]`.
 
@@ -55,11 +49,11 @@ The software wrapped around a raw model that turns next-token prediction into so
 ### Headscale
 An open-source, self-hosted reimplementation of Tailscale's [[10 Glossary#Coordination Server|coordination server]]. Standard Tailscale clients connect to it instead of to Tailscale's cloud, which moves the last third party, the control plane, onto hardware you own. In exchange you take on running it and keeping it alive.
 
-### HTTP Basic Authentication
-A simple authentication scheme in which the client sends a username and password with every request. The credentials are only base64 encoded, not encrypted, so basic auth depends on the transport underneath it for confidentiality. In this lab that transport is the Tailscale mesh.
-
 ### htpasswd
 An Apache utility for creating and managing the username and hashed password files that HTTP basic authentication reads. On Debian and Ubuntu it ships in the `apache2-utils` package. The `-c` flag creates a new file (and overwrites an existing one), so it is used only for the first user.
+
+### HTTP Basic Authentication
+A simple authentication scheme in which the client sends a username and password with every request. The credentials are only base64 encoded, not encrypted, so basic auth depends on the transport underneath it for confidentiality. In this lab that transport is the Tailscale mesh.
 
 ### Instruct Model
 A [[10 Glossary#Base Model (Foundation Model)|base model]] put through instruction tuning, extra training on examples that pair an instruction with a good response, so it handles a single standalone request well, like "summarize this" or "write a regex that matches X." It expects its input phrased as a direct instruction and is often tagged `-instruct`.
@@ -88,11 +82,11 @@ Pronounced "engine x." A high performance web server that also works as a revers
 ### Ollama
 A local LLM runtime, and a [[10 Glossary#Harness|harness]] in its own right. It loads a model's weights, exposes them through a local API, and gives you a CLI to pull, run, and customize models. It is what serves the model on HeartOfGold.
 
-### Open Weights
-Weight files that are published for download, so you can run the model on your own hardware, as with Llama, Qwen, Mistral, and Gemma. Open weights is not the same as open source: you get the finished numbers, not the training data or the code, and most ship under licenses with real restrictions. The opposite is a proprietary model such as GPT-4 or Claude, whose weights stay on the vendor's servers and reach you only through an API.
-
 ### Open WebUI
 A full browser-based chat interface, close in feel to the hosted chat apps, that you point at a local model. In this lab it runs on Marvin and reaches Ollama on HeartOfGold over the mesh, authenticating as its own credential.
+
+### Open Weights
+Weight files that are published for download, so you can run the model on your own hardware, as with Llama, Qwen, Mistral, and Gemma. Open weights is not the same as open source: you get the finished numbers, not the training data or the code, and most ship under licenses with real restrictions. The opposite is a proprietary model such as GPT-4 or Claude, whose weights stay on the vendor's servers and reach you only through an API.
 
 ### Parameters
 Another name for a model's [[10 Glossary#Weights|weights]], the internal values it learned during training. Model size is marketed as a parameter count, 7B, 13B, 33B, where B is billions; more parameters generally means more nuance captured during training and a bigger memory footprint at run time.
