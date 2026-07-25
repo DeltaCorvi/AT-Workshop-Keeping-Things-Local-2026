@@ -19,8 +19,7 @@ Large language models are powerful tools, but they come with a tradeoff: send yo
 
 No more black boxes. No more token limits. No more sudden changes in what you can or can't do using the LLM.
 
-You control the entire lifecycle, from user to harness to prompt 
-You control how many or how few dependencies you use. 
+You control the entire lifecycle, from user to harness to prompt and back again. You control how many or how few dependencies you use.
 
 It's your data. Shouldn't it be your rules?
 
@@ -112,7 +111,7 @@ TBD
 Every external resource cited in the manual, gathered in one place, with links to additional goodies worth exploring on your own.
 
 ### [[10 Glossary]]
-A glossary of the terms and tool names used in the workshop. The first time a lesson uses a term, it links here.
+A glossary of the terms and tools used in the workshop. The first time a lesson uses a term, it links here.
 
 ---
 
