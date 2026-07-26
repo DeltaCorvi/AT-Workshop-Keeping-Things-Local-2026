@@ -21,7 +21,7 @@ In a very real way, the technologies developed for handling and analyzing large 
 
 ## Where Do LLMs Fit In?
 
-[[10 Glossary#Large Language Model (LLM)|LLMs]] are a subset of [[10 Glossary#Generative AI|generative AI]]. LLMs only deal with text, whereas diffusion models deal with imagery. LLMs are probabilistic, which is a fancy way of saying that everything they "create" is generated based on probabilities. How likely it is that you're going to get one answer versus another depends on not just what your prompt was, but also on a lot of math that goes on both inside the model and in the supporting software that helps you interact with it.[^2]
+[[10 Glossary#Large Language Model (LLM)|LLMs]] are a subset of [[10 Glossary#Generative AI|generative AI]]. LLMs only deal with text, whereas [[10 Glossary#Diffusion Model|diffusion models]] such as [Midjourney](https://www.midjourney.com/) deal with imagery. LLMs are probabilistic, which is a fancy way of saying that everything they "create" is generated based on probabilities. How likely it is that you're going to get one answer versus another depends on not just what your [[10 Glossary#Prompt|prompt]] was, but also on a lot of math that goes on both inside the model and in the supporting software that helps you interact with it.[^2]
 
 The current trend with the innovators in LLM development is to follow the "bigger is always better" headspace, training their proprietary models on massive amounts of data from diverse sources. Not surprisingly, most of the LLMs you will find available (ChatGPT, Claude, Copilot, Gemini) are general purpose. You can use them for anything from learning more about a historical concept to finding the perfect rice pudding recipe. You can also do some limited customization (e.g., Custom GPTs, agents), but you are limited to whatever customization features are being provided by the AI provider. More importantly for a lot of people, anytime you use one of these hosted chatbots, you have no control over what happens to your data once you send it across to them.
 
@@ -35,7 +35,7 @@ Also, hosting your own local LLM gives you many more options for customizing and
 
 ## Fundamental Concepts & Terms
 
-Before you get hands-on, here's the vocabulary chain that explains how a raw model becomes something you can actually talk to. Each concept below builds on the one before it: model, then model types, then what's inside a model, how it got that way, what it actually processes, and finally what sits between you and the model when you use it.
+Before you get hands-on, here's the vocabulary chain that explains how a raw model becomes something you can actually talk to. Each concept below builds on the one before it: model, then [[10 Glossary#Model Types|model types]], then what's inside a model, how it got that way, what it actually processes, and finally what sits between you and the model when you use it.
 
 ### What is an LLM Model?
 
@@ -55,16 +55,16 @@ Not every model does the same job out of the box. The differences come from what
 
 **Base (or "foundation") models.** The raw result of prediction training. Hand one a chunk of text and it will keep going in a statistically plausible way, but it has no particular urge to answer questions, follow instructions, or hold a conversation. Handy as a starting point, awkward to talk to. You will rarely pull a pure base model for this lab, or for any other, unless you are training your own model.
 
-**Instruct models.** A base model put through instruction tuning: extra training on piles of examples that pair an instruction with a good response. The payoff is a model that handles a single, standalone request well, things like "summarize this" or "write a regex that matches X." These expect their input phrased as a direct instruction and are often tagged `-instruct`.
+**Instruct models.** A base model put through [[10 Glossary#Instruction Tuning|instruction tuning]]: extra training on piles of examples that pair an instruction with a good response. The payoff is a model that handles a single, standalone request well, things like "summarize this" or "write a regex that matches X." These expect their input phrased as a direct instruction and are often tagged `-instruct`.
 
 **Chat models.** Tuned specifically for holding a conversation, with separate system, user, and assistant roles and a chat template that tracks whose turn it is. They are built to carry context across many messages and to honor a [[10 Glossary#System Prompt|system prompt]]. Often tagged `-chat`.
 
 **[[10 Glossary#Reasoning Model|Reasoning]] (or "thinking") models.** Trained to work a problem step by step, out loud, before landing on an answer. If a model ever streams its scratch work at you under a "Thinking..." header, that is one of these. They shine on problems that need working through, and they are slow or distracting for something that should be a fast, short answer.
 
-**Specialized models.** Everything tuned for a narrow job: code models (trained heavily on source code for completion and generation), [[10 Glossary#Embedding Model|embedding models]] (which do not chat at all, they turn text into vectors of numbers so software can measure how similar two pieces of text are, the engine behind search and RAG), and vision or multimodal models (which can take images as input, not just text).
+**Specialized models.** Everything tuned for a narrow job: code models (trained heavily on source code for completion and generation), [[10 Glossary#Embedding Model|embedding models]] (which do not chat at all, they turn text into vectors of numbers so software can measure how similar two pieces of text are, the engine behind search and RAG), and vision or [[10 Glossary#Multimodal Model|multimodal models]] (which can take images as input, not just text).
 
 > [!info] The instruct/chat line is blurrier than it looks
-> Out in the wild these categories bleed together. Plenty of models tagged `-instruct` chat perfectly well across multiple turns, and a lot of "chat" models are really just instruct models with a conversation template bolted on. On top of that, Ollama automatically applies whatever prompt template a model ships with, so you almost never set this by hand. Treat these labels as "what the model was optimized for," not hard rules, and do not lose sleep over which bucket a given model falls into.
+> Out in the wild these categories bleed together. Plenty of models tagged `-instruct` chat perfectly well across multiple turns, and a lot of "chat" models are really just instruct models with a conversation template bolted on. On top of that, [[10 Glossary#Ollama|Ollama]] automatically applies whatever prompt template a model ships with, so you almost never set this by hand. Treat these labels as "what the model was optimized for," not hard rules, and do not lose sleep over which bucket a given model falls into.
 
 ### Open Weights vs. Proprietary Models
 
@@ -72,7 +72,7 @@ One more split, and it runs on a different axis from everything above. The types
 
 **Models with [[10 Glossary#Open Weights|open weights]]**, like Llama, Qwen, Mistral, and Gemma, and basically everything you pull in this lab, publish the actual weight files. You can download them, run them on your own hardware, poke at them, fine tune them, and use them with nobody watching over your shoulder. That is the whole reason this workshop is even possible.
 
-**Proprietary or hosted models**, like GPT-4, Claude, and Gemini, keep their weights locked on the vendor's servers. You reach them only through an API or a web app, you cannot run them locally, and every prompt you send leaves your control. That is the exact tradeoff this lesson opened with back in "Why Go Local."
+**Proprietary or hosted models**, like GPT-4, Claude, and Gemini, keep their weights locked on the vendor's servers. You reach them only through an [[10 Glossary#API (Application Programming Interface)|API]] or a web app, you cannot run them locally, and every prompt you send leaves your control. That is the exact tradeoff this lesson opened with back in "Why Go Local."
 
 Two cautions about the word "open." First, "open weights" is not the same as "open source." You get the finished weight file, not the training data or the code that produced it, so you generally cannot reproduce the model yourself. Second, most of these models ship under licenses with real strings attached, usage restrictions and sometimes limits on commercial scale, so "open" does not automatically mean "do whatever you want with it."
 

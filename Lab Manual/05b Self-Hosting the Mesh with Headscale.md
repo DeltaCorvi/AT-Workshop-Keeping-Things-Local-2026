@@ -30,7 +30,7 @@ Both give you the same encrypted [[10 Glossary#WireGuard|WireGuard]] mesh, the s
 
 With **[[10 Glossary#Tailscale|Tailscale]]**, that control plane is Tailscale's hosted service. It is audited, well run, and it never sees your traffic, but it is still a third party you depend on to be reachable and trustworthy. Choose it when you want to be meshed in two minutes, and on a red team engagement when you just need durable encrypted access back to a foothold and do not want to stand up infrastructure.
 
-With **[[10 Glossary#Headscale|Headscale]]**, you run the control plane yourself. It is an open-source reimplementation of Tailscale's coordination server, and standard Tailscale clients connect to it instead of to Tailscale's cloud. Choose it when the control plane itself has to live inside your network: an internal service on gear you own, a stricter trust boundary, an environment with no outbound dependency on an external provider, or anywhere "no third-party dependencies" has to be true.
+With **[[10 Glossary#Headscale|Headscale]]**, you run the control plane yourself. It is an open-source reimplementation of Tailscale's coordination server, and standard Tailscale clients connect to it instead of to Tailscale's cloud. Choose it when the control plane itself has to live inside your network: an internal service on gear you own, a stricter [[10 Glossary#Trust Boundary|trust boundary]], an environment with no outbound dependency on an external provider, or anywhere "no third-party dependencies" has to be true.
 
 > [!note] Same Security, Different Trust Boundary
 > Headscale and Tailscale use the same WireGuard cryptography, so neither is more secure on the wire. Headscale is the more sovereign choice because it moves the last third party, the coordination server, onto hardware you control. The question is where your trust boundary sits, not which one encrypts better.
@@ -52,11 +52,11 @@ In this lab HeartOfGold runs both roles. It keeps running Ollama and also runs H
 ![[headscale_selfhosted_architecture.png|center]]
 
 > [!warning] The lab colocates; production should not
-> Running Headscale on HeartOfGold is a lab simplification to avoid standing up a third VM. In a real deployment, put Headscale on its own dedicated, minimal, hardened host, separate from the workload. The control plane holds identity, keys, and the access policy for your entire tailnet, so if the workload host is compromised you do not want the coordination server to fall with it. Separating them contains a compromise, lets you patch or reboot the LLM box without breaking enrollment for every node, and keeps the control plane's attack surface small and distinct.
+> Running Headscale on HeartOfGold is a lab simplification to avoid standing up a third VM. In a real deployment, put Headscale on its own dedicated, minimal, hardened host, separate from the workload. The control plane holds identity, keys, and the access policy for your entire tailnet, so if the workload host is compromised you do not want the coordination server to fall with it. Separating them contains a compromise, lets you patch or reboot the [[10 Glossary#Large Language Model (LLM)|LLM]] box without breaking enrollment for every node, and keeps the control plane's [[10 Glossary#Attack Surface|attack surface]] small and distinct.
 
 ## Installing Headscale on HeartOfGold
 
-The Debian package is the recommended install on Ubuntu. It creates a service account, drops a default config, and ships a [[10 Glossary#systemd|systemd]] unit. On HeartOfGold, download the latest release for your architecture and install it:
+The Debian package is the recommended install on Ubuntu. It creates a [[10 Glossary#Service Account|service account]], drops a default config, and ships a [[10 Glossary#systemd|systemd]] unit. On HeartOfGold, download the latest release for your architecture and install it:
 
 > [!hog] HeartOfGold · frankie
 > ```shell
@@ -164,16 +164,16 @@ You should see both HeartOfGold and Marvin with their `100.x.y.z` addresses. On 
 From here you are back on the lesson 05 path. Return to [[05 Tailscale Mesh Networking]] and follow "Exposing Ollama on the Mesh" and "Verifying the Connection" as written, using HeartOfGold's tailnet address from `tailscale ip -4`.
 
 > [!info] A Note on MagicDNS Names
-> Tailscale's hosted MagicDNS resolves a bare `heartofgold`. Under Headscale, names resolve as a fully qualified domain name (FQDN) using the `base_domain` you set, for example `heartofgold.magrathea.internal`. If a bare name does not resolve, use the FQDN or the tailnet IP from `tailscale ip -4`; the IP always works.
+> Tailscale's hosted MagicDNS resolves a bare `heartofgold`. Under Headscale, names resolve as a [[10 Glossary#FQDN (Fully Qualified Domain Name)|fully qualified domain name (FQDN)]] using the `base_domain` you set, for example `heartofgold.magrathea.internal`. If a bare name does not resolve, use the FQDN or the tailnet IP from `tailscale ip -4`; the IP always works.
 
 ## Opsec and Sovereignty
 
 Self-hosting the control plane removes the last third party from the "keep it local" promise. There is no external coordination server logging device names, keys, or connection times, because that server is now yours. On an engagement where an outbound dependency on a third-party provider is itself a risk, or where the rules of engagement forbid routing any metadata through outside infrastructure, Headscale keeps the entire mesh, control plane and all, inside the boundary you already own.
 
 > [!squirrel]- SQUIRREL! Details About DERP
-> WireGuard wants your nodes talking peer to peer, and most of the time they manage it, using STUN (Session Traversal Utilities for NAT) and some hole punching to find a path through NAT and firewalls. When they cannot, the traffic falls back to a DERP relay (Designated Encrypted Relay for Packets): a public meeting point both nodes can always reach. It stays encrypted from one node to the other, so the relay only ever forwards ciphertext it cannot read, but it is still a third party in the path.
+> WireGuard wants your nodes talking peer to peer, and most of the time they manage it, using [[10 Glossary#STUN (Session Traversal Utilities for NAT)|STUN (Session Traversal Utilities for NAT)]] and some [[10 Glossary#Hole Punching|hole punching]] to find a path through NAT and firewalls. When they cannot, the traffic falls back to a [[10 Glossary#DERP (Designated Encrypted Relay for Packets)|DERP]] relay (Designated Encrypted Relay for Packets): a public meeting point both nodes can always reach. It stays encrypted from one node to the other, so the relay only ever forwards ciphertext it cannot read, but it is still a third party in the path.
 >
-> Here is the catch for a self-hosted mesh: even with your own control plane, Headscale hands clients Tailscale's public DERP map by default, so a node that cannot connect directly may relay through Tailscale's servers. On this flat lab LAN the VMs connect directly and DERP never engages, but on a messier network it can. To keep the relays inside your boundary, too, run an embedded DERP server (which needs TLS, so an HTTPS `server_url`) or point clients at your own DERP map.
+> Here is the catch for a self-hosted mesh: even with your own control plane, Headscale hands clients Tailscale's public DERP map by default, so a node that cannot connect directly may relay through Tailscale's servers. On this flat lab LAN the VMs connect directly and DERP never engages, but on a messier network it can. To keep the relays inside your boundary, too, run an embedded DERP server (which needs [[10 Glossary#TLS (Transport Layer Security)|TLS]], so an [[10 Glossary#HTTPS|HTTPS]] `server_url`) or point clients at your own DERP map.
 
 > [!warning] You now own the uptime
 > Removing the third party means you take on its job. If the Headscale host is down or unreachable, new nodes cannot enroll and existing keys cannot be re-authed. Existing tunnels keep running, but treat the control-plane host as infrastructure you are responsible for keeping alive.

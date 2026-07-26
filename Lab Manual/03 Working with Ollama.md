@@ -1,6 +1,6 @@
 ---
 author: Bronwen Aker
-updated: 2026-07-23
+updated: 2026-07-25
 presentation_type: Workshop
 venue: Antisyphon AI Summit
 ---
@@ -63,7 +63,7 @@ This command can also be used to update a local model. Only the diff will be pul
 > HeartOfGold comes with `llama3.2` (3B, ~2GB) pre-loaded, so you don't need to pull anything to get started. If you want more hands-on practice with `ollama pull`, or want to compare a different model's behavior, here are a few reasonably sized options:
 > - `llama3.2:1b` (1.3GB): smaller and faster than the default, good if you're short on time
 > - `qwen3.5:4b` (3.4GB): newer and noticeably stronger, still a quick pull
-> - `qwen3.5:9b` (6.6GB): lands in the 7B RAM tier above, a good way to feel the RAM/parameter-count relationship from [[01 What is an LLM]] in practice
+> - `qwen3.5:9b` (6.6GB): lands in the 7B RAM tier above, a good way to feel the RAM/[[10 Glossary#Parameters|parameter]]-count relationship from [[01 What is an LLM]] in practice
 >
 > Pull any of these the same way: `ollama pull <model>`
 

@@ -1,6 +1,6 @@
 ---
 author: Bronwen Aker
-updated: 2026-07-23
+updated: 2026-07-25
 presentation_type: Workshop
 venue: Antisyphon AI Summit
 ---
@@ -23,7 +23,7 @@ Background on the control plane, the data plane, and NAT traversal, the concepts
 The macOS equivalent of 7-Zip, for extracting the VM archive on a Mac.
 
 **[Midjourney](https://www.midjourney.com/)**
-The image generation service mentioned in passing in [[01 What is an LLM]], an example of the diffusion model branch of generative AI rather than the text branch this workshop lives in.
+The image generation service named in [[01 What is an LLM]] as an example of the diffusion model branch of generative AI, rather than the text branch this workshop lives in. For the record, Midjourney was my gateway drug into AI.
 
 **[nginx auth_basic module](https://nginx.org/en/docs/http/ngx_http_auth_basic_module.html)**
 Reference for the `auth_basic` and `auth_basic_user_file` directives you configure in [[06 Locking It Down with nginx]]. The broader [nginx documentation index](https://nginx.org/en/docs/) covers the reverse proxy directives alongside them.

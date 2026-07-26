@@ -11,19 +11,19 @@ minLevel: 0
 maxLevel: 3
 ```
 
-Up to now everything has lived on a single VM. HeartOfGold runs Ollama, and you talk to it from HeartOfGold itself. The point of this workshop is a service you can actually reach from somewhere else, securely, so this lesson connects a second machine, Marvin, to HeartOfGold over an encrypted mesh network built with [Tailscale](https://tailscale.com/).
+Up to now everything has lived on a single VM. HeartOfGold runs [[10 Glossary#Ollama|Ollama]], and you talk to it from HeartOfGold itself. The point of this workshop is a service you can actually reach from somewhere else, securely, so this lesson connects a second machine, Marvin, to HeartOfGold over an encrypted mesh network built with [Tailscale](https://tailscale.com/).
 
 ## Why Tailscale
 
-You have a private LLM on HeartOfGold. You want to use it from Marvin, and later from your laptop, your phone, or a teammate's box, without doing any of the things that usually make a service reachable: no opening firewall ports, no port forwarding on a router, no exposing Ollama to the local network or the public internet. Every one of those options widens your attack surface, which is exactly what this workshop is trying to avoid.
+You have a private [[10 Glossary#Large Language Model (LLM)|LLM]] on HeartOfGold. You want to use it from Marvin, and later from your laptop, your phone, or a teammate's box, without doing any of the things that usually make a service reachable: no opening firewall ports, no port forwarding on a router, no exposing Ollama to the local network or the public internet. Every one of those options widens your [[10 Glossary#Attack Surface|attack surface]], which is exactly what this workshop is trying to avoid.
 
-Tailscale solves this with a [[10 Glossary#Mesh VPN|mesh VPN]] built on the [[10 Glossary#WireGuard|WireGuard]] protocol. Each device you enroll joins a private network called a [[10 Glossary#Tailnet|tailnet]] and gets a stable address in the `100.x.y.z` range. Devices then talk directly to each other through encrypted tunnels, even when they sit on different networks behind different routers. Nothing is published to the outside world; the two machines simply find each other and connect.
+[[10 Glossary#Tailscale|Tailscale]] solves this with a [[10 Glossary#Mesh VPN|mesh VPN]] built on the [[10 Glossary#WireGuard|WireGuard]] protocol. Each device you enroll joins a private network called a [[10 Glossary#Tailnet|tailnet]] and gets a stable address in the `100.x.y.z` range. Devices then talk directly to each other through encrypted tunnels, even when they sit on different networks behind different routers. Nothing is published to the outside world; the two machines simply find each other and connect.
 
 > [!info] Control Plane vs Data Plane
 > Tailscale runs a [[10 Glossary#Coordination Server|coordination server]] that handles identity, key exchange, and access policy. That is the [[10 Glossary#Control Plane|control plane]]. Your actual traffic, the [[10 Glossary#Data Plane|data plane]], flows directly between your devices and is encrypted end to end. Tailscale's servers help your machines find each other, but your private traffic never passes through them.
 
 > [!tip] The Easy Button, and the Fully Local Alternative
-> We use Tailscale here because it gets you a working mesh in about two minutes, and because it earns its place on engagements. The tradeoff for this workshop is that the *control plane* is Tailscale's hosted server, a third party. When you need that control plane inside your own perimeter too, for an internal network or a stricter trust boundary, you self-host it with Headscale and keep the same client and the same steps. See [[05b Self-Hosting the Mesh with Headscale]].
+> We use Tailscale here because it gets you a working mesh in about two minutes, and because it earns its place on engagements. The tradeoff for this workshop is that the *control plane* is Tailscale's hosted server, a third party. When you need that control plane inside your own perimeter too, for an internal network or a stricter [[10 Glossary#Trust Boundary|trust boundary]], you self-host it with [[10 Glossary#Headscale|Headscale]] and keep the same client and the same steps. See [[05b Self-Hosting the Mesh with Headscale]].
 
 ## Target Architecture
 
@@ -47,7 +47,7 @@ The same properties that make Tailscale convenient here make it useful on an eng
 
 Before a device can join a tailnet, there has to be a tailnet for it to join, and that is what your account is. Tailscale's coordination server uses your identity to decide which devices belong to your private network and to hand out the keys that let those devices find and trust each other. No account means no tailnet, which is why registration comes first.
 
-Tailscale does not run its own username and password system. It hands authentication off to an identity provider you already use, such as Google, Microsoft, GitHub, or Apple, over standard OAuth. You pick a provider, log in there, and Tailscale trusts that provider to vouch for who you are.
+Tailscale does not run its own username and password system. It hands [[10 Glossary#Authentication|authentication]] off to an [[10 Glossary#Identity Provider|identity provider]] you already use, such as Google, Microsoft, GitHub, or Apple, over standard [[10 Glossary#OAuth|OAuth]]. You pick a provider, log in there, and Tailscale trusts that provider to vouch for who you are.
 
 > [!info] The Free Plan is Enough
 > Signing up with a personal email account, for example a `@gmail.com` address, puts you on Tailscale's free Personal plan, which covers everything in this lab, including MagicDNS, exit nodes, and access control lists. It is a real free tier, not a trial.
@@ -113,9 +113,9 @@ First, find HeartOfGold's tailnet address:
 > ```
 
 > [!tip] Write This Address Down Now!
-> The command you just typed is going to return an IP address, but because HeartOfGold is headless, there is no easy copy/paste from its console. Capture the IP address before you continue: Jot the four octets on paper, or take a screenshot of the hypervisor console window on your host so you can read the address back while you type.
+> The command you just typed is going to return an IP address, but because HeartOfGold is headless, there is no easy copy/paste from its console. Capture the IP address before you continue: Jot the four octets on paper, or take a screenshot of the [[10 Glossary#Hypervisor|hypervisor]] console window on your host so you can read the address back while you type.
 
-Then add a systemd override so Ollama binds to that address. Run:
+Then add a [[10 Glossary#systemd|systemd]] override so Ollama binds to that address. Run:
 
 > [!hog] HeartOfGold · frankie
 > ```shell
@@ -137,7 +137,7 @@ Reload and restart so the change takes effect:
 > sudo systemctl restart ollama
 > ```
 
-Confirm Ollama is now listening on the tailnet address rather than localhost:
+Confirm Ollama is now listening on the tailnet address rather than [[10 Glossary#localhost (Loopback)|localhost]]:
 
 > [!hog] HeartOfGold · frankie
 > ```shell

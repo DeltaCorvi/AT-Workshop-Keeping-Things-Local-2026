@@ -13,14 +13,14 @@ maxLevel: 3
 
 You have built the whole stack: a model on HeartOfGold, an encrypted mesh, and authentication in front of it. Now let's use it!
 
-This lesson reaches out to one served LLM model from Marvin in two different ways, then points it at the work that makes a private LLM worth the trouble.
+This lesson reaches out to one served [[10 Glossary#Large Language Model (LLM)|LLM]] model from Marvin in two different ways, then points it at the work that makes a private LLM worth the trouble.
 
 ## One Model, Many Harnesses
 
-Back in [[01 What is an LLM]] you met the idea of a harness: the software wrapped around a raw model that turns it into something you can actually talk to. HeartOfGold serves exactly one model over the mesh. Everything in this lesson is a different harness in front of that same endpoint. The terminal and the web UI are two faces on one service, not two separate installs of the model.
+Back in [[01 What is an LLM]] you met the idea of a [[10 Glossary#Harness|harness]]: the software wrapped around a raw model that turns it into something you can actually talk to. HeartOfGold serves exactly one model over the mesh. Everything in this lesson is a different harness in front of that same endpoint. The terminal and the web UI are two faces on one service, not two separate installs of the model.
 
 > [!note] Prerequisites for This Lesson
-> Both clients (curl and [[10 Glossary#Open WebUI|Open WebUI]]) are already installed on Marvin. Each one reaches HeartOfGold at its tailnet address, so the mesh from [[05 Tailscale Mesh Networking]] has to be up. Because [[06 Locking It Down with nginx]] put nginx and basic auth in front of Ollama, every call now has to carry credentials, and the only credentials that work are the two you created with `htpasswd` in that lesson.
+> Both clients (curl and [[10 Glossary#Open WebUI|Open WebUI]]) are already installed on Marvin. Each one reaches HeartOfGold at its [[10 Glossary#Tailnet|tailnet]] address, so the mesh from [[05 Tailscale Mesh Networking]] has to be up. Because [[06 Locking It Down with nginx]] put nginx and basic auth in front of [[10 Glossary#Ollama|Ollama]], every call now has to carry credentials, and the only credentials that work are the two you created with `htpasswd` in that lesson.
 >
 > * If you changed the usernames, substitute yours throughout.
 > * Have both passwords to hand before you start.
@@ -37,7 +37,7 @@ Back in [[01 What is an LLM]] you met the idea of a harness: the software wrappe
 
 The plainest harness is a single HTTP request.
 
-From Marvin, send a one-shot prompt to the API:
+From Marvin, send a one-shot [[10 Glossary#Prompt|prompt]] to the [[10 Glossary#API (Application Programming Interface)|API]]:
 
 > [!marvin] Marvin · benjy
 > ```shell
@@ -48,7 +48,7 @@ From Marvin, send a one-shot prompt to the API:
 > }'
 > ```
 
-You get one JSON object back with the full answer in the `response` field. Drop `"stream": false` and the API streams tokens as they generate, which is what every chat interface is doing under the hood. This is the harness you reach for in scripts: no UI, easy to pipe into `jq`, and it works anywhere `curl` does.
+You get one JSON object back with the full answer in the `response` field. Drop `"stream": false` and the API streams [[10 Glossary#Token|tokens]] as they generate, which is what every chat interface is doing under the hood. This is the harness you reach for in scripts: no UI, easy to pipe into `jq`, and it works anywhere `curl` does.
 
 ## Harness Two: The Web UI
 
@@ -81,7 +81,7 @@ You now have the same model behind a polished web front end and a raw `curl`, bo
 
 ## Seeing Both from the Other Side
 
-Everything so far has been the view from Marvin. Now look at the same activity from HeartOfGold, which has been keeping a record the whole time. nginx writes every request it handles to an access log, and because each harness authenticated as a different user, that log can tell them apart.
+Everything so far has been the view from Marvin. Now look at the same activity from HeartOfGold, which has been keeping a record the whole time. [[10 Glossary#nginx|nginx]] writes every request it handles to an [[10 Glossary#Access Log|access log]], and because each harness authenticated as a different user, that log can tell them apart.
 
 Open a session on HeartOfGold and follow the log:
 
@@ -112,7 +112,7 @@ Basic auth does not let you give `zaphod` and `trillian` different levels of acc
 
 ### What a Red Teamer Reads Here
 
-This log is also a record of your own activity, written by the service you are authorized to be using. On an engagement the same file is evidence: which accounts were used, from which addresses, with which tooling. Notice that the user agent field gives each client away even before you look at the username, so `curl` in a log is visible as `curl`. Defenders hunt on exactly that. It cuts both ways, and both directions are worth understanding.
+This log is also a record of your own activity, written by the service you are authorized to be using. On an engagement the same file is evidence: which accounts were used, from which addresses, with which tooling. Notice that the [[10 Glossary#User Agent|user agent]] field gives each client away even before you look at the username, so `curl` in a log is visible as `curl`. Defenders hunt on exactly that. It cuts both ways, and both directions are worth understanding.
 
 ### If You Have the Time: Make the Log Talk
 
@@ -146,7 +146,7 @@ Feed it data that can never leave. Paste in a block of logs, a vulnerability sca
 
 Work the way an engagement demands. For authorized red team work, a local model will draft a phishing pretext, a social-engineering scenario, or a plausible lure without the refusals and the retention that come with a hosted assistant. Nothing about the target, the client, or the tradecraft is logged to a third party.
 
-Run it fully offline. Once the model is pulled, none of this needs internet. In an air-gapped lab or a segmented client network, the local model keeps working while a cloud API is simply unreachable.
+Run it fully offline. Once the model is pulled, none of this needs internet. In an [[10 Glossary#Air-Gapped|air-gapped]] lab or a segmented client network, the local model keeps working while a cloud API is simply unreachable.
 
 > [!warning] Authorized Use Only
 > The red team uses above assume an engagement you are authorized for, inside your rules of engagement. Local generation removes the third-party record, but it does not remove your responsibility for how the output gets used.

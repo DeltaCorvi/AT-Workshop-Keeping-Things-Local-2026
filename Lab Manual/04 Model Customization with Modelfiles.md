@@ -13,13 +13,13 @@ maxLevel: 3
 
 ## What a Modelfile Does
 
-A [[10 Glossary#Modelfile|Modelfile]] is the recipe Ollama uses to turn an existing base model into a customized one. You are not retraining anything. You wrap a base model in a standing configuration: which model to start from, how it should behave, and how adventurous its output should be.
+A [[10 Glossary#Modelfile|Modelfile]] is the recipe [[10 Glossary#Ollama|Ollama]] uses to turn an existing [[10 Glossary#Base Model (Foundation Model)|base model]] into a customized one. You are not retraining anything. You wrap a base model in a standing configuration: which model to start from, how it should behave, and how adventurous its output should be.
 
 Three directives do most of the work:
 
 - `FROM` names the base model to build on. On HeartOfGold this is `llama3.2`, which is already pulled, so building stays instant and offline.
 - `PARAMETER` sets runtime options. The one you will reach for most is `temperature`, which controls how predictable or creative the output is. See [[01 What is an LLM]] for the concept.
-- `SYSTEM` holds the system prompt: a standing instruction fed to the model before the conversation starts. This is where a model's persona, task, and constraints live.
+- `SYSTEM` holds the [[10 Glossary#System Prompt|system prompt]]: a standing instruction fed to the model before the conversation starts. This is where a model's persona, task, and constraints live.
 
 > [!info]
 > `FROM` must reference a model that already exists on the system. Because `llama3.2` ships pre-loaded on HeartOfGold, every example here builds on it with no download. If you point `FROM` at a model you have not pulled, Ollama will try to fetch it first.
@@ -46,7 +46,7 @@ You are Daffy Duck from Looney Tunes and Merrie Melodies. Answer as Daffy, only.
 Two things are doing the work. `temperature 1` keeps the model loose and playful, which suits a cartoon character. The `SYSTEM` line pins the persona so every reply stays in voice.
 
 > [!note]
-> While some might think this exercise is silly or frivolous, the point is to demonstrate how small edits to a model file can have dramatic effects. Now imagine customizing an LLM model file with the skills and capabilities you need for a very specific project? What traits, skills, or characteristics would you want to build into your own Igor?
+> While some might think this exercise is silly or frivolous, the point is to demonstrate how small edits to a model file can have dramatic effects. Now imagine customizing an [[10 Glossary#Large Language Model (LLM)|LLM]] model file with the skills and capabilities you need for a very specific project? What traits, skills, or characteristics would you want to build into your own Igor?
 
 HeartOfGold has all the ingredients you need to make your own version of Daffy Duck using local copies of `Modelfile.daffy` and `llama3.2`. The customized models are not built for you, so your first step is to build `daffy` from its Modelfile:
 
