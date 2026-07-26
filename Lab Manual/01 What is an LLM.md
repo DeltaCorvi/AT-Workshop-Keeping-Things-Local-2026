@@ -1,6 +1,6 @@
 ---
 author: Bronwen Aker
-updated: 2026-07-22
+updated: 2026-07-25
 presentation_type: Workshop
 venue: Antisyphon AI Summit
 ---
@@ -31,7 +31,7 @@ Regardless, easy access to large language models and their chatbots has populari
 
 When I talk to people about why they want to set up and customize a local LLM, the number one reason they cite is privacy. When you host your own LLM, no data ever has to leave your machine, network, or intranet. All of your sensitive files and data remain in your control.
 
-Also, hosting your own local LLM gives you many more options for customizing and fine tuning a model to suit your needs. You can create custom models using a very simple process that we will do ourselves in the Ollama lab. Other options for customization and data handling include [[10 Glossary#Retrieval-Augmented Generation (RAG)|Retrieval-Augmented Generation (RAG)]], or you can train your own model from the ground up. Be forewarned, if you choose to go that route it is a very, *very* deep rabbit hole!
+Also, hosting your own local LLM gives you many more options for customizing and fine tuning a model to suit your needs. You can create custom models using a very simple process that we will do ourselves in [[04 Model Customization with Modelfiles]]. Other options for customization and data handling include [[10 Glossary#Retrieval-Augmented Generation (RAG)|Retrieval-Augmented Generation (RAG)]], or you can train your own model from the ground up. Be forewarned, if you choose to go that route it is a very, *very* deep rabbit hole!
 
 ## Fundamental Concepts & Terms
 
@@ -78,11 +78,11 @@ Two cautions about the word "open." First, "open weights" is not the same as "op
 
 ### Parameters and Model Size
 
-A model's parameters are the weights described above, the internal values it learned during training. Model size is usually marketed as a parameter count: 7B, 13B, 33B, and so on, where B stands for billions of parameters. More parameters generally means the model captured more nuance during training, but it also means a bigger memory footprint at run time. This is why model size drives the RAM requirements you'll see in the Ollama lab; you're not just loading a program, you're loading billions of numbers into memory.
+A model's parameters are the weights described above, the internal values it learned during training. Model size is usually marketed as a parameter count: 7B, 13B, 33B, and so on, where B stands for billions of parameters. More parameters generally means the model captured more nuance during training, but it also means a bigger memory footprint at run time. This is why model size drives the RAM requirements you'll see in [[03 Working with Ollama]]; you're not just loading a program, you're loading billions of numbers into memory.
 
 ### How Models are Trained
 
-[[10 Glossary#Training|Training]] a base model means showing it a massive amount of text and repeatedly adjusting its parameters so its next-token predictions get closer to what actually appears in the data. This happens over enormous numbers of iterations and consumes serious compute, which is most of why frontier models are expensive to build. Instruction tuning, mentioned above, is a second, much smaller training pass on top of that foundation. You won't be training a model from scratch in this workshop, but knowing that training is where a model's knowledge and behavior get baked in explains why you can't just ask a model to "forget" something it learned, and why customizing a model in the next lab works by adjusting how it responds rather than retraining it.
+[[10 Glossary#Training|Training]] a base model means showing it a massive amount of text and repeatedly adjusting its parameters so its next-token predictions get closer to what actually appears in the data. This happens over enormous numbers of iterations and consumes serious compute, which is most of why frontier models are expensive to build. Instruction tuning, mentioned above, is a second, much smaller training pass on top of that foundation. You won't be training a model from scratch in this workshop, but knowing that training is where a model's knowledge and behavior get baked in explains why you can't just ask a model to "forget" something it learned, and why customizing a model in [[04 Model Customization with Modelfiles]] works by adjusting how it responds rather than retraining it.
 
 ### Tokens
 
@@ -104,7 +104,7 @@ Here's how the pieces above fit together in practice, the full journey a single 
 
 ### System Prompt
 
-A system prompt is a standing instruction that shapes how a model behaves: its persona, tone, or constraints, set once by whoever configures the harness rather than repeated by the user in every message. When you build a custom model with a [[10 Glossary#Modelfile|Modelfile]] in the Ollama lab, the SYSTEM block is exactly this: instructions the harness feeds the model before your conversation ever starts.
+A system prompt is a standing instruction that shapes how a model behaves: its persona, tone, or constraints, set once by whoever configures the harness rather than repeated by the user in every message. When you build a custom model with a [[10 Glossary#Modelfile|Modelfile]] in [[04 Model Customization with Modelfiles]], the SYSTEM block is exactly this: instructions the harness feeds the model before your conversation ever starts.
 
 ### Temperature
 

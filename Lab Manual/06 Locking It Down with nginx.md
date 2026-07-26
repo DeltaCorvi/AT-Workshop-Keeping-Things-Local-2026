@@ -1,6 +1,6 @@
 ---
 author: Bronwen Aker
-updated: 2026-07-23
+updated: 2026-07-25
 presentation_type: Workshop
 venue: Antisyphon AI Summit
 ---
@@ -25,7 +25,7 @@ That is the distinction worth sitting with: encryption is not authentication. En
 
 This is the architecture that [[05 Tailscale Mesh Networking]] drew as its endpoint. Until now the nginx box in that diagram was a promise. In this lesson you build it.
 
-![[lesson06_nginx_boundary.png]]
+![[lesson06_nginx_boundary.png|center]]
 
 The key move is that nginx, not Ollama, is now the only thing listening on HeartOfGold's tailnet address. Ollama goes back to answering on localhost only, where nothing off the machine can reach it directly. Every request from the mesh lands on nginx first, gets checked for credentials, and only then is proxied to Ollama on `127.0.0.1`.
 

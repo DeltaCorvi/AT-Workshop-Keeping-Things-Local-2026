@@ -1,6 +1,6 @@
 ---
 author: Bronwen Aker
-updated: 2026-07-22
+updated: 2026-07-25
 presentation_type: Workshop
 venue: Antisyphon AI Summit
 ---
@@ -15,7 +15,7 @@ maxLevel: 3
 
 Thank you for signing up for *Keeping Things Local: Build It, Mesh It, Lock It* at the Antisyphon AI Summit, 2026. I'm your host, Bronwen Aker, aka *Corvus*, aka *The Cybrarian*.
 
-Large language models are powerful tools, but they come with a tradeoff: send your data to OpenAI, Anthropic, Microsoft, or Google to get results. For security practitioners, penetration testers, and anyone handling sensitive or client data, that's a problem. This workshop shows you how to build a working alternative: a private AI service running entirely on hardware you control, accessible securely across your team or engagement, with authentication built in. 
+Large language models are powerful tools, but they come with a tradeoff: send your data to OpenAI, Anthropic, Microsoft, or Google to get results. For security practitioners, penetration testers, and anyone handling sensitive or client data, that's a problem. This workshop shows you how to build a working alternative: a private AI service running entirely on hardware you control, accessible securely across your team or engagement, with authentication built in.
 
 No more black boxes. No more token limits. No more sudden changes in what you can or can't do using the LLM.
 
@@ -31,22 +31,29 @@ This workshop builds a complete service layer around a local LLM. You start with
 
 ## Tools We Will Use
 
-> [!hey-claude]
-> organize the tools list below to reflect when things ae related, like Tailscale and Headscale are both encrypted mesh networking tools. also, doublecheck to see if any important tools have been left out by accident.
-
-
-* Virtual Machines (VMs):
+* **Lab environment**
+	* Two Ubuntu virtual machines: HeartOfGold, the model server, and Marvin, the desktop client
+	* VMware Workstation or Fusion for running the VMs on your own computer
 	* Cloud VMs via MetaCTF/Skillbit (details TBA)
-	* VMware on student host (Workstation or Fusion): two Linux VMs
-* Ollama: local LLM runtime, pre-installed on server VM
-* `llama3.2`: pre-loaded on the server VM to avoid bandwidth issues
-* Tailscale: encrypted mesh networking to connect the two VMs securely
-* Headscale (extracurricular, not installed): self-hosted coordination server, for running the mesh's control plane on your own hardware after the workshop
-* nginx: reverse proxy with basic authentication in front of Ollama
+* **Local models and customization**
+	* Ollama: the local model runtime and API on HeartOfGold
+	* `llama3.2`: the pre-loaded model used throughout the workshop
+	* Modelfiles: Ollama recipes that combine a base model with parameters and a system prompt
+* **Encrypted mesh networking**
+	* Tailscale: the hosted-control-plane path used in the main lab
+	* Headscale: the extracurricular, self-hosted alternative for taking control of the mesh's coordination server
+* **Access and authentication**
+	* nginx: the reverse proxy that sits between the mesh and Ollama
+	* `htpasswd`, from `apache2-utils`: the utility used to create per-client basic-auth credentials
+* **Client interfaces**
+	* `curl`: the terminal client used to call Ollama's HTTP API directly
+	* Open WebUI: the browser-based chat interface running on Marvin
+* **Workshop manual**
+	* Obsidian: the Markdown application used to read this manual and its lab-specific formatting
 
 ## Reading This Manual
 
-This manual was written as an [Obsidian](https://obsidian.md/) vault. As such, everything is written using markdown, but if you use a reader other than Obsidian, it probably won't look the way it was intended. 
+This manual was written as an [Obsidian](https://obsidian.md/) vault. As such, everything is written using markdown, but if you use a reader other than Obsidian, it probably won't look the way it was intended.
 
 In Obsidian everything renders the way it was designed to: the colored command boxes described below, the checkpoints at the end of each lesson, and the Previous and Next links at the bottom of every page. If the full styling did not load correctly on launch, enable the bundled CSS snippets under *Settings > Appearance > CSS snippets*.
 
@@ -72,7 +79,7 @@ You will be working on two machines, so every command in this manual is wrapped 
 > tailscale status
 > ```
 
-The label names the machine the command **runs on**, not the window you happen to be typing into. Those are usually the same thing, but not always. 
+The label names the machine the command **runs on**, not the window you happen to be typing into. Those are usually the same thing, but not always.
 
 From [[05 Tailscale Mesh Networking]] onward, you have the option of driving HeartOfGold over SSH from a terminal on Marvin, and once you do, a `HeartOfGold · frankie` command gets typed into a window sitting on Marvin. The label is still correct. It is telling you which machine will execute it.
 
@@ -105,7 +112,7 @@ Add a login to the service. An nginx proxy sits in front of Ollama and checks a 
 Use the finished stack. Reach the model from Marvin two ways, a terminal (curl) and a web UI (Open WebUI), and see nginx's log name each caller. Ends on what a local model is really for: sensitive data, authorized red team work, and running fully offline.
 
 ### [[08 Wrap Up and Loose Ends]]
-TBD
+Step back and look at the whole build: what each layer contributes, what running locally actually changes about who controls your data, and which decisions a real deployment still demands. Ends with where to take this next, and loose ends worth tying off before you leave.
 
 ### [[09 References]]
 Every external resource cited in the manual, gathered in one place, with links to additional goodies worth exploring on your own.

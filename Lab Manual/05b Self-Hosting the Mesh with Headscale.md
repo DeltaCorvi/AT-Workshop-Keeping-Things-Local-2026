@@ -1,6 +1,6 @@
 ---
 author: Bronwen Aker
-updated: 2026-07-23
+updated: 2026-07-25
 presentation_type: Workshop
 venue: Antisyphon AI Summit
 ---
@@ -164,14 +164,14 @@ You should see both HeartOfGold and Marvin with their `100.x.y.z` addresses. On 
 From here you are back on the lesson 05 path. Return to [[05 Tailscale Mesh Networking]] and follow "Exposing Ollama on the Mesh" and "Verifying the Connection" as written, using HeartOfGold's tailnet address from `tailscale ip -4`.
 
 > [!info] A Note on MagicDNS Names
-> Tailscale's hosted MagicDNS resolves a bare `heartofgold`. Under Headscale, names resolve as a fully qualified name using the `base_domain` you set, for example `heartofgold.magrathea.internal`. If a bare name does not resolve, use the FQDN or the tailnet IP from `tailscale ip -4`; the IP always works.
+> Tailscale's hosted MagicDNS resolves a bare `heartofgold`. Under Headscale, names resolve as a fully qualified domain name (FQDN) using the `base_domain` you set, for example `heartofgold.magrathea.internal`. If a bare name does not resolve, use the FQDN or the tailnet IP from `tailscale ip -4`; the IP always works.
 
 ## Opsec and Sovereignty
 
 Self-hosting the control plane removes the last third party from the "keep it local" promise. There is no external coordination server logging device names, keys, or connection times, because that server is now yours. On an engagement where an outbound dependency on a third-party provider is itself a risk, or where the rules of engagement forbid routing any metadata through outside infrastructure, Headscale keeps the entire mesh, control plane and all, inside the boundary you already own.
 
 > [!squirrel]- SQUIRREL! Details About DERP
-> WireGuard wants your nodes talking peer to peer, and most of the time they manage it, using STUN and some hole punching to find a path through NAT and firewalls. When they cannot, the traffic falls back to a DERP relay (Designated Encrypted Relay for Packets): a public meeting point both nodes can always reach. It stays encrypted from one node to the other, so the relay only ever forwards ciphertext it cannot read, but it is still a third party in the path.
+> WireGuard wants your nodes talking peer to peer, and most of the time they manage it, using STUN (Session Traversal Utilities for NAT) and some hole punching to find a path through NAT and firewalls. When they cannot, the traffic falls back to a DERP relay (Designated Encrypted Relay for Packets): a public meeting point both nodes can always reach. It stays encrypted from one node to the other, so the relay only ever forwards ciphertext it cannot read, but it is still a third party in the path.
 >
 > Here is the catch for a self-hosted mesh: even with your own control plane, Headscale hands clients Tailscale's public DERP map by default, so a node that cannot connect directly may relay through Tailscale's servers. On this flat lab LAN the VMs connect directly and DERP never engages, but on a messier network it can. To keep the relays inside your boundary, too, run an embedded DERP server (which needs TLS, so an HTTPS `server_url`) or point clients at your own DERP map.
 

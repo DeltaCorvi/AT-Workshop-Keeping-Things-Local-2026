@@ -1,6 +1,6 @@
 ---
 author: Bronwen Aker
-updated: 2026-07-15
+updated: 2026-07-25
 presentation_type: Workshop
 venue: Antisyphon AI Summit
 ---
@@ -46,7 +46,7 @@ You are Daffy Duck from Looney Tunes and Merrie Melodies. Answer as Daffy, only.
 Two things are doing the work. `temperature 1` keeps the model loose and playful, which suits a cartoon character. The `SYSTEM` line pins the persona so every reply stays in voice.
 
 > [!note]
-> While some might think this exercise is silly of frivolous, the point is to demonstrate how small edits to a model file can have dramatic effects. Now imaging customizing an LLM model file with the skills and capabilities you need for a very specific project? What traits, skills, or characteristics would you want to build into your own Igor? 
+> While some might think this exercise is silly or frivolous, the point is to demonstrate how small edits to a model file can have dramatic effects. Now imagine customizing an LLM model file with the skills and capabilities you need for a very specific project? What traits, skills, or characteristics would you want to build into your own Igor?
 
 HeartOfGold has all the ingredients you need to make your own version of Daffy Duck using local copies of `Modelfile.daffy` and `llama3.2`. The customized models are not built for you, so your first step is to build `daffy` from its Modelfile:
 

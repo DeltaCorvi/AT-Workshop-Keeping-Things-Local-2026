@@ -1,6 +1,6 @@
 ---
 author: Bronwen Aker
-updated: 2026-07-22
+updated: 2026-07-25
 presentation_type: Workshop
 venue: Antisyphon AI Summit
 ---
@@ -27,7 +27,7 @@ Tailscale solves this with a [[10 Glossary#Mesh VPN|mesh VPN]] built on the [[10
 
 ## Target Architecture
 
-This is the final architecture once the mesh is up and nginx (lesson 06) is in place. Before nginx exists, Marvin's two interfaces talk to Ollama directly instead of going through the basic auth layer.
+This is the final architecture once the mesh is up and nginx ([[06 Locking It Down with nginx]]) is in place. Before nginx exists, Marvin's two interfaces talk to Ollama directly instead of going through the basic auth layer.
 
 ![[heartofgold_marvin_architecture.png|center]]
 
@@ -35,7 +35,7 @@ This is the final architecture once the mesh is up and nginx (lesson 06) is in p
 
 The same properties that make Tailscale convenient here make it useful on an engagement. This is why the workshop spends time on it rather than just hardcoding an IP address.
 
-- **Persistent, encrypted access.** A Tailscale node on a foothold gives you durable access back to that host. The tunnel is encrypted, survives the host changing networks or IP, and traverses NAT without any inbound ports, so there is nothing listening on the perimeter for a defender to find.
+- **Persistent, encrypted access.** A Tailscale node on a foothold gives you durable access back to that host. The tunnel is encrypted, survives the host changing networks or IP, and traverses network address translation (NAT) without any inbound ports, so there is nothing listening on the perimeter for a defender to find.
 - **Reaching internal services.** A [[10 Glossary#Subnet Router|subnet router]] advertises an entire internal subnet into your tailnet. From your own box you can then reach hosts on the target's internal network as if you were sitting next to them, without standing up a separate tunnel for every host.
 - **Pivoting with exit nodes.** An [[10 Glossary#Exit Node|exit node]] routes your traffic out through the foothold, so your requests appear to originate from inside the target environment.
 - **Clean, scoped access.** [[10 Glossary#MagicDNS|MagicDNS]] gives every node a name instead of an IP, and [[10 Glossary#Access Control List (ACL)|access control lists]] let you scope exactly which nodes can reach which, so a shared tailnet stays controlled rather than wide open.
@@ -164,7 +164,7 @@ Everything is wired up. From Marvin, reach HeartOfGold's Ollama across the mesh:
 > curl http://heartofgold:11434/api/tags
 > ```
 
-You should get back a JSON list of the models installed on HeartOfGold, which is `llama3.2` unless you pulled others in lesson 03. That response is the proof: Marvin reached the model on HeartOfGold over the encrypted tailnet, with nothing exposed to the wider network.
+You should get back a JSON list of the models installed on HeartOfGold, which is `llama3.2` unless you pulled others in [[03 Working with Ollama]]. That response is the proof: Marvin reached the model on HeartOfGold over the encrypted tailnet, with nothing exposed to the wider network.
 
 To watch it actually generate, send a prompt:
 

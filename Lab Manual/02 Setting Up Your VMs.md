@@ -1,6 +1,6 @@
 ---
 author: Bronwen Aker
-updated: 2026-07-22
+updated: 2026-07-25
 presentation_type: Workshop
 venue: Antisyphon AI Summit
 ---
@@ -95,13 +95,13 @@ Unlike when you install a new VM from scratch, this VM has already been built an
 1. **Download the VM archive**
     - In the files you downloaded, find the archive, a single `.zip` that contains both VMs.
 2. **Install or verify extraction software**
-    - **Windows:** Install [7-Zip](https://www.7-zip.org/) if it’s not already on your system.
-    - **Mac:** Install [Keka](https://www.keka.io/) if it’s not already on your system.
+    - **Windows:** Install [7-Zip](https://www.7-zip.org/) if it's not already on your system.
+    - **Mac:** Install [Keka](https://www.keka.io/) if it's not already on your system.
 
 3. **Extract the archive**
     - Choose a location where you want the VMs to live and run from.
-        - Example: a dedicated folder such as `C:\VMs\`, or your **Desktop** if that’s easiest.
-        - You can move it later, but it’s best to pick the permanent location now.
+        - Example: a dedicated folder such as `C:\VMs\`, or your **Desktop** if that's easiest.
+        - You can move it later, but it's best to pick the permanent location now.
     - **Windows:** Right-click the `.zip` file → **7-Zip → Extract Here** (or extract to your chosen folder).
     - **Mac:** Right-click the `.zip` file → **Open With → Keka** → extract to your chosen folder.
     - You should end up with two VM folders side by side, one for **HeartOfGold** and one for **Marvin**. Keep them together under the same parent folder.
@@ -128,9 +128,9 @@ Unlike when you install a new VM from scratch, this VM has already been built an
 - **If you accidentally open the wrong file**:
     - Always select the `.vmx` file, not `.vmdk` or other files.
 
-- **If VMware asks “Did you move or copy this VM?”**:
-    - Choose **“I copied it”**.
-    - This ensures VMware assigns new IDs so the VM won’t conflict with others.
+- **If VMware asks "Did you move or copy this VM?"**:
+    - Choose **"I copied it"**.
+    - This ensures VMware assigns new IDs so the VM won't conflict with others.
 
 - **If you want to move the VM later**:
     - Shut down the VM first.

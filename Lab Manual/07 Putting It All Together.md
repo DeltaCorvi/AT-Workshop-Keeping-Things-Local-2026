@@ -1,6 +1,6 @@
 ---
 author: Bronwen Aker
-updated: 2026-07-22
+updated: 2026-07-25
 presentation_type: Workshop
 venue: Antisyphon AI Summit
 ---
@@ -11,7 +11,7 @@ minLevel: 0
 maxLevel: 3
 ```
 
-You have built the whole stack: a model on HeartOfGold, an encrypted mesh, and authentication in front of it. Now let's use it! 
+You have built the whole stack: a model on HeartOfGold, an encrypted mesh, and authentication in front of it. Now let's use it!
 
 This lesson reaches out to one served LLM model from Marvin in two different ways, then points it at the work that makes a private LLM worth the trouble.
 
@@ -20,10 +20,10 @@ This lesson reaches out to one served LLM model from Marvin in two different way
 Back in [[01 What is an LLM]] you met the idea of a harness: the software wrapped around a raw model that turns it into something you can actually talk to. HeartOfGold serves exactly one model over the mesh. Everything in this lesson is a different harness in front of that same endpoint. The terminal and the web UI are two faces on one service, not two separate installs of the model.
 
 > [!note] Prerequisites for This Lesson
-> Both clients (curl and [[10 Glossary#Open WebUI|Open WebUI]]) are already installed on Marvin. Each one reaches HeartOfGold at its tailnet address, so the mesh from [[05 Tailscale Mesh Networking]] has to be up. Because [[06 Locking It Down with nginx]] put nginx and basic auth in front of Ollama, every call now has to carry credentials, and the only credentials that work are the two you created with `htpasswd` in that lesson. 
-> 
-> * If you changed the usernames, substitute yours throughout. 
-> * Have both passwords to hand before you start. 
+> Both clients (curl and [[10 Glossary#Open WebUI|Open WebUI]]) are already installed on Marvin. Each one reaches HeartOfGold at its tailnet address, so the mesh from [[05 Tailscale Mesh Networking]] has to be up. Because [[06 Locking It Down with nginx]] put nginx and basic auth in front of Ollama, every call now has to carry credentials, and the only credentials that work are the two you created with `htpasswd` in that lesson.
+>
+> * If you changed the usernames, substitute yours throughout.
+> * Have both passwords to hand before you start.
 > * Confirm Marvin can reach the model:
 > ```shell
 > curl -u zaphod http://heartofgold:11434/api/tags
@@ -35,7 +35,7 @@ Back in [[01 What is an LLM]] you met the idea of a harness: the software wrappe
 
 ## Harness One: The Terminal
 
-The plainest harness is a single HTTP request. 
+The plainest harness is a single HTTP request.
 
 From Marvin, send a one-shot prompt to the API:
 
