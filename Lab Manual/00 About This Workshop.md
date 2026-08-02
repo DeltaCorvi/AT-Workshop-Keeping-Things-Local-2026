@@ -1,6 +1,6 @@
 ---
 author: Bronwen Aker
-updated: 2026-07-25
+updated: 2026-08-02
 presentation_type: Workshop
 venue: Antisyphon AI Summit
 ---
@@ -34,7 +34,7 @@ This workshop builds a complete service layer around a local LLM. You start with
 * **Lab environment**
 	* Two Ubuntu virtual machines: HeartOfGold, the model server, and Marvin, the desktop client
 	* VMware Workstation or Fusion for running the VMs on your own computer
-	* Cloud VMs via MetaCTF/Skillbit (details TBA)
+	* Cloud VMs via MetaCTF/Skillbit. Students will receive login information and other details via email.
 * **Local models and customization**
 	* Ollama: the local model runtime and API on HeartOfGold
 	* `llama3.2`: the pre-loaded model used throughout the workshop
