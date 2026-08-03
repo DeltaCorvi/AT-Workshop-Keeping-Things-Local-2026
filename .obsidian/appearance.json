@@ -3,12 +3,13 @@
   "baseFontSizeAction": true,
   "baseFontSize": 17,
   "enabledCssSnippets": [
+    "callout-manager-color-fix",
+    "checkpoints",
+    "code-wrap",
+    "extended-colorschemes",
     "image-alignment",
     "nav-footer",
-    "reading-view-cleanup",
-    "extended-colorschemes",
-    "code-wrap",
-    "checkpoints"
+    "reading-view-cleanup"
   ],
   "theme": "system"
 }

@@ -11,7 +11,7 @@
    ========================================================================== */
 
 .callout[data-callout="checkpoint"] {
-  --callout-color: 13, 148, 136;   /* teal */
+  --callout-color: rgb(13, 148, 136);   /* teal */
   --callout-icon: lucide-check-check;
 }
 

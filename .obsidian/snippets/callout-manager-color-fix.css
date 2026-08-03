@@ -1,0 +1,56 @@
+/* ==========================================================================
+   Callout Manager color fix (Obsidian 1.13+)
+   --------------------------------------------------------------------------
+   Obsidian 1.13 changed --callout-color to require a valid CSS color
+   (e.g. rgb(r, g, b)) instead of a bare "r, g, b" triplet. Callout Manager
+   1.1.1 still emits the old triplet format, so every callout it manages
+   (hog, marvin, bothvms, side-quest, hey-claude, squirrel, plus the
+   recolored built-in "important" and "tip") renders monochrome until
+   eth-p/obsidian-callout-manager#54 is patched.
+
+   This snippet redeclares those colors in valid CSS syntax to restore the
+   intended look. Values mirror Callout Manager's settings in
+   .obsidian/plugins/callout-manager/data.json - if you change a color
+   there, update it here too. Safe to delete once the plugin ships a fix.
+   ========================================================================== */
+
+.callout[data-callout="hog"] {
+  --callout-color: rgb(202, 138, 4) !important;
+}
+
+.callout[data-callout="marvin"] {
+  --callout-color: rgb(37, 99, 235) !important;
+}
+
+.callout[data-callout="hey-claude"] {
+  --callout-color: rgb(158, 158, 158) !important;
+}
+
+.callout[data-callout="important"] {
+  --callout-color: rgb(233, 151, 63) !important;
+}
+
+.callout[data-callout="tip"] {
+  --callout-color: rgb(208, 181, 48) !important;
+}
+
+body.theme-light .callout[data-callout="side-quest"] {
+  --callout-color: rgb(68, 207, 110) !important;
+}
+body.theme-dark .callout[data-callout="side-quest"] {
+  --callout-color: rgb(255, 255, 0) !important;
+}
+
+body.theme-light .callout[data-callout="bothvms"] {
+  --callout-color: rgb(71, 85, 105) !important;
+}
+body.theme-dark .callout[data-callout="bothvms"] {
+  --callout-color: rgb(255, 255, 255) !important;
+}
+
+body.theme-light .callout[data-callout="squirrel"] {
+  --callout-color: rgb(139, 69, 19) !important;
+}
+body.theme-dark .callout[data-callout="squirrel"] {
+  --callout-color: rgb(198, 142, 82) !important;
+}
