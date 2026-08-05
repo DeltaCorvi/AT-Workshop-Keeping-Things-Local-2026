@@ -3,8 +3,10 @@ misc_resources/
 Lab Manual/assets/*.mp4
 
 # Obsidian: share the vault config (theme, snippets, plugin settings) so the
-# manual renders as intended, but not the per-machine session layout.
-.obsidian/workspace.json
+# manual renders as intended. workspace.json is tracked on purpose, pinned
+# to open 00 in reading view for students on a fresh pull; the working copy
+# in the primary source vault is kept off the index with skip-worktree so
+# local tinkering doesn't leak into commits. Mobile layout stays local.
 .obsidian/workspace-mobile.json
 .trash/
 

@@ -19,6 +19,23 @@ This course uses two virtual machines:
 
 The connection between them is established and maintained using [[10 Glossary#Tailscale|Tailscale]], an encrypted mesh networking tool that lets two machines reach each other securely without manual VPN configuration or exposing services to the open internet. For penetration testers and red teamers, this is the same technique used to maintain persistent, encrypted access to internal services during an engagement. Here, we're using it to reach a private LLM instead.
 
+## Two Ways to Get These VMs
+
+There are two paths to HeartOfGold and Marvin, and most of this lesson only applies to one of them.
+
+### Hosted, via MetaCTF/Skillbit 
+If you registered for a hosted VM, you will receive login information and connection details by email before the workshop. Everything from "Setting Up VMware" through "Troubleshooting Tips" below does not apply to you. Skip ahead to [[#Logging into the VMs]].
+
+> [!warning] Hosted access closes after a limited window
+> Hosted VMs are available for a limited time after the workshop, not indefinitely. Check your invite email for the exact date access closes. If you want to keep working with these systems past that window, either export what you built before it closes or switch to running the VMs locally in VMware, covered below.
+
+### Local, via VMware
+If you are running the VMs yourself, the rest of this lesson walks you through downloading, importing, and starting HeartOfGold and Marvin in VMware Workstation or Fusion. Unlike the hosted path, there is no access window: once you have the files, they are yours to keep.
+
+> [!todo] Confirm the exact hosted-access window and put real numbers in the warning above.
+
+---
+
 ## Setting Up VMware
 
 This lab is set up to use VMware Workstation Pro or VMware Fusion Pro. The two VM images are provided as a zip archive ahead of the workshop, and registered students receive that download link via email.
@@ -30,8 +47,6 @@ VMware itself you download from Broadcom. Both Workstation Pro and Fusion Pro ar
 [support.broadcom.com/group/ecx/productdownloads](https://support.broadcom.com/group/ecx/productdownloads?subfamily=VMware+Workstation+Pro&freeDownloads=true)
 
 None of the software included in the VMs requires a license for personal use. Some applications do have requirements for commercial or enterprise use. You should be able to make use of the VMs and the software on them for a long time after this course is over.
-
-> [!todo] Reminder to self: the Dropbox download link is in place above. Still open: whether hosted VMs become the primary delivery path, which would make most of this section moot.
 
 ### System Requirements
 
@@ -169,7 +184,7 @@ Log in to Marvin and look at the desktop. **Obsidian** is the app that displays 
 The manual itself lives at `~/Documents/Antisyphon/AT-Workshop-Keeping-Things-Local-2026` if you ever want to find the files directly.
 
 > [!tip] Two Windows, Side by Side
-> The setup most people settle on is Obsidian on one half of Marvin's screen and a terminal on the other. From [[05 Tailscale Mesh Networking]] onward you will also have a second terminal holding an SSH session to HeartOfGold, so the manual, the Marvin shell, and the HeartOfGold shell are all visible at once.
+> The setup most people settle on is Obsidian on one half of Marvin's screen and a terminal (or two!) on the other. From [[05 Tailscale Mesh Networking]] onward you will also have a second terminal holding an SSH session to HeartOfGold, so the manual, the Marvin shell, and the HeartOfGold shell are all visible at once.
 
 ### Getting the Latest Version
 

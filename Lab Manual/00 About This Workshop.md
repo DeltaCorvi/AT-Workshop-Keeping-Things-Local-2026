@@ -1,6 +1,6 @@
 ---
 author: Bronwen Aker
-updated: 2026-08-02
+updated: 2026-08-05
 presentation_type: Workshop
 venue: Antisyphon AI Summit
 ---
@@ -15,17 +15,17 @@ maxLevel: 3
 
 Thank you for signing up for *Keeping Things Local: Build It, Mesh It, Lock It* at the Antisyphon AI Summit, 2026. I'm your host, Bronwen Aker, aka *Corvus*, aka *The Cybrarian*.
 
-Large language models are powerful tools, but they come with a tradeoff: send your data to OpenAI, Anthropic, Microsoft, or Google to get results. For security practitioners, penetration testers, and anyone handling sensitive or client data, that's a problem. This workshop shows you how to build a working alternative: a private AI service running entirely on hardware you control, accessible securely across your team or engagement, with authentication built in.
+Large language models are powerful tools, but they come with a tradeoff: send your data to OpenAI, Anthropic, Microsoft, or Google to get results. For security practitioners, penetration testers, and anyone handling sensitive or client data, that's a problem. This workshop shows you how to build a working alternative: a private AI service running in an environment you control, accessible securely across your team or engagement, with authentication built in.
 
 No more black boxes. No more token limits. No more sudden changes in what you can or can't do using the LLM.
 
-You control the entire lifecycle, from user to harness to prompt and back again. You control how many or how few dependencies you use.
+You control the entire lifecycle, from user to harness to prompt and back again, and you choose how much of the surrounding infrastructure to operate yourself.
 
 It's your data. Shouldn't it be your rules?
 
 # What to Expect
 
-This workshop builds a complete service layer around a local LLM. You start with Ollama on a single VM, then expand to a two-VM setup connected over an encrypted mesh network, then lock it down with authentication. Each section builds on the previous one.
+This workshop builds a complete service layer around a local LLM, one piece at a time and for a reason: install the model, wrap it in a private encrypted network so only your own devices can reach it, then add a login on top so simply being on that network is not enough by itself. You start with Ollama on a single VM, then expand to a two-VM setup connected over an encrypted mesh network, then lock it down with authentication. Each section builds on the previous one.
 
 ![[heartofgold_marvin_architecture.png|center]]
 
@@ -81,7 +81,7 @@ You will be working on two machines, so every command in this manual is wrapped 
 
 The label names the machine the command **runs on**, not the window you happen to be typing into. Those are usually the same thing, but not always.
 
-From [[05 Tailscale Mesh Networking]] onward, you have the option of driving HeartOfGold over SSH from a terminal on Marvin, and once you do, a `HeartOfGold · frankie` command gets typed into a window sitting on Marvin. The label is still correct. It is telling you which machine will execute it.
+Starting in [[02 Setting Up Your VMs]], you have the option of driving HeartOfGold over SSH from a terminal on Marvin instead of typing at its console directly, using its address on the local network. Once [[05 Tailscale Mesh Networking]] is up, that same connection trades the address for a name, `heartofgold`, so there is nothing left to look up. Either way, once you do this, a `HeartOfGold · frankie` command gets typed into a window sitting on Marvin. The label is still correct. It is telling you which machine will execute it.
 
 If you are ever unsure which machine a shell belongs to, the prompt tells you: `frankie@heartofgold` or `benjy@marvin`.
 
@@ -91,7 +91,7 @@ If you are ever unsure which machine a shell belongs to, the prompt tells you: `
 This page lays out a lot of foundational information about large language models: what they actually are, where they fit in AI overall, how they are built, how they work (as far as we know), why run one locally, and the core vocabulary the rest of the workshop uses, including model types, tokens, parameters, harnesses, system prompts, and temperature.
 
 ### [[02 Setting Up Your VMs]]
-Import HeartOfGold (the server) and Marvin (the client) into VMware, meet the host requirements, and log in. Ends with opening this manual in Obsidian on Marvin, desktop updater included.
+Import HeartOfGold (the server) and Marvin (the client) into VMware, meet the host requirements, and log in. Covers an early option for driving HeartOfGold over SSH instead of typing at its console, and ends with opening this manual in Obsidian on Marvin, desktop updater included.
 
 ### [[03 Working with Ollama]]
 Confirm Ollama is running on HeartOfGold, pull and run a model from the command line, and keep a quick reference of the Ollama commands you will use throughout.
@@ -100,13 +100,13 @@ Confirm Ollama is running on HeartOfGold, pull and run a model from the command 
 Turn the pre-loaded base model into custom ones with a Modelfile. The FROM, PARAMETER, and SYSTEM directives, a persona model (daffy) and a task model (quizmaker), and how temperature shapes output, all with no retraining.
 
 ### [[05 Tailscale Mesh Networking]]
-Connect Marvin to HeartOfGold over an encrypted Tailscale mesh: create a tailnet, enroll both VMs, bind Ollama to the tailnet address, and reach the model from Marvin. Includes why the technique matters on penetration testing engagements.
+So far everything has lived on one machine. This lesson reaches HeartOfGold from Marvin over [Tailscale](https://tailscale.com/), a mesh VPN that lets two devices find and reach each other over an encrypted tunnel with no firewall ports opened and nothing exposed to the internet, the same technique used to hold access to a foothold on an engagement. Create a private network of your own devices (a tailnet), enroll both VMs in it, bind Ollama to its address there, and reach the model from Marvin.
 
 ### [[05b Self-Hosting the Mesh with Headscale]]
-Extracurricular, for overachievers and for after the workshop. Replace Tailscale's hosted control plane with your own Headscale server, so the whole mesh runs on hardware you control. Same client and same downstream steps; you install Headscale yourself, since it is not on the lab VMs.
+Extracurricular, for overachievers and for after the workshop. Tailscale's mesh still depends on Tailscale's own server to coordinate which devices belong and to hand out the keys that let them trust each other. This lesson replaces that hosted piece with your own Headscale server, so the whole mesh, coordination included, runs on hardware you control. Same client and same downstream steps; you install Headscale yourself, since it is not on the lab VMs.
 
 ### [[06 Locking It Down with nginx]]
-Add a login to the service. An nginx proxy sits in front of Ollama and checks a username and password, so a spot on the mesh is no longer enough to reach the model. You set up the credentials and watch an unauthenticated call get turned away.
+The mesh keeps traffic encrypted, but it never asks who is calling: anything on the tailnet can currently reach Ollama with no credentials at all. This lesson closes that gap. An nginx proxy sits in front of Ollama and checks a username and password, so a spot on the mesh is no longer enough to reach the model. You set up the credentials and watch an unauthenticated call get turned away.
 
 ### [[07 Putting It All Together]]
 Use the finished stack. Reach the model from Marvin two ways, a terminal (curl) and a web UI (Open WebUI), and see nginx's log name each caller. Ends on what a local model is really for: sensitive data, authorized red team work, and running fully offline.
@@ -115,7 +115,7 @@ Use the finished stack. Reach the model from Marvin two ways, a terminal (curl) 
 Step back and look at the whole build: what each layer contributes, what running locally actually changes about who controls your data, and which decisions a real deployment still demands. Ends with where to take this next, and loose ends worth tying off before you leave.
 
 ### [[09 References]]
-Every external resource cited in the manual, gathered in one place, with links to additional goodies worth exploring on your own.
+Where to go deeper on anything that felt new or half-explained along the way: the tools and sources this workshop leans on, plus further reading for continuing past the lab.
 
 ### [[10 Glossary]]
 A glossary of the terms and tools used in the workshop. The first time a lesson uses a term, it links here.
