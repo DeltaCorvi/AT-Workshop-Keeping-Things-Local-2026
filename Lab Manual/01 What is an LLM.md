@@ -1,6 +1,6 @@
 ---
 author: Bronwen Aker
-updated: 2026-07-25
+updated: 2026-08-05
 presentation_type: Workshop
 venue: Antisyphon AI Summit
 ---
@@ -94,7 +94,11 @@ Compute tokens are what hosted AI services meter and bill for. When you use Chat
 
 ### Harness
 
-A raw model only predicts the next token. Everything that makes it feel like a product, a chat window, memory of the conversation so far, the ability to call tools, a command line you type into, is provided by software wrapped around the model. That wrapping is often called a "[[10 Glossary#Harness|harness]]". Ollama itself is a harness: it loads a model's weights, exposes them through a local API, and gives you a CLI to talk to it. Later in this workshop you'll put two different harnesses in front of the same served model: a terminal client and a web interface, each offering a different way to reach the same underlying model. Those two are a starting point rather than the whole catalog. Anything that can make an HTTP request to the model can be a harness, from a shell script to an editor plugin to a chat app on your phone, and once the service is running you can point as many of them at it as you like.
+A raw model only predicts the next token. Everything that makes it feel like a product, a chat window, memory of the conversation so far, the ability to call tools, a command line you type into, is provided by software wrapped around the model. That wrapping is often called a "[[10 Glossary#Harness|harness]]".
+
+Concretely, a harness is doing several jobs at once, none of which the model does for itself: it holds the conversation history and resends it with each new message, since a model has no memory between calls on its own; it attaches the [[10 Glossary#System Prompt|system prompt]] before your first message ever reaches the model; it sets runtime parameters like [[10 Glossary#Temperature|temperature]]; and it takes the model's raw token stream and renders it as something readable, whether that is a chat bubble, a terminal print, or a value handed back to another program. The diagram below walks through where each of those jobs sits in a single request.
+
+Ollama itself is a harness: it loads a model's weights, exposes them through a local API, and gives you a CLI to talk to it. Later in this workshop you'll put two different harnesses in front of the same served model: a terminal client and a web interface, each offering a different way to reach the same underlying model. Those two are a starting point rather than the whole catalog. Anything that can make an HTTP request to the model can be a harness, from a shell script to an editor plugin to a chat app on your phone, and once the service is running you can point as many of them at it as you like.
 
 #### The Life Cycle of a Prompt
 

@@ -1,6 +1,6 @@
 ---
 author: Bronwen Aker
-updated: 2026-07-25
+updated: 2026-08-05
 presentation_type: Workshop
 venue: Antisyphon AI Summit
 ---
@@ -89,9 +89,11 @@ You will see each device with its name and `100.x.y.z` address. The same list ap
 
 > [!tip] Use the Names, Not the Numbers
 > Anywhere you would type a tailnet IP, you can use the MagicDNS name instead. `heartofgold` is easier to remember and read than `100.75.98.11`.
+>
+> MagicDNS names a device after its hostname, but it will fall back to naming a device after its IP address if the hostname is not available or collides with another device, especially likely on a cloud instance. If that happened to you, `tailscale status` will show something other than `heartofgold` or `marvin`. You can fix it from the [Machines page](https://login.tailscale.com/admin/machines) in the Tailscale admin console: select the device and rename it. Use `heartofgold` and `marvin` so the rest of this manual's commands work as written, with nothing to substitute.
 
 > [!tip] Hot Tip: Drive HeartOfGold from Marvin over SSH
-> Now that both machines are on the tailnet, you no longer have to sit at HeartOfGold's headless console for the rest of this lab. From Marvin, open a terminal and connect:
+> If you used the plain-IP SSH trick from [[02 Setting Up Your VMs]], you have already been doing this. Now that both machines are on the tailnet, the connection gets a name instead of an IP address to track down, so if you are still working at HeartOfGold's headless console, you no longer have to be for the rest of this lab. From Marvin, open a terminal and connect:
 > ```shell
 > ssh frankie@heartofgold
 > ```
@@ -100,6 +102,8 @@ You will see each device with its name and `100.x.y.z` address. The same list ap
 > Two terminal windows side by side works well: one logged in to Marvin, one holding the SSH session to HeartOfGold. With the manual open on Marvin, you can copy a command straight into whichever window it belongs to.
 >
 > Once you do this, both windows are on your Marvin desktop, so watch the command boxes rather than the window. A `HeartOfGold · frankie` box means the command runs on HeartOfGold, which now means the SSH window. The shell prompt is the tiebreaker: `frankie@heartofgold` or `benjy@marvin`.
+>
+> Widen the lens on this for a second: a tailnet is not just a way to reach a served model, it is a way to get a secure shell onto any device you have enrolled, from anywhere. That is the same persistent, encrypted CLI access named above under "Why Tailscale Matters for Red Teamers," now working for you directly.
 
 ## Exposing Ollama on the Mesh
 
@@ -112,8 +116,10 @@ First, find HeartOfGold's tailnet address:
 > tailscale ip -4
 > ```
 
-> [!tip] Write This Address Down Now!
-> The command you just typed is going to return an IP address, but because HeartOfGold is headless, there is no easy copy/paste from its console. Capture the IP address before you continue: Jot the four octets on paper, or take a screenshot of the [[10 Glossary#Hypervisor|hypervisor]] console window on your host so you can read the address back while you type.
+> [!tip] Write This Address Down Now! (Unless You're Already on SSH)
+> If you're driving HeartOfGold over SSH per the Hot Tip above, you already have this beat: select and copy the address straight out of your terminal like any other text.
+>
+> If you're still working at HeartOfGold's headless console, there is no easy copy/paste there. Capture the IP address before you continue: jot the four octets on paper, or take a screenshot of the [[10 Glossary#Hypervisor|hypervisor]] console window on your host so you can read the address back while you type.
 
 Then add a [[10 Glossary#systemd|systemd]] override so Ollama binds to that address. Run:
 
@@ -172,6 +178,11 @@ To watch it actually generate, send a prompt:
 > ```shell
 > curl http://heartofgold:11434/api/generate -d '{"model":"llama3.2","prompt":"Say hello in one sentence.","stream":false}'
 > ```
+
+> [!info] What Are All Those Numbers?
+> Alongside `response`, the JSON you get back carries a handful of fields you did not ask for: `total_duration`, `load_duration`, `prompt_eval_count`, `prompt_eval_duration`, `eval_count`, `eval_duration`, and so on. These are Ollama's own performance metrics for that one request, in nanoseconds and [[10 Glossary#Token|tokens]]. `eval_count` is how many tokens the model generated, `eval_duration` is how long that took, and dividing one by the other gives you tokens per second, the number that tells you whether HeartOfGold's hardware is comfortably keeping up with a given model or straining under it. Worth watching if you pull a larger model later and want to know whether it is still usable.
+
+That is the mesh doing its job: a private model, reachable by name, answering only the device that asked.
 
 > [!checkpoint] Checkpoint
 > You have finished this lesson when all of the boxes below are ticked. Work through them in order, and if one does not hold, go back to the section it came from before moving on. Tick each box as you confirm it.

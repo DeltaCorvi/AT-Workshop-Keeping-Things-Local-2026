@@ -1,6 +1,6 @@
 ---
 author: Bronwen Aker
-updated: 2026-07-25
+updated: 2026-08-05
 presentation_type: Workshop
 venue: Antisyphon AI Summit
 ---
@@ -90,11 +90,11 @@ Open a session on HeartOfGold and follow the log:
 > sudo tail -f /var/log/nginx/access.log
 > ```
 
-Leave that running, go back to Marvin, and send one request from each harness in turn. Lines appear as you go, and the second field on each is the username nginx authenticated:
+Leave that running, go back to Marvin, and send one request from each harness in turn. Lines appear as you go, and the second field on each is the username nginx authenticated. The leading `100.x` below is a placeholder: your actual tailnet address will be different, especially on a cloud instance where it can vary from session to session, so note the real address you see rather than expecting a match:
 
 ```
-100.x.y.z - zaphod [17/Aug/2026:10:14:03 +0000] "POST /api/generate HTTP/1.1" 200 1287 "-" "curl/8.5.0"
-100.x.y.z - trillian [17/Aug/2026:10:16:47 +0000] "POST /api/chat HTTP/1.1" 200 1103 "-" "python-httpx/0.27.0"
+100.x - trillian [05/Aug/2026:21:23:56 +0000] "POST /api/chat HTTP/1.1" 200 8477 "-" "Python/3.12 aiohttp/3.13.5"
+100.x - zaphod [05/Aug/2026:21:35:46 +0000] "POST /api/generate HTTP/1.1" 200 1312 "-" "curl/8.18.0"
 ```
 
 Two harnesses, one model, and HeartOfGold knows which is which. Try one more thing: make a call with no credentials at all, and watch what the log records instead.
@@ -103,6 +103,10 @@ Two harnesses, one model, and HeartOfGold knows which is which. Try one more thi
 > ```shell
 > curl http://heartofgold:11434/api/tags
 > ```
+
+```
+100.x - - [05/Aug/2026:21:38:57 +0000] "GET /api/tags HTTP/1.1" 401 188 "-" "curl/8.18.0"
+```
 
 That line comes back with a `401` and a `-` where the username would be, because nginx had nobody to record. Press `Ctrl+C` to stop following the log.
 

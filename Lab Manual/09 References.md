@@ -1,17 +1,20 @@
 ---
 author: Bronwen Aker
-updated: 2026-07-25
+updated: 2026-08-05
 presentation_type: Workshop
 venue: Antisyphon AI Summit
 ---
 
-Every external resource cited in this manual, gathered in one place, plus a few worth reading past the lab. Each entry notes where it comes up and why you would return to it. Entries are listed alphabetically by name.
+The tools, services, and concepts this workshop leans on, gathered in one place, with enough context to go deeper on anything that felt new or half-explained along the way. Come back here when you want to keep learning past the lab. Entries are listed alphabetically by name.
 
 **[7-Zip](https://www.7-zip.org/)**
 The Windows extraction tool recommended in [[02 Setting Up Your VMs]] for unpacking the large VM archive, since the built in unzipper struggles with files that size.
 
 **[AI for Cybersecurity Professionals, with Joff Thyer and Derek Banks](https://www.antisyphontraining.com/product/ai-for-cybersecurity-professionals-with-joff-thyer-and-derek-banks/)**
 The Antisyphon course to reach for when you want the data science of how LLMs actually work, past the working knowledge [[01 What is an LLM]] gives you.
+
+**[Fabric](https://github.com/danielmiessler/fabric)**
+An open source library of prompt patterns, named in [[04 Model Customization with Modelfiles]] as a source of starting points for your own `SYSTEM` blocks. `quizmaker`'s IDENTITY/GOAL/STEPS/OUTPUT structure follows Fabric's pattern format.
 
 **[Headscale](https://headscale.net/)**
 The self-hosted coordination server from the extracurricular [[05b Self-Hosting the Mesh with Headscale]]. Source is on [GitHub](https://github.com/juanfont/headscale), and current packages are on the [releases page](https://github.com/juanfont/headscale/releases).

@@ -1,6 +1,6 @@
 ---
 author: Bronwen Aker
-updated: 2026-07-25
+updated: 2026-08-05
 presentation_type: Workshop
 venue: Antisyphon AI Summit
 ---
@@ -46,7 +46,7 @@ You are Daffy Duck from Looney Tunes and Merrie Melodies. Answer as Daffy, only.
 Two things are doing the work. `temperature 1` keeps the model loose and playful, which suits a cartoon character. The `SYSTEM` line pins the persona so every reply stays in voice.
 
 > [!note]
-> While some might think this exercise is silly or frivolous, the point is to demonstrate how small edits to a model file can have dramatic effects. Now imagine customizing an [[10 Glossary#Large Language Model (LLM)|LLM]] model file with the skills and capabilities you need for a very specific project? What traits, skills, or characteristics would you want to build into your own Igor?
+> While some might think this exercise is silly or frivolous, the point is to demonstrate how small edits to a model file can have dramatic effects. Now imagine customizing an [[10 Glossary#Large Language Model (LLM)|LLM]] model file with the skills and capabilities you need for a very specific project. What traits, skills, or characteristics would you want to build into your own Igor?
 
 HeartOfGold has all the ingredients you need to make your own version of Daffy Duck using local copies of `Modelfile.daffy` and `llama3.2`. The customized models are not built for you, so your first step is to build `daffy` from its Modelfile:
 
@@ -57,15 +57,27 @@ HeartOfGold has all the ingredients you need to make your own version of Daffy D
 
 `ollama create` reads the Modelfile, applies it to the `llama3.2` base, and registers the result as a new model named `daffy`. Because `llama3.2` is already pulled, this finishes in a second or two with nothing to download.
 
-That filename is worth a glance. Following Ollama's own convention it is `Modelfile.daffy`, not `daffy.md` or `daffy.txt`. The part after the dot is a label for humans, not an extension the system relies on. Unlike Windows, Linux does not use it to decide what a file is or how to open it, and `ollama create -f` reads the file whatever it is named. Here it simply tells you which model the recipe builds.
+Confirm it registered:
+
+> [!hog] HeartOfGold · frankie
+> ```shell
+> ollama list
+> ```
+
+`daffy` now shows up alongside `llama3.2`, as its own named model.
+
+That filename is worth a glance. We are following Ollama's own convention: put "Modelfile" first, then a dot, then the persona or identity the file builds, so `Modelfile.daffy`, not `daffy.md` or `daffy.txt`. This works cleanly on Linux because, unlike Windows, Linux does not use the file extension to decide what a file is or how to open it, and `ollama create -f` reads the file whatever it is named. Here the name is purely descriptive: it tells you which model the recipe builds, nothing more.
 
 Now run it:
 
 > [!hog] HeartOfGold · frankie
 > ```shell
 > ollama run daffy
-> >>> What's up, doc?
 > ```
+
+The cursor will "dance" for a bit, then you should see `>>>` indicating that Ollama is ready for your prompts. Start by saying hello. If the new model was built correctly, it should reply as if it was Daffy Duck. 
+
+Play with this for a bit before we move on to the next step.
 
 > [!note] Where the Modelfiles Live
 > `Modelfile.daffy` and `Modelfile.quizmaker` ship in frankie's home directory, which is where you land when you log in to HeartOfGold. The `ollama create` commands in this lesson read from the current working directory, so they work as written with no `cd` first. Confirm with `ls Mod*` if you are not sure where you are.
@@ -74,67 +86,68 @@ Now run it:
 
 Personas are the easy case. The same three directives can encode a full task, complete with steps and a required output format. `quizmaker` turns the base model into a review question generator:
 
-```
-FROM llama3.2
-
-# set the temperature to 1 [higher is more creative, lower is more coherent]
-PARAMETER temperature 1
-
-# set the system message
-SYSTEM """
-
-# IDENTITY and PURPOSE
-
-You are an expert on the subject defined in the input section provided below.
-
-# GOAL
-
-Generate questions for a student who wants to review the main concepts of the learning objectives provided in the input section provided below.
-
-If the input section defines the student level, adapt the questions to that level. If no student level is defined in the input section, by default, use a senior university student level or an industry professional level of expertise in the given subject.
-
-Do not answer the questions.
-
-Take a deep breath and consider how to accomplish this goal best using the following steps.
-
-# STEPS
-
-- Extract the subject of the input section.
-
-- Redefine your expertise on that given subject.
-
-- Extract the learning objectives of the input section.
-
-- Generate, at most, three review questions for each learning objective. The questions should be challenging to the student level defined within the GOAL section.
-
-
-# OUTPUT INSTRUCTIONS
-
-- Output in clear, human-readable Markdown.
-- Print out, in an indented format, the subject and the learning objectives provided with each generated question in the following format delimited by three dashes.
-Do not print the dashes. 
----
-Subject: 
-* Learning objective: 
-    - Question 1: {generated question 1}
-    - Answer 1: 
-
-    - Question 2: {generated question 2}
-    - Answer 2:
-    
-    - Question 3: {generated question 3}
-    - Answer 3:
----
-
-
-# INPUT:
-
-INPUT:
-
-
-
-"""
-```
+> [!note]- Modelfile.quizmaker
+> ```
+> FROM llama3.2
+>
+> # set the temperature to 1 [higher is more creative, lower is more coherent]
+> PARAMETER temperature 1
+>
+> # set the system message
+> SYSTEM """
+>
+> # IDENTITY and PURPOSE
+>
+> You are an expert on the subject defined in the input section provided below.
+>
+> # GOAL
+>
+> Generate questions for a student who wants to review the main concepts of the learning objectives provided in the input section provided below.
+>
+> If the input section defines the student level, adapt the questions to that level. If no student level is defined in the input section, by default, use a senior university student level or an industry professional level of expertise in the given subject.
+>
+> Do not answer the questions.
+>
+> Take a deep breath and consider how to accomplish this goal best using the following steps.
+>
+> # STEPS
+>
+> - Extract the subject of the input section.
+>
+> - Redefine your expertise on that given subject.
+>
+> - Extract the learning objectives of the input section.
+>
+> - Generate, at most, three review questions for each learning objective. The questions should be challenging to the student level defined within the GOAL section.
+>
+>
+> # OUTPUT INSTRUCTIONS
+>
+> - Output in clear, human-readable Markdown.
+> - Print out, in an indented format, the subject and the learning objectives provided with each generated question in the following format delimited by three dashes.
+> Do not print the dashes. 
+> ---
+> Subject: 
+> * Learning objective: 
+>     - Question 1: {generated question 1}
+>     - Answer 1: 
+>
+>     - Question 2: {generated question 2}
+>     - Answer 2:
+>     
+>     - Question 3: {generated question 3}
+>     - Answer 3:
+> ---
+>
+>
+> # INPUT:
+>
+> INPUT:
+>
+>
+>
+> """
+> ```
 
 Notice how much more the `SYSTEM` block carries here. It defines a role, a goal, explicit steps, and a strict output format. The lines after `INPUT:` are left blank on purpose. The student supplies the subject and learning objectives at run time, and the model fills in the questions.
 
@@ -150,15 +163,20 @@ Then run it:
 > [!hog] HeartOfGold · frankie
 > ```shell
 > ollama run quizmaker
-> >>> Subject: Tailscale. Learning objective: explain how a mesh VPN differs from a traditional VPN.
 > ```
 
+As before, the cursor will "dance" for a bit. Once you see `>>>`, tell the `quizmaker` model to make a quiz or two. You can specify the subject, the education level, the number of questions, etc. 
+
+Play with this a bit before we move on to the next lesson.
+
 > [!tip]
-> quizmaker ships at `temperature 1`, which is fine for variety. If you want the questions to come out more consistent and tightly scoped, lower the [[10 Glossary#Temperature|temperature]] (for example `PARAMETER temperature 0.4`) and rebuild. That is the [[01 What is an LLM]] temperature idea in practice: structured tasks often want a cooler setting than freewheeling personas do.
+> quizmaker ships at `temperature 1`, which is fine for variety. If you want the questions to come out more consistently and tightly scoped, lower the [[10 Glossary#Temperature|temperature]] (for example `PARAMETER temperature 0.4`) and rebuild. That is the [[01 What is an LLM]] temperature idea in practice: structured tasks often want a cooler setting than freewheeling personas do.
 
 ## Build Your Own
 
-Try modifying one of these. Change Daffy's character, or tighten quizmaker's output format, then rebuild with `ollama create` and run it. Because everything builds on the pre-loaded `llama3.2`, your edits take effect in seconds with nothing to download.
+Try modifying one of these. Change Daffy's character, or tighten quizmaker's output format, then rebuild with `ollama create` and run it. Because everything builds on the pre-loaded `llama3.2`, your edits take effect in seconds with nothing to download. The [[03 Working with Ollama#Common Ollama Commands|Common Ollama Commands]] table from the last lesson covers everything else you will reach for while you experiment, `ollama list`, `ollama show`, `ollama rm`, and the rest.
+
+If you want a running start on ideas rather than a blank `SYSTEM` block, [Fabric](https://github.com/danielmiessler/fabric) is an open source collection of prompt patterns for exactly this kind of task. `quizmaker`'s `IDENTITY`, `GOAL`, `STEPS`, and `OUTPUT INSTRUCTIONS` structure is a Fabric pattern; browsing its pattern library is a fast way to find a starting point for your own custom models.
 
 > [!checkpoint] Checkpoint
 > You have finished this lesson when all of the boxes below are ticked. Work through them in order, and if one does not hold, go back to the section it came from before moving on. Tick each box as you confirm it.

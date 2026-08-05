@@ -1,6 +1,6 @@
 ---
 author: Bronwen Aker
-updated: 2026-07-25
+updated: 2026-08-05
 presentation_type: Workshop
 venue: Antisyphon AI Summit
 ---
@@ -37,7 +37,7 @@ None of the software included in the VMs requires a license for personal use. So
 
 This workshop requires HeartOfGold and Marvin running at the same time, so host requirements are the sum of both VMs plus overhead for your host OS and VMware. Both VMs are set to 8 GB RAM each, which puts the VM total at 16 GB and the practical host minimum at 24 GB.
 
-- **Marvin (client, Ubuntu desktop):** 8 GB RAM, 2 processors, 20 GB disk.
+- **Marvin (client, Ubuntu desktop):** 8 GB RAM, 2 processors, 30 GB disk.
 - **HeartOfGold (server, headless):** 8 GB RAM, 2 processors, 30 GB disk.
 
 ---
@@ -47,7 +47,7 @@ This workshop requires HeartOfGold and Marvin running at the same time, so host 
 | ------------ | -------------------------------------------- | ------------------------------------------ |
 | **CPU**      | 64-bit, 4 cores (2 for Marvin + 2 for HeartOfGold), virtualization support (Intel VT-x / AMD-V) enabled in BIOS/UEFI | Quad-core+ 64-bit (Intel i5/i7 or Ryzen 5+) |
 | **RAM**      | 24 GB (8 GB Marvin + 8 GB HeartOfGold + host overhead) | 32 GB or more |
-| **Disk**     | 20 GB (Marvin) + 30 GB (HeartOfGold)           | SSD, 60 GB or more free |
+| **Disk**     | 30 GB (Marvin) + 30 GB (HeartOfGold)           | SSD, 70 GB or more free |
 | **Host OS**  | Windows 10/11 64-bit                         | Windows 10/11 64-bit                       |
 | **Display**  | 1280×800                                     | 1920×1080 or higher                        |
 | **GPU (3D)** | DirectX 11 / OpenGL 4.3 capable              | DirectX 11 capable GPU                     |
@@ -59,7 +59,7 @@ This workshop requires HeartOfGold and Marvin running at the same time, so host 
 | ------------ | ---------------------------------- | ---------------------------------------------------- |
 | **CPU**      | Quad-core Intel (64-bit) or Apple Silicon, virtualization support enabled | Quad-core Intel i5/i7/i9 or Apple Silicon (M1/M2/M3) |
 | **RAM**      | 24 GB (8 GB Marvin + 8 GB HeartOfGold + host overhead) | 32 GB or more |
-| **Disk**     | 20 GB (Marvin) + 30 GB (HeartOfGold) | SSD, 60 GB or more free        |
+| **Disk**     | 30 GB (Marvin) + 30 GB (HeartOfGold) | SSD, 70 GB or more free        |
 | **Host OS**  | macOS 12 (Monterey) or later       | Latest macOS (Ventura / Sonoma)                      |
 | **Display**  | 1280×800                           | 1920×1080 or higher                                  |
 | **GPU (3D)** | Metal-capable GPU (for Intel Macs) | Metal-capable GPU / Apple Silicon GPU                |
@@ -146,6 +146,19 @@ Unlike when you install a new VM from scratch, this VM has already been built an
 **Marvin** (client):
 - Username: `benjy`
 - Password: `LLMs4evr`
+
+> [!tip] Hot Tip: Drive HeartOfGold from Marvin over SSH
+> HeartOfGold is headless, which makes its console awkward to work in: no easy way to select text, no easy way to paste a command in from this manual. You do not have to work that way. Both VMs sit on the same virtual network, so from HeartOfGold's console, find its address:
+> ```shell
+> ip -4 addr show
+> ```
+> Look for the address on its main network interface, not `127.0.0.1`. Then, from a terminal on Marvin, connect:
+> ```shell
+> ssh frankie@<heartofgold-ip>
+> ```
+> HeartOfGold ships with its SSH server already running, so this should connect right away. From here on, any command in this manual labeled `HeartOfGold · frankie` can run inside that SSH session instead of at the console, with its output landing in Marvin's terminal where you can select and copy text normally.
+>
+> Once [[05 Tailscale Mesh Networking]] is set up later in the workshop, the same trick gets easier still: `ssh frankie@heartofgold` works by name, with no IP address to track down or write down first.
 
 ## Reading the Manual on Marvin
 
