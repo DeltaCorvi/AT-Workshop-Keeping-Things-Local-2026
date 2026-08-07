@@ -93,7 +93,7 @@ You will see each device with its name and `100.x.y.z` address. The same list ap
 > MagicDNS names a device after its hostname, but it will fall back to naming a device after its IP address if the hostname is not available or collides with another device, especially likely on a cloud instance. If that happened to you, `tailscale status` will show something other than `heartofgold` or `marvin`. You can fix it from the [Machines page](https://login.tailscale.com/admin/machines) in the Tailscale admin console: select the device and rename it. Use `heartofgold` and `marvin` so the rest of this manual's commands work as written, with nothing to substitute.
 
 > [!tip] Hot Tip: Drive HeartOfGold from Marvin over SSH
-> If you used the plain-IP SSH trick from [[02 Setting Up Your VMs]], you have already been doing this. Now that both machines are on the tailnet, the connection gets a name instead of an IP address to track down, so if you are still working at HeartOfGold's headless console, you no longer have to be for the rest of this lab. From Marvin, open a terminal and connect:
+> Now that both machines are on the tailnet, you no longer have to sit at HeartOfGold's headless console for the rest of this lab. From Marvin, open a terminal and connect:
 > ```shell
 > ssh frankie@heartofgold
 > ```

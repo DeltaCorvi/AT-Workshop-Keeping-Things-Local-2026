@@ -81,7 +81,7 @@ You will be working on two machines, so every command in this manual is wrapped 
 
 The label names the machine the command **runs on**, not the window you happen to be typing into. Those are usually the same thing, but not always.
 
-Starting in [[02 Setting Up Your VMs]], you have the option of driving HeartOfGold over SSH from a terminal on Marvin instead of typing at its console directly, using its address on the local network. Once [[05 Tailscale Mesh Networking]] is up, that same connection trades the address for a name, `heartofgold`, so there is nothing left to look up. Either way, once you do this, a `HeartOfGold · frankie` command gets typed into a window sitting on Marvin. The label is still correct. It is telling you which machine will execute it.
+From [[05 Tailscale Mesh Networking]] onward, you have the option of driving HeartOfGold over SSH from a terminal on Marvin, and once you do, a `HeartOfGold · frankie` command gets typed into a window sitting on Marvin. The label is still correct. It is telling you which machine will execute it.
 
 If you are ever unsure which machine a shell belongs to, the prompt tells you: `frankie@heartofgold` or `benjy@marvin`.
 
@@ -91,7 +91,7 @@ If you are ever unsure which machine a shell belongs to, the prompt tells you: `
 This page lays out a lot of foundational information about large language models: what they actually are, where they fit in AI overall, how they are built, how they work (as far as we know), why run one locally, and the core vocabulary the rest of the workshop uses, including model types, tokens, parameters, harnesses, system prompts, and temperature.
 
 ### [[02 Setting Up Your VMs]]
-Import HeartOfGold (the server) and Marvin (the client) into VMware, meet the host requirements, and log in. Covers an early option for driving HeartOfGold over SSH instead of typing at its console, and ends with opening this manual in Obsidian on Marvin, desktop updater included.
+Import HeartOfGold (the server) and Marvin (the client) into VMware, meet the host requirements, and log in. Ends with opening this manual in Obsidian on Marvin, desktop updater included.
 
 ### [[03 Working with Ollama]]
 Confirm Ollama is running on HeartOfGold, pull and run a model from the command line, and keep a quick reference of the Ollama commands you will use throughout.

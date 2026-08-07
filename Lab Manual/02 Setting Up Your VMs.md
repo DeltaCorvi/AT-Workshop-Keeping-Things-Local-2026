@@ -162,19 +162,6 @@ Unlike when you install a new VM from scratch, this VM has already been built an
 - Username: `benjy`
 - Password: `LLMs4evr`
 
-> [!tip] Hot Tip: Drive HeartOfGold from Marvin over SSH
-> HeartOfGold is headless, which makes its console awkward to work in: no easy way to select text, no easy way to paste a command in from this manual. You do not have to work that way. Both VMs sit on the same virtual network, so from HeartOfGold's console, find its address:
-> ```shell
-> ip -4 addr show
-> ```
-> Look for the address on its main network interface, not `127.0.0.1`. Then, from a terminal on Marvin, connect:
-> ```shell
-> ssh frankie@<heartofgold-ip>
-> ```
-> HeartOfGold ships with its SSH server already running, so this should connect right away. From here on, any command in this manual labeled `HeartOfGold · frankie` can run inside that SSH session instead of at the console, with its output landing in Marvin's terminal where you can select and copy text normally.
->
-> Once [[05 Tailscale Mesh Networking]] is set up later in the workshop, the same trick gets easier still: `ssh frankie@heartofgold` works by name, with no IP address to track down or write down first.
-
 ## Reading the Manual on Marvin
 
 You do not have to keep this manual open on your own computer. A copy of it is already on Marvin, and reading it there is easier once the labs get going, because you can copy a command straight from the manual into the terminal beside it.
