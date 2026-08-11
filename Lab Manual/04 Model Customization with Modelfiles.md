@@ -87,7 +87,9 @@ Play with this for a bit before we move on to the next step.
 
 ## Example 2: A Task Model (quizmaker)
 
-Personas are the easy case. The same three directives can encode a full task, complete with steps and a required output format. `quizmaker` turns the base model into a review question generator:
+Personas are the easy case. The same three directives can encode a full task, complete with steps and a required output format. The `quizmaker` Modelfile turns the base model into a review question generator. 
+
+*Note: Because this is a much longer prompt, we've collapsed it here. Click on the callout below to see everything the Quizmaker Modelfile should have in it.* 
 
 > [!note]- Modelfile.quizmaker
 > ```
