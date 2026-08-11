@@ -1,6 +1,6 @@
 ---
 author: Bronwen Aker
-updated: 2026-07-25
+updated: 2026-08-10
 presentation_type: Workshop
 venue: Antisyphon AI Summit
 ---
@@ -87,6 +87,9 @@ The software wrapped around a raw model that turns next-token prediction into so
 
 ### Headscale
 An open-source, self-hosted reimplementation of Tailscale's [[10 Glossary#Coordination Server|coordination server]]. Standard Tailscale clients connect to it instead of to Tailscale's cloud, which moves the last third party, the control plane, onto hardware you own. In exchange you take on running it and keeping it alive.
+
+### Heredoc
+Short for "here document," a shell feature that feeds every line between `<<'EOF'` and a closing `EOF` to a command as if they had been typed at the keyboard. Redirected into `cat`, it becomes a way to create a file using nothing but an open terminal session, which makes it the tool of choice when no file transfer channel such as scp or a shared folder is available. Quoting the delimiter as `'EOF'` tells the shell to copy the text verbatim, with no variable expansion or other interpretation.
 
 ### Hole Punching
 A technique for getting two machines behind separate NAT devices to talk directly, by having both send outbound packets at the right moment so each one's router will accept the other's reply. It is the practical half of [[10 Glossary#NAT Traversal|NAT traversal]], and when it fails the mesh falls back to relaying through [[10 Glossary#DERP (Designated Encrypted Relay for Packets)|DERP]].

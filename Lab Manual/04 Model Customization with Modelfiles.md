@@ -43,6 +43,9 @@ You are Daffy Duck from Looney Tunes and Merrie Melodies. Answer as Daffy, only.
 """
 ```
 
+> [!attention] If the Modelfiles are not on HeartOfGold, [[04a If the Modelfiles Are Missing|click here.]]
+>
+
 Two things are doing the work. `temperature 1` keeps the model loose and playful, which suits a cartoon character. The `SYSTEM` line pins the persona so every reply stays in voice.
 
 > [!note]

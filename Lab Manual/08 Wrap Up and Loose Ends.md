@@ -1,6 +1,6 @@
 ---
 author: Bronwen Aker
-updated: 2026-07-25
+updated: 2026-08-10
 presentation_type: Workshop
 venue: Antisyphon AI Summit
 ---
@@ -47,7 +47,7 @@ That is the bargain at the center of self-hosting. You gain control by taking re
 
 The data does not vanish just because it stayed local, though. Open WebUI can keep chats and uploaded files on Marvin. Shell history can keep [[10 Glossary#Prompt|prompts]] typed into `curl`. nginx records who called, when, and with what client. VM [[10 Glossary#Snapshot|snapshots]] and backups can preserve all of it long after the original conversation ends. Keeping things local means those copies remain yours to find, protect, retain, and delete.
 
-It also does not mean every dependency disappeared. Unless you completed [[05b Self-Hosting the Mesh with Headscale|lesson 05b]], Tailscale still coordinates the mesh through its hosted control plane. The model weights came from somewhere. Software updates come from somewhere. Local is not a purity test. It is a boundary you can see clearly enough to decide whether it fits.
+It also does not mean every dependency disappeared. Unless you completed [[05a Self-Hosting the Mesh with Headscale|lesson 05a]], Tailscale still coordinates the mesh through its hosted control plane. The model weights came from somewhere. Software updates come from somewhere. Local is not a purity test. It is a boundary you can see clearly enough to decide whether it fits.
 
 ## Before This Becomes a Real Service
 
@@ -109,7 +109,7 @@ The manual is enough to recreate the lab. Your data and credentials are the part
 
 The next useful step depends on what made you want a local model in the first place.
 
-If you want the whole mesh under your control, build [[05b Self-Hosting the Mesh with Headscale|the Headscale track]]. It replaces Tailscale's hosted coordination service while keeping the same client and the same WireGuard [[10 Glossary#Data Plane|data plane]].
+If you want the whole mesh under your control, build [[05a Self-Hosting the Mesh with Headscale|the Headscale track]]. It replaces Tailscale's hosted coordination service while keeping the same client and the same WireGuard [[10 Glossary#Data Plane|data plane]].
 
 If you want better answers, try models selected for your actual workload and hardware. Compare sizes, model families, and [[10 Glossary#Quantization|quantizations]] instead of treating a larger parameter count as an automatic upgrade. `llama3.2` fit this workshop. Your code, documents, language, latency target, and available memory should choose what comes after it.
 

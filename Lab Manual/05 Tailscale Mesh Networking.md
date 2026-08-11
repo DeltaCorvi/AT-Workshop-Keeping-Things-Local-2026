@@ -23,7 +23,7 @@ You have a private [[10 Glossary#Large Language Model (LLM)|LLM]] on HeartOfGold
 > Tailscale runs a [[10 Glossary#Coordination Server|coordination server]] that handles identity, key exchange, and access policy. That is the [[10 Glossary#Control Plane|control plane]]. Your actual traffic, the [[10 Glossary#Data Plane|data plane]], flows directly between your devices and is encrypted end to end. Tailscale's servers help your machines find each other, but your private traffic never passes through them.
 
 > [!tip] The Easy Button, and the Fully Local Alternative
-> We use Tailscale here because it gets you a working mesh in about two minutes, and because it earns its place on engagements. The tradeoff for this workshop is that the *control plane* is Tailscale's hosted server, a third party. When you need that control plane inside your own perimeter too, for an internal network or a stricter [[10 Glossary#Trust Boundary|trust boundary]], you self-host it with [[10 Glossary#Headscale|Headscale]] and keep the same client and the same steps. See [[05b Self-Hosting the Mesh with Headscale]].
+> We use Tailscale here because it gets you a working mesh in about two minutes, and because it earns its place on engagements. The tradeoff for this workshop is that the *control plane* is Tailscale's hosted server, a third party. When you need that control plane inside your own perimeter too, for an internal network or a stricter [[10 Glossary#Trust Boundary|trust boundary]], you self-host it with [[10 Glossary#Headscale|Headscale]] and keep the same client and the same steps. See [[05a Self-Hosting the Mesh with Headscale]].
 
 ## Target Architecture
 
@@ -41,7 +41,7 @@ The same properties that make Tailscale convenient here make it useful on an eng
 - **Clean, scoped access.** [[10 Glossary#MagicDNS|MagicDNS]] gives every node a name instead of an IP, and [[10 Glossary#Access Control List (ACL)|access control lists]] let you scope exactly which nodes can reach which, so a shared tailnet stays controlled rather than wide open.
 
 > [!warning] Authorization and Opsec
-> Use this only on engagements you are authorized for, and stay inside your rules of engagement. Remember that Tailscale's coordination server is a third party that sees device metadata such as names, keys, and connection times, even though it never sees your traffic. Factor that into your opsec. When that metadata exposure is unacceptable, self-host the control plane with [[05b Self-Hosting the Mesh with Headscale]].
+> Use this only on engagements you are authorized for, and stay inside your rules of engagement. Remember that Tailscale's coordination server is a third party that sees device metadata such as names, keys, and connection times, even though it never sees your traffic. Factor that into your opsec. When that metadata exposure is unacceptable, self-host the control plane with [[05a Self-Hosting the Mesh with Headscale]].
 
 ## Creating a Tailscale Account
 

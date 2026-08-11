@@ -17,7 +17,7 @@ The Antisyphon course to reach for when you want the data science of how LLMs ac
 An open source library of prompt patterns, named in [[04 Model Customization with Modelfiles]] as a source of starting points for your own `SYSTEM` blocks. `quizmaker`'s IDENTITY/GOAL/STEPS/OUTPUT structure follows Fabric's pattern format.
 
 **[Headscale](https://headscale.net/)**
-The self-hosted coordination server from the extracurricular [[05b Self-Hosting the Mesh with Headscale]]. Source is on [GitHub](https://github.com/juanfont/headscale), and current packages are on the [releases page](https://github.com/juanfont/headscale/releases).
+The self-hosted coordination server from the extracurricular [[05a Self-Hosting the Mesh with Headscale]]. Source is on [GitHub](https://github.com/juanfont/headscale), and current packages are on the [releases page](https://github.com/juanfont/headscale/releases).
 
 **[How Tailscale Works](https://tailscale.com/blog/how-tailscale-works)**
 Background on the control plane, the data plane, and NAT traversal, the concepts [[05 Tailscale Mesh Networking|lesson 05]] leans on when it explains why nothing gets exposed to the wider network.

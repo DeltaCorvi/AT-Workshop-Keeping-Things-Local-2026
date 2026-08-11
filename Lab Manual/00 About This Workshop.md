@@ -102,7 +102,7 @@ Turn the pre-loaded base model into custom ones with a Modelfile. The FROM, PARA
 ### [[05 Tailscale Mesh Networking]]
 So far everything has lived on one machine. This lesson reaches HeartOfGold from Marvin over [Tailscale](https://tailscale.com/), a mesh VPN that lets two devices find and reach each other over an encrypted tunnel with no firewall ports opened and nothing exposed to the internet, the same technique used to hold access to a foothold on an engagement. Create a private network of your own devices (a tailnet), enroll both VMs in it, bind Ollama to its address there, and reach the model from Marvin.
 
-### [[05b Self-Hosting the Mesh with Headscale]]
+### [[05a Self-Hosting the Mesh with Headscale]]
 Extracurricular, for overachievers and for after the workshop. Tailscale's mesh still depends on Tailscale's own server to coordinate which devices belong and to hand out the keys that let them trust each other. This lesson replaces that hosted piece with your own Headscale server, so the whole mesh, coordination included, runs on hardware you control. Same client and same downstream steps; you install Headscale yourself, since it is not on the lab VMs.
 
 ### [[06 Locking It Down with nginx]]
