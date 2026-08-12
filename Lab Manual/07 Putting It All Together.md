@@ -52,7 +52,10 @@ You get one JSON object back with the full answer in the `response` field. Drop 
 
 ## Harness Two: The Web UI
 
-[Open WebUI](https://openwebui.com/) is a full browser interface, the closest thing here to the hosted chat apps, except the model stays on your hardware. It is already installed on Marvin, so there is nothing to set up first. You start the service, create a local account, then point it across the mesh at HeartOfGold from inside the interface.
+[Open WebUI](https://openwebui.com/) is a full browser interface, the closest thing here to the hosted chat apps, except the model stays on your hardware. It should already be installed on Marvin, so there is usually nothing to set up first. You start the service, create a local account, then point it across the mesh at HeartOfGold from inside the interface.
+
+> [!attention] If `open-webui serve` comes back "command not found," [[07a If Open WebUI Is Not Installed|click here.]]
+>
 
 Start the service on Marvin:
 
