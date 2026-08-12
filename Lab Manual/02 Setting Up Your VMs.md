@@ -26,13 +26,11 @@ There are two paths to HeartOfGold and Marvin, and most of this lesson only appl
 ### Hosted, via MetaCTF/Skillbit 
 If you registered for a hosted VM, you will receive login information and connection details by email before the workshop. Everything from "Setting Up VMware" through "Troubleshooting Tips" below does not apply to you. Skip ahead to [[#Logging into the VMs]].
 
-> [!warning] Hosted access closes after a limited window
-> Hosted VMs are available for a limited time after the workshop, not indefinitely. Check your invite email for the exact date access closes. If you want to keep working with these systems past that window, either export what you built before it closes or switch to running the VMs locally in VMware, covered below.
+> [!info] Hosted access is not time limited, but your credits are
+> Your Skillbit access code is good indefinitely, so there is no deadline to worry about. What runs out is credit: the code grants 10 hours of VM time, and once that's spent, Skillbit gives you 5 free lab hours per week going forward. Need more than that in a given week? You can buy additional credits for a small fee.
 
 ### Local, via VMware
-If you are running the VMs yourself, the rest of this lesson walks you through downloading, importing, and starting HeartOfGold and Marvin in VMware Workstation or Fusion. Unlike the hosted path, there is no access window: once you have the files, they are yours to keep.
-
-> [!todo] Confirm the exact hosted-access window and put real numbers in the warning above.
+If you are running the VMs yourself, the rest of this lesson walks you through downloading, importing, and starting HeartOfGold and Marvin in VMware Workstation or Fusion. Unlike the hosted path, there is no credit system: once you have the files, they are yours to keep and run as much as you like.
 
 ---
 
@@ -189,6 +187,13 @@ You do not need to run it to start the workshop. Reach for it if you are told a 
 > [!checkpoint] Checkpoint
 > You have finished this lesson when all of the boxes below are ticked. Work through them in order, and if one does not hold, go back to the section it came from before moving on. Tick each box as you confirm it.
 >
+> **If you're using the hosted VMs:**
+> - [ ] You received your access code and connection details by email
+> - [ ] You can log in to HeartOfGold as `frankie` and to Marvin as `benjy`
+> - [ ] Both VMs are running at the same time
+> - [ ] Obsidian opens on Marvin and shows this manual
+>
+> **If you're running the VMs locally in VMware:**
 > - [ ] Both VMs extract from the archive into their own folders, side by side
 > - [ ] HeartOfGold and Marvin both power on and boot to Ubuntu in VMware
 > - [ ] You can log in to HeartOfGold as `frankie` and to Marvin as `benjy`

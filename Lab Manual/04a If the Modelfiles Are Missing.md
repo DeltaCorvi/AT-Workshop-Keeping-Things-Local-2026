@@ -1,6 +1,6 @@
 ---
 author: Bronwen Aker
-updated: 2026-08-10
+updated: 2026-08-11
 presentation_type: Workshop
 venue: Antisyphon AI Summit
 ---
@@ -26,7 +26,11 @@ If both files are listed, you do not need this page at all. Head back to [[04 Mo
 
 Each block below uses a [[10 Glossary#Heredoc|heredoc]], a shell feature that feeds every line between `<<'EOF'` and the closing `EOF` to a command as if you had typed them in by hand. Here the command is `cat` with its output redirected into a new file, so the shell writes everything in between to disk exactly as it appears. Quoting the delimiter as `'EOF'` is the important detail: it tells the shell to copy the text verbatim, with no variable expansion or any other interpretation along the way.
 
-Copy each block whole, from the `cat` line through the closing `EOF` line, and paste it into your HeartOfGold session as a single paste. While the shell is collecting the lines it shows a `>` continuation prompt instead of the usual `$`. That is the heredoc doing its job, not an error. When the shell sees the closing `EOF` it writes the file and returns you to the normal prompt.
+Copy each block whole, from the `cat` line through the closing `EOF` line, and paste it into your HeartOfGold session as a single paste. 
+
+**One keyboard gotcha:** `Ctrl+V` does not paste in HeartOfGold's terminal interface, because terminals reserve that combination for other uses. Paste with `Shift+Ctrl+V` instead. 
+
+While the shell is collecting the lines it shows a `>` continuation prompt instead of the usual `$`. That is the heredoc doing its job, not an error. When the shell sees the closing `EOF` it writes the file and returns you to the normal prompt.
 
 > [!info]
 > If you are working in a browser-based console and a long paste arrives garbled, press `Ctrl+C` to abandon the partial heredoc, then paste the whole block again.

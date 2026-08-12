@@ -8,11 +8,18 @@
    them so they land in separate cards.
 
        > [!nav]
-       > [[05 Tailscale Mesh Networking]]
+       > [[02 Setting Up Your VMs]]
        >
-       > [[07 Putting It Through Its Paces]]
+       > [[04 Model Customization with Modelfiles]]
 
-   For a first/last page, leave the unused slot as an empty quote line.
+   First and last pages have only one neighbor, so they use the single-card
+   variants instead of leaving a slot empty:
+
+       > [!navnext]
+       > [[01 What is an LLM]]
+
+       > [!navprev]
+       > [[09 References]]
    ========================================================================== */
 
 .callout[data-callout="nav"] {

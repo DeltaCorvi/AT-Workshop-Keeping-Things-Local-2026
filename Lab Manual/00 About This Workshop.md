@@ -91,7 +91,7 @@ If you are ever unsure which machine a shell belongs to, the prompt tells you: `
 This page lays out a lot of foundational information about large language models: what they actually are, where they fit in AI overall, how they are built, how they work (as far as we know), why run one locally, and the core vocabulary the rest of the workshop uses, including model types, tokens, parameters, harnesses, system prompts, and temperature.
 
 ### [[02 Setting Up Your VMs]]
-Import HeartOfGold (the server) and Marvin (the client) into VMware, meet the host requirements, and log in. Ends with opening this manual in Obsidian on Marvin, desktop updater included.
+Get access to HeartOfGold (the server) and Marvin (the client), whether hosted via MetaCTF/Skillbit or imported into VMware on your own machine, and log in. Ends with opening this manual in Obsidian on Marvin, desktop updater included.
 
 ### [[03 Working with Ollama]]
 Confirm Ollama is running on HeartOfGold, pull and run a model from the command line, and keep a quick reference of the Ollama commands you will use throughout.
