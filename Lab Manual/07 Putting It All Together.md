@@ -83,11 +83,20 @@ Do the rest in the browser:
 > [!tip] The Admin Account Is Local
 > The account you just created lives on Marvin, not in any cloud, and it is separate from both your Linux login and the nginx credentials. It controls who may use this copy of Open WebUI, while the `trillian` credential controls what Open WebUI is allowed to ask of HeartOfGold. Two different gates.
 
+> [!tip]- Skipping the Login, After the Workshop
+> If you keep using this VM afterward and the Open WebUI login becomes friction rather than a useful gate, you can turn it off, but only on a clean slate: Open WebUI refuses to disable auth once any account exists. Wipe the local data and restart with auth off:
+> ```shell
+> rm -rf ~/.open-webui
+> WEBUI_AUTH=False open-webui serve
+> ```
+> That drops the login screen entirely and logs you in as a single implicit user, no account, no password. It also removes one of the two gates described above, so it is worth doing deliberately rather than as a default. On some versions the frontend still fires a background sign-in request that fails with a harmless 400 in the console; that is a known cosmetic bug, not a sign anything is broken.
+
 You now have the same model behind a polished web front end and a raw `curl`, both reaching one endpoint on HeartOfGold.
 
-
 > [!bug]- If Open WebUI Times Out
-> nginx's default proxy timeouts are 60 seconds, so if you get a server connection error, that is probably to blame. To fix it, give the Ollama site more room to breathe.
+> nginx's default proxy timeouts are 60 seconds, and that is not nearly enough here. Both VMs ship with 8 GB of RAM, generous for a model this size, but generation itself is CPU-bound: HeartOfGold has 2 vCPUs and no GPU, so `llama3.2` pegs one full core for as long as it takes to produce a response. A short reply can take the better part of a minute; a longer, in-character answer from `daffy` or `quizmaker` can run well past nginx's default before Ollama is even done. Seeing a core sitting at 100% in `top` while a chat is in flight is expected, not a sign anything is broken. For once, RAM is not the rare and inadequate resource around here, CPU is.
+>
+> To fix it, give the Ollama site more room to breathe.
 >
 > Open the config back up on HeartOfGold:
 >
@@ -115,7 +124,6 @@ You now have the same model behind a polished web front end and a raw `curl`, bo
 > > ```
 >
 > Five minutes matches Open WebUI's own default wait, so the two stop working against each other. Try the chat again from Open WebUI once nginx has reloaded.
-
 
 > [!tip] Baking In the Connection
 > You can set the connection before the interface ever loads by putting it in the environment first: run `export OLLAMA_BASE_URL=http://trillian:<password>@heartofgold:11434` on the line before `open-webui serve`. Same URL, same credentials. Setting it in the interface instead keeps the password out of your shell history.

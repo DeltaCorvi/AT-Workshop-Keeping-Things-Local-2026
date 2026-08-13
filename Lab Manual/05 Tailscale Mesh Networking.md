@@ -100,8 +100,8 @@ If you are not sure which listed machine is which, ask each VM directly:
 
 > [!danger] IMPORTANT! I'M NOT KIDDING!!!
 > Take note of these IP addresses as you will need them. Soon.
-> 
-> I mean it! 
+>
+> I mean it!
 
 Match the address each command prints to the corresponding entry in the machines list, then rename it:
 

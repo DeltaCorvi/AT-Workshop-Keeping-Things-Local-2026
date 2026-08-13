@@ -23,7 +23,7 @@ The connection between them is established and maintained using [[10 Glossary#Ta
 
 There are two paths to HeartOfGold and Marvin, and most of this lesson only applies to one of them.
 
-### Hosted, via MetaCTF/Skillbit 
+### Hosted, via MetaCTF/Skillbit
 If you registered for a hosted VM, you will receive login information and connection details by email before the workshop. Everything from "Setting Up VMware" through "Troubleshooting Tips" below does not apply to you. Skip ahead to [[#Logging into the VMs]].
 
 > [!info] Hosted access is not time limited, but your credits are

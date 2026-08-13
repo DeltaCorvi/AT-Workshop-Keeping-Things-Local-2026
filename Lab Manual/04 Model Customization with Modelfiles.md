@@ -78,7 +78,7 @@ Now run it:
 > ollama run daffy
 > ```
 
-The cursor will "dance" for a bit, then you should see `>>>` indicating that Ollama is ready for your prompts. Start by saying hello. If the new model was built correctly, it should reply as if it was Daffy Duck. 
+The cursor will "dance" for a bit, then you should see `>>>` indicating that Ollama is ready for your prompts. Start by saying hello. If the new model was built correctly, it should reply as if it was Daffy Duck.
 
 Play with this for a bit before we move on to the next step.
 
@@ -90,9 +90,9 @@ Play with this for a bit before we move on to the next step.
 
 ## Example 2: A Task Model (quizmaker)
 
-Personas are the easy case. The same three directives can encode a full task, complete with steps and a required output format. The `quizmaker` Modelfile turns the base model into a review question generator. 
+Personas are the easy case. The same three directives can encode a full task, complete with steps and a required output format. The `quizmaker` Modelfile turns the base model into a review question generator.
 
-*Note: Because this is a much longer prompt, we've collapsed it here. Click on the callout below to see everything the Quizmaker Modelfile should have in it.* 
+*Note: Because this is a much longer prompt, we've collapsed it here. Click on the callout below to see everything the Quizmaker Modelfile should have in it.*
 
 > [!note]- Modelfile.quizmaker
 > ```
@@ -133,16 +133,16 @@ Personas are the easy case. The same three directives can encode a full task, co
 >
 > - Output in clear, human-readable Markdown.
 > - Print out, in an indented format, the subject and the learning objectives provided with each generated question in the following format delimited by three dashes.
-> Do not print the dashes. 
+> Do not print the dashes.
 > ---
-> Subject: 
-> * Learning objective: 
+> Subject:
+> * Learning objective:
 >     - Question 1: {generated question 1}
->     - Answer 1: 
+>     - Answer 1:
 >
 >     - Question 2: {generated question 2}
 >     - Answer 2:
->     
+>
 >     - Question 3: {generated question 3}
 >     - Answer 3:
 > ---
@@ -173,7 +173,7 @@ Then run it:
 > ollama run quizmaker
 > ```
 
-As before, the cursor will "dance" for a bit. Once you see `>>>`, tell the `quizmaker` model to make a quiz or two. You can specify the subject, the education level, the number of questions, etc. 
+As before, the cursor will "dance" for a bit. Once you see `>>>`, tell the `quizmaker` model to make a quiz or two. You can specify the subject, the education level, the number of questions, etc.
 
 Play with this a bit before we move on to the next lesson.
 
