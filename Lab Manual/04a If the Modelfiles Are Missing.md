@@ -124,20 +124,23 @@ Same trick, longer file. The blank lines are part of the content, so paste the b
 
 ## Verify and Return
 
-Confirm that both files landed:
+Confirm both files landed, and that the paste came through intact:
 
 > [!hog] HeartOfGold · frankie
 > ```shell
 > ls -l Mod*
+> cat ~/Modelfile.daffy
+> head -12 ~/Modelfile.quizmaker
 > ```
 
-You should see `Modelfile.daffy` and `Modelfile.quizmaker` listed, with `Modelfile.daffy` the much smaller of the two. That is everything the lesson needs. Return to [[04 Model Customization with Modelfiles#Example 1: A Persona Model (daffy)|04 Example 1: A Persona Model (daffy)]] and pick up at the `ollama create daffy` step; from there the lesson works as written.
+`ls` should list `Modelfile.daffy` and `Modelfile.quizmaker`, with `Modelfile.daffy` the much smaller of the two. `cat` should show the whole daffy file, from `FROM llama3.2` down through the closing `"""` after Daffy's line. `head` should show `FROM llama3.2`, the temperature lines, and the start of the `# IDENTITY and PURPOSE` section for quizmaker. That is everything this page needs to confirm. Return to [[04 Model Customization with Modelfiles#Example 1: A Persona Model (daffy)|04 Example 1: A Persona Model (daffy)]] and pick up at the `ollama create daffy` step; from there the lesson works as written.
 
 > [!checkpoint] Checkpoint
 > You have finished this page when all of the boxes below are ticked. Work through them in order, and if one does not hold, go back to the section it came from before moving on. Tick each box as you confirm it.
 >
 > - [ ] `ls Mod*` in frankie's home directory lists both `Modelfile.daffy` and `Modelfile.quizmaker`
-> - [ ] Back in [[04 Model Customization with Modelfiles]], `ollama create daffy -f Modelfile.daffy` builds without error
+> - [ ] `cat ~/Modelfile.daffy` shows the complete file, from `FROM llama3.2` through the closing `"""` after Daffy's system message
+> - [ ] `head -12 ~/Modelfile.quizmaker` shows `FROM llama3.2`, the temperature parameters, and the start of the `# IDENTITY and PURPOSE` section
 
 ---
 

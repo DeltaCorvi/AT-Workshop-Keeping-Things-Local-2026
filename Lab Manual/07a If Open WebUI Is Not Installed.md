@@ -73,7 +73,7 @@ You should see `/usr/local/bin/open-webui`. That is everything this page needs t
 > You have finished this page when all of the boxes below are ticked. Work through them in order, and if one does not hold, go back to the section it came from before moving on. Tick each box as you confirm it.
 >
 > - [ ] `which open-webui` prints `/usr/local/bin/open-webui`
-> - [ ] Back in [[07 Putting It All Together]], `open-webui serve` starts the service without a "command not found" error
+> - [ ] `open-webui serve` starts the service without a "command not found" error
 
 ---
 
