@@ -203,9 +203,9 @@ These are typed inside an active `ollama run` session, at the `>>>` prompt, not 
 > [!checkpoint] Checkpoint
 > You have finished this lesson when all of the boxes below are ticked. Work through them in order, and if one does not hold, go back to the section it came from before moving on. Tick each box as you confirm it.
 >
-> - [ ] On HeartOfGold, `ollama create daffy -f Modelfile.daffy` builds without error and `ollama run daffy` answers in Daffy's voice
-> - [ ] `ollama create quizmaker -f Modelfile.quizmaker` builds and `ollama run quizmaker` generates review questions from a subject and learning objective
-> - [ ] Editing a Modelfile and re-running `ollama create` produces the changed behavior
+> - [ ] You've built and talked to your own persona model, and it answers in character
+> - [ ] You've built and talked to a task model, and it generates real review questions from a subject and learning objective
+> - [ ] You've edited a Modelfile yourself and watched the model's behavior actually change
 
 ---
 

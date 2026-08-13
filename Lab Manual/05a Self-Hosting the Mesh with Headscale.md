@@ -94,6 +94,8 @@ dns:
 > [!tip] Name Your Tailnet with Intent
 > `base_domain` names the whole tailnet, and each node's name is prepended to it, so `heartofgold` becomes `heartofgold.magrathea.internal`. It is a good moment to pick a naming convention and commit to it: a themed base domain with hostnames to match keeps a growing mesh legible at a glance, in the lab and on a real engagement alike.
 
+With both settings in place, save and exit: `Ctrl+O` writes the file (press `Enter` to confirm the filename), and `Ctrl+X` leaves nano.
+
 Then start the service and confirm it is healthy:
 
 > [!hog] HeartOfGold · frankie
@@ -181,10 +183,9 @@ Self-hosting the control plane removes the last third party from the "keep it lo
 > [!checkpoint] Checkpoint
 > You have finished this lesson when all of the boxes below are ticked. Work through them in order, and if one does not hold, go back to the section it came from before moving on. Tick each box as you confirm it.
 >
-> - [ ] Headscale is running on HeartOfGold (`systemctl status headscale` reports active)
-> - [ ] `sudo headscale nodes list` shows both HeartOfGold and Marvin with `100.x.y.z` addresses
-> - [ ] `tailscale status` on each VM agrees with that list
-> - [ ] From Marvin you can reach HeartOfGold over the self-hosted mesh, by tailnet IP or FQDN
+> - [ ] Headscale is running on HeartOfGold, coordinating your own tailnet instead of Tailscale's
+> - [ ] Both VMs have enrolled and agree on who belongs to the mesh
+> - [ ] From Marvin, you've reached HeartOfGold over your own control plane
 
 ---
 

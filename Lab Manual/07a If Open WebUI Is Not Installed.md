@@ -72,8 +72,8 @@ You should see `/usr/local/bin/open-webui`. That is everything this page needs t
 > [!checkpoint] Checkpoint
 > You have finished this page when all of the boxes below are ticked. Work through them in order, and if one does not hold, go back to the section it came from before moving on. Tick each box as you confirm it.
 >
-> - [ ] `which open-webui` prints `/usr/local/bin/open-webui`
-> - [ ] `open-webui serve` starts the service without a "command not found" error
+> - [ ] Open WebUI is installed on Marvin and runnable from anywhere on the command line
+> - [ ] `open-webui serve` starts cleanly, ready to pick up where 07 left off
 
 ---
 

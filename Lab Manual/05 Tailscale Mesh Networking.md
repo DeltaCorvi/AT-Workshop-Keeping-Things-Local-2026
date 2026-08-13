@@ -109,6 +109,7 @@ Match the address each command prints to the corresponding entry in the machines
 2. Open the **···** menu next to the machine and choose **Edit machine name…**
 3. Turn off **Auto-generate from OS hostname**.
 4. Type `heartofgold` or `marvin`, whichever this machine is, and click **Update name**.
+   **THIS** is why you need those IP addresses.
 5. Repeat for the other machine.
 
 ![[tailscale-steps.png|center]]
@@ -135,17 +136,17 @@ With both machines named, here is a shortcut worth adopting right away:
 
 By default Ollama listens only on `127.0.0.1`, so nothing off the machine can reach it, including Marvin. You will bind it to HeartOfGold's tailnet address instead, so the model answers only over the encrypted mesh and not on the VM's other interfaces.
 
-First, find HeartOfGold's tailnet address:
+> [!tip]- Write This Address Down Now! (Unless You're Already on SSH)
+> The next command prints HeartOfGold's tailnet address, and you will need it in a minute. If you're driving HeartOfGold over SSH per the Hot Tip above, you already have this beat: select and copy the address straight out of your terminal like any other text.
+>
+> If you're still working at HeartOfGold's headless console, there is no easy copy/paste there. Capture the IP address as soon as it prints: jot the four octets on paper, or take a screenshot of the [[10 Glossary#Hypervisor|hypervisor]] console window on your host so you can read the address back while you type.
+
+Find HeartOfGold's tailnet address:
 
 > [!hog] HeartOfGold · frankie
 > ```shell
 > tailscale ip -4
 > ```
-
-> [!tip] Write This Address Down Now! (Unless You're Already on SSH)
-> If you're driving HeartOfGold over SSH per the Hot Tip above, you already have this beat: select and copy the address straight out of your terminal like any other text.
->
-> If you're still working at HeartOfGold's headless console, there is no easy copy/paste there. Capture the IP address before you continue: jot the four octets on paper, or take a screenshot of the [[10 Glossary#Hypervisor|hypervisor]] console window on your host so you can read the address back while you type.
 
 Then add a [[10 Glossary#systemd|systemd]] override so Ollama binds to that address. Run:
 
@@ -160,6 +161,8 @@ and add the following, replacing the address with the one `tailscale ip -4` gave
 [Service]
 Environment="OLLAMA_HOST=100.x.y.z:11434"
 ```
+
+Save and exit: `Ctrl+O` writes the file (press `Enter` to confirm the filename), and `Ctrl+X` leaves nano.
 
 Reload and restart so the change takes effect:
 
@@ -213,10 +216,10 @@ That is the mesh doing its job: a private model, reachable by name, answering on
 > [!checkpoint] Checkpoint
 > You have finished this lesson when all of the boxes below are ticked. Work through them in order, and if one does not hold, go back to the section it came from before moving on. Tick each box as you confirm it.
 >
-> - [ ] `tailscale status` on both VMs lists HeartOfGold and Marvin with `100.x.y.z` addresses
-> - [ ] The MagicDNS name `heartofgold` resolves from Marvin
-> - [ ] On HeartOfGold, `ss -tlnp | grep 11434` shows Ollama bound to the tailnet address
-> - [ ] From Marvin, `curl http://heartofgold:11434/api/tags` returns the JSON model list
+> - [ ] Both VMs have joined the tailnet and can see each other
+> - [ ] Both machines answer to their real names, `heartofgold` and `marvin`, not IPs or generic hostnames
+> - [ ] Ollama is reachable over the encrypted mesh only, not the open network
+> - [ ] From Marvin, you've reached HeartOfGold's model across the mesh
 
 ---
 

@@ -188,17 +188,14 @@ You do not need to run it to start the workshop. Reach for it if you are told a 
 > You have finished this lesson when all of the boxes below are ticked. Work through them in order, and if one does not hold, go back to the section it came from before moving on. Tick each box as you confirm it.
 >
 > **If you're using the hosted VMs:**
-> - [ ] You received your access code and connection details by email
-> - [ ] You can log in to HeartOfGold as `frankie` and to Marvin as `benjy`
-> - [ ] Both VMs are running at the same time
-> - [ ] Obsidian opens on Marvin and shows this manual
+> - [ ] Both VMs are up and reachable using the access details from your email
+> - [ ] You're logged in to HeartOfGold and Marvin, both running at the same time
+> - [ ] The lab manual is open in Obsidian on Marvin, ready to work from
 >
 > **If you're running the VMs locally in VMware:**
-> - [ ] Both VMs extract from the archive into their own folders, side by side
-> - [ ] HeartOfGold and Marvin both power on and boot to Ubuntu in VMware
-> - [ ] You can log in to HeartOfGold as `frankie` and to Marvin as `benjy`
-> - [ ] Both VMs are running at the same time
-> - [ ] Obsidian opens on Marvin and shows this manual
+> - [ ] Both VMs are imported into VMware and running side by side
+> - [ ] You're logged in to HeartOfGold and Marvin, both running at the same time
+> - [ ] The lab manual is open in Obsidian on Marvin, ready to work from
 
 ---
 

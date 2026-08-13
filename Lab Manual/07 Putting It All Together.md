@@ -64,20 +64,58 @@ Start the service on Marvin:
 > open-webui serve
 > ```
 
+The first run takes a while: Open WebUI pulls down a sizable embedding model before it is ready to serve anything. Since Marvin is a cloud VM, that download rides the provider's own bandwidth, not venue wifi, so it should not slow anyone else down.
+
+This terminal has to stay open and running for the rest of the lesson; closing it stops the service. If it is in your way, minimize the window rather than closing it.
+
 It brings up a local server on port `8080`. On its own it looks for an Ollama running on Marvin, and there is none, because Marvin is a pure client. So it starts with no models until you give it a connection. That connection is the whole point of this harness: the model lives on HeartOfGold, and you reach it over the mesh.
 
 Do the rest in the browser:
 
-1. Open Firefox on Marvin's desktop and go to `http://localhost:8080`. The first visit asks you to create a local admin account, so create one now.
+1. Open Firefox on Marvin's desktop and go to `http://localhost:8080`. The first visit asks you to create a local admin account, so create one now, and click through the announcement modals that follow.
 2. Open **Admin Settings** from your account menu, then go to **Connections**.
-3. Under **Ollama**, open **Manage** (the wrench icon), and set the connection URL to `http://trillian:<password>@heartofgold:11434`, using the `trillian` password you created in [[06 Locking It Down with nginx]]. Save it.
-4. Confirm the connection. Open WebUI shows a green indicator when HeartOfGold answers, which means nginx accepted the `trillian` credentials over the mesh. If it stays red, either the mesh is down or the password is wrong.
+3. Next to **Ollama API**, click **+** to add a new connection. Don't edit the existing `http://localhost:11434` entry, leave it as is. Set the URL on the new one to `http://trillian:<password>@heartofgold:11434`, using the `trillian` password you created in [[06 Locking It Down with nginx]].
+4. Click the refresh icon to verify the connection. A "Connection verified" message confirms nginx accepted the `trillian` credentials over the mesh. Then click **Save**.
 5. Open a new chat, pick `llama3.2` from the model selector, and send a prompt.
+
+![[webui-settings-02.png|center]]
 
 > [!tip] The Admin Account Is Local
 > The account you just created lives on Marvin, not in any cloud, and it is separate from both your Linux login and the nginx credentials. It controls who may use this copy of Open WebUI, while the `trillian` credential controls what Open WebUI is allowed to ask of HeartOfGold. Two different gates.
 
 You now have the same model behind a polished web front end and a raw `curl`, both reaching one endpoint on HeartOfGold.
+
+
+> [!bug]- If Open WebUI Times Out
+> nginx's default proxy timeouts are 60 seconds, so if you get a server connection error, that is probably to blame. To fix it, give the Ollama site more room to breathe.
+>
+> Open the config back up on HeartOfGold:
+>
+> > [!hog] HeartOfGold · frankie
+> > ```shell
+> > sudo nano /etc/nginx/sites-available/ollama
+> > ```
+>
+> Inside the `location /` block, under the existing `proxy_set_header` line, add:
+>
+> ```nginx
+> proxy_connect_timeout 300s;
+> proxy_send_timeout 300s;
+> proxy_read_timeout 300s;
+> ```
+>
+> Save and exit: `Ctrl+O` writes the file (press `Enter` to confirm the filename), and `Ctrl+X` leaves nano.
+>
+> Test the config, then reload:
+>
+> > [!hog] HeartOfGold · frankie
+> > ```shell
+> > sudo nginx -t
+> > sudo systemctl reload nginx
+> > ```
+>
+> Five minutes matches Open WebUI's own default wait, so the two stop working against each other. Try the chat again from Open WebUI once nginx has reloaded.
+
 
 > [!tip] Baking In the Connection
 > You can set the connection before the interface ever loads by putting it in the environment first: run `export OLLAMA_BASE_URL=http://trillian:<password>@heartofgold:11434` on the line before `open-webui serve`. Same URL, same credentials. Setting it in the interface instead keeps the password out of your shell history.
@@ -161,9 +199,9 @@ Run it fully offline. Once the model is pulled, none of this needs internet. In 
 > [!checkpoint] Checkpoint
 > You have finished this lesson when all of the boxes below are ticked. Work through them in order, and if one does not hold, go back to the section it came from before moving on. Tick each box as you confirm it.
 >
-> - [ ] From Marvin, the one-shot `curl -u zaphod` to `/api/generate` returns an answer
-> - [ ] Open WebUI, running as `trillian` and reached from Firefox on Marvin at `http://localhost:8080`, chats with `llama3.2`
-> - [ ] `sudo tail /var/log/nginx/access.log` on HeartOfGold shows both usernames, plus a `401` line with `-` for the unauthenticated call
+> - [ ] From Marvin, you've reached the model from the terminal, one harness among several
+> - [ ] You've reached that same model through a full web chat interface too
+> - [ ] The nginx log tells the two harnesses apart, and shows the unauthenticated call getting turned away
 
 ---
 

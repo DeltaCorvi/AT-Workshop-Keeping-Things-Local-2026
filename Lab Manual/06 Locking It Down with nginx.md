@@ -45,6 +45,8 @@ Set the bind address back to localhost:
 Environment="OLLAMA_HOST=127.0.0.1:11434"
 ```
 
+Save and exit: `Ctrl+O` writes the file (press `Enter` to confirm the filename), and `Ctrl+X` leaves nano.
+
 Reload and restart so the change takes effect:
 
 > [!hog] HeartOfGold · frankie
@@ -160,6 +162,8 @@ server {
 }
 ```
 
+Paste that in, editing `100.x.y.z` to match, then save and exit: `Ctrl+O` writes the file (press `Enter` to confirm the filename), and `Ctrl+X` leaves nano.
+
 Three things are worth reading closely here. nginx listens on the tailnet address on port `11434`, the same port clients used in lesson 05, so nothing about how Marvin calls the service changes except that it now needs credentials. The `auth_basic` lines turn on the credential check and point at the file you just created. And `proxy_pass` hands authenticated requests to Ollama on localhost, while `proxy_set_header Host localhost:11434` makes the request look local to Ollama, which keeps Ollama's own origin checks happy.
 
 > [!note] Same Port, Different Listener
@@ -254,11 +258,11 @@ The pattern in this lesson, an authenticating reverse proxy in front of a plain 
 > [!checkpoint] Checkpoint
 > You have finished this lesson when all of the boxes below are ticked. Work through them in order, and if one does not hold, go back to the section it came from before moving on. Tick each box as you confirm it.
 >
-> - [ ] `sudo cat /etc/nginx/.htpasswd` on HeartOfGold shows two lines, `zaphod` and `trillian`, and you have both passwords written down
-> - [ ] On HeartOfGold, `ss -tlnp | grep 11434` shows two listeners, `127.0.0.1:11434` owned by `ollama` and `100.x.y.z:11434` owned by `nginx`
-> - [ ] From Marvin, a credential-free `curl http://heartofgold:11434/api/tags` returns `401 Unauthorized`
-> - [ ] The same call with `curl -u zaphod` returns the JSON model list
-> - [ ] A prompt sent with `curl -u zaphod` to `/api/generate` comes back with a `response`
+> - [ ] nginx is installed and its config for the Ollama site is valid
+> - [ ] You've created separate credentials for each client, `zaphod` and `trillian`, and have both passwords written down
+> - [ ] Ollama only answers on localhost now; nginx is what the mesh reaches
+> - [ ] A caller with no credentials gets turned away
+> - [ ] A caller with the right credentials gets through, for both a one-shot prompt and a plain model listing
 
 ---
 

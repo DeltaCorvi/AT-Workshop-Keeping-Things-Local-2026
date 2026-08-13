@@ -88,9 +88,8 @@ A quick reference for the commands you will reach for most with Ollama:
 > [!checkpoint] Checkpoint
 > You have finished this lesson when all of the boxes below are ticked. Work through them in order, and if one does not hold, go back to the section it came from before moving on. Tick each box as you confirm it.
 >
-> - [ ] On HeartOfGold, `ollama list` shows the pre-loaded `llama3.2`
-> - [ ] `ollama -v` prints a version number
-> - [ ] `ollama pull <model>` downloads a model, or confirms one is already present
+> - [ ] Ollama is up and running on HeartOfGold, with `llama3.2` ready to use
+> - [ ] You've pulled a model from the command line yourself, so you know how to get or update one
 
 ---
 

@@ -138,9 +138,9 @@ Confirm both files landed, and that the paste came through intact:
 > [!checkpoint] Checkpoint
 > You have finished this page when all of the boxes below are ticked. Work through them in order, and if one does not hold, go back to the section it came from before moving on. Tick each box as you confirm it.
 >
-> - [ ] `ls Mod*` in frankie's home directory lists both `Modelfile.daffy` and `Modelfile.quizmaker`
-> - [ ] `cat ~/Modelfile.daffy` shows the complete file, from `FROM llama3.2` through the closing `"""` after Daffy's system message
-> - [ ] `head -12 ~/Modelfile.quizmaker` shows `FROM llama3.2`, the temperature parameters, and the start of the `# IDENTITY and PURPOSE` section
+> - [ ] Both Modelfiles exist in frankie's home directory again
+> - [ ] Modelfile.daffy pasted through cleanly and completely, start to finish
+> - [ ] Modelfile.quizmaker pasted through cleanly too, with its full `IDENTITY and PURPOSE` section intact
 
 ---
 
