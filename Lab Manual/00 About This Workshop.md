@@ -23,6 +23,8 @@ You control the entire lifecycle, from user to harness to prompt and back again,
 
 It's your data. Shouldn't it be your rules?
 
+*Special thanks to Brian Godfrey for QC and camaraderie, Brian "BB" King for introducing me to Obsidian and pushing for excellence, Antisyphon Training for making this workshop possible, and the BHIS community for making it worth building.*
+
 # What to Expect
 
 This workshop builds a complete service layer around a local LLM, one piece at a time and for a reason: install the model, wrap it in a private encrypted network so only your own devices can reach it, then add a login on top so simply being on that network is not enough by itself. You start with Ollama on a single VM, then expand to a two-VM setup connected over an encrypted mesh network, then lock it down with authentication. Each section builds on the previous one.

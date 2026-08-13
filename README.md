@@ -135,6 +135,16 @@ The lab manual is organized into sequential modules. Each builds on the last.
 - **[Obsidian](https://obsidian.md/)**: the intended reader for the workshop manual and its interactive checkpoints
 - **VMware Workstation / Fusion**: the current local virtualization path for the two lab VMs
 
+## Special Thanks
+
+**Brian Godfrey**, for his QC efforts and general camaraderie.
+
+**Brian "BB" King**, for introducing me to Obsidian and being a driving force for excellence in all things.
+
+**Antisyphon Training**, for making classes like this possible.
+
+**The BHIS Community**, for making this kind of project worth doing.
+
 ## License
 
 This work is licensed under the [Creative Commons Attribution 4.0 International License (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/). You are free to share and adapt this material for any purpose, including commercially, provided you give appropriate credit, link to the license, and indicate if changes were made. See [LICENSE](LICENSE) for the full text.
