@@ -82,6 +82,9 @@ The cursor will "dance" for a bit, then you should see `>>>` indicating that Oll
 
 Play with this for a bit before we move on to the next step.
 
+> [!tip] Leaving the Chat
+> Type `/bye` and press enter when you are ready to step out of the chat and back to your normal HeartOfGold prompt. It works the same way in any `ollama run` session, this one included, so it is worth remembering before you go any further.
+
 > [!note] Where the Modelfiles Live
 > `Modelfile.daffy` and `Modelfile.quizmaker` ship in frankie's home directory, which is where you land when you log in to HeartOfGold. The `ollama create` commands in this lesson read from the current working directory, so they work as written with no `cd` first. Confirm with `ls Mod*` if you are not sure where you are.
 
@@ -182,6 +185,20 @@ Play with this a bit before we move on to the next lesson.
 Try modifying one of these. Change Daffy's character, or tighten quizmaker's output format, then rebuild with `ollama create` and run it. Because everything builds on the pre-loaded `llama3.2`, your edits take effect in seconds with nothing to download. The [[03 Working with Ollama#Common Ollama Commands|Common Ollama Commands]] table from the last lesson covers everything else you will reach for while you experiment, `ollama list`, `ollama show`, `ollama rm`, and the rest.
 
 If you want a running start on ideas rather than a blank `SYSTEM` block, [Fabric](https://github.com/danielmiessler/fabric) is an open source collection of prompt patterns for exactly this kind of task. `quizmaker`'s `IDENTITY`, `GOAL`, `STEPS`, and `OUTPUT INSTRUCTIONS` structure is a Fabric pattern; browsing its pattern library is a fast way to find a starting point for your own custom models.
+
+## Five Useful In-Chat Commands
+
+These are typed inside an active `ollama run` session, at the `>>>` prompt, not at the regular shell:
+
+| Command                          | What it does                                                  |
+| --------------------------------- | --------------------------------------------------------------- |
+| `/bye`                            | Leave the chat and return to the shell prompt                  |
+| `/?`                               | List all available in-chat commands                             |
+| `/show info`                      | Show the running model's parameters and system prompt           |
+| `/set parameter temperature <value>` | Change the temperature for the rest of this session, no Modelfile edit needed |
+| `/clear`                          | Clear the conversation history and start fresh, same model, no restart |
+
+`/set parameter temperature` is worth trying against the tip above: you can test a lower temperature on `quizmaker` live, in the chat, before deciding whether it is worth rebuilding the Modelfile over.
 
 > [!checkpoint] Checkpoint
 > You have finished this lesson when all of the boxes below are ticked. Work through them in order, and if one does not hold, go back to the section it came from before moving on. Tick each box as you confirm it.

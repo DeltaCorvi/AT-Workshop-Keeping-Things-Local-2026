@@ -1,7 +1,6 @@
 [
-  "obsidian-style-settings",
-  "claude-code-ide",
-  "automatic-table-of-contents",
   "callout-manager",
-  "change-case"
+  "automatic-table-of-contents",
+  "change-case",
+  "claude-code-ide"
 ]

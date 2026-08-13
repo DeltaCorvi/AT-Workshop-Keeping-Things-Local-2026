@@ -49,8 +49,8 @@ Before a device can join a tailnet, there has to be a tailnet for it to join, an
 
 Tailscale does not run its own username and password system. It hands [[10 Glossary#Authentication|authentication]] off to an [[10 Glossary#Identity Provider|identity provider]] you already use, such as Google, Microsoft, GitHub, or Apple, over standard [[10 Glossary#OAuth|OAuth]]. You pick a provider, log in there, and Tailscale trusts that provider to vouch for who you are.
 
-> [!info] The Free Plan is Enough
-> Signing up with a personal email account, for example a `@gmail.com` address, puts you on Tailscale's free Personal plan, which covers everything in this lab, including MagicDNS, exit nodes, and access control lists. It is a real free tier, not a trial.
+> [!tip] Signing In Is Fast, and the Free Plan Is Enough
+> If you already have a GitHub account, signing in with GitHub is the quickest path through this step: one click, no new account to create. Signing up with any personal account, GitHub or otherwise, puts you on Tailscale's free Personal plan, which covers everything in this lab, including MagicDNS, exit nodes, and access control lists. It is a real free tier, not a trial.
 
 To register, go to [login.tailscale.com/start](https://login.tailscale.com/start), choose your identity provider, and authenticate. That creates your tailnet and drops you into the admin console at [login.tailscale.com](https://login.tailscale.com/), where every device you enroll will show up.
 
@@ -85,12 +85,38 @@ Confirm both machines are connected:
 > tailscale status
 > ```
 
-You will see each device with its name and `100.x.y.z` address. The same list appears in the admin console. Because MagicDNS is on by default, each machine also picks up a name, so `heartofgold` and `marvin` resolve to their tailnet addresses without you memorizing the numbers.
+You will see each device with its name and `100.x.y.z` address. The same list appears in the admin console. Because MagicDNS is on by default, each machine also picks up a name, so `heartofgold` and `marvin` resolve to their tailnet addresses without you memorizing the numbers, once those names are actually set to `heartofgold` and `marvin`.
+
+## Naming the Machines
+
+That name is not automatic. On a cloud instance, the OS hostname Tailscale picks up is usually something like `ip-10-10-128-174`, not `heartofgold` or `marvin`, so before you move on, rename both machines in the admin console.
+
+If you are not sure which listed machine is which, ask each VM directly:
+
+> [!bothvms] Both VMs
+> ```shell
+> tailscale ip -4
+> ```
+
+> [!danger] IMPORTANT! I'M NOT KIDDING!!!
+> Take note of these IP addresses as you will need them. Soon.
+> 
+> I mean it! 
+
+Match the address each command prints to the corresponding entry in the machines list, then rename it:
+
+1. Go to [console.tailscale.com/admin/machines](https://console.tailscale.com/admin/machines).
+2. Open the **···** menu next to the machine and choose **Edit machine name…**
+3. Turn off **Auto-generate from OS hostname**.
+4. Type `heartofgold` or `marvin`, whichever this machine is, and click **Update name**.
+5. Repeat for the other machine.
+
+![[tailscale-steps.png|center]]
 
 > [!tip] Use the Names, Not the Numbers
 > Anywhere you would type a tailnet IP, you can use the MagicDNS name instead. `heartofgold` is easier to remember and read than `100.75.98.11`.
->
-> MagicDNS names a device after its hostname, but it will fall back to naming a device after its IP address if the hostname is not available or collides with another device, especially likely on a cloud instance. If that happened to you, `tailscale status` will show something other than `heartofgold` or `marvin`. You can fix it from the [Machines page](https://login.tailscale.com/admin/machines) in the Tailscale admin console: select the device and rename it. Use `heartofgold` and `marvin` so the rest of this manual's commands work as written, with nothing to substitute.
+
+With both machines named, here is a shortcut worth adopting right away:
 
 > [!tip] Hot Tip: Drive HeartOfGold from Marvin over SSH
 > Now that both machines are on the tailnet, you no longer have to sit at HeartOfGold's headless console for the rest of this lab. From Marvin, open a terminal and connect:
@@ -152,7 +178,7 @@ Confirm Ollama is now listening on the tailnet address rather than [[10 Glossary
 
 You should see it bound to your `100.x.y.z` address on port `11434`, not `127.0.0.1`.
 
-> [!info] Using the Ollama CLI on the Server after This
+> [!info]- Using the Ollama CLI on the Server after This
 > Once Ollama binds to the tailnet address, its own command line on HeartOfGold can no longer reach it at the default localhost. If you want to run `ollama` on HeartOfGold itself, point it at the tailnet address first:
 > ```shell
 > export OLLAMA_HOST=$(tailscale ip -4):11434
