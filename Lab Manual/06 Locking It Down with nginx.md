@@ -94,7 +94,7 @@ Basic authentication reads usernames and hashed passwords from a file. You will 
 > | Credential | Client |
 > | --- | --- |
 > | `zaphod` | `curl`, a plain one-shot HTTP request |
-> | `trillian` | [[10 Glossary#Open WebUI|Open WebUI]], a chat client that runs in a browser |
+> | `trillian` | [[10 Glossary#Open WebUI\|Open WebUI]], a chat client that runs in a browser |
 >
 > Basic auth gives both identical access, so this is not about restricting what any one client can do. It is about being able to tell them apart in the logs and revoke them separately.
 

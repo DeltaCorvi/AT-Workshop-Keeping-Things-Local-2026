@@ -35,8 +35,8 @@ This workshop builds a complete service layer around a local LLM, one piece at a
 
 * **Lab environment**
 	* Two Ubuntu virtual machines: HeartOfGold, the model server, and Marvin, the desktop client
-	* VMware Workstation or Fusion for running the VMs on your own computer
-	* Cloud VMs via MetaCTF/Skillbit. Students will receive login information and other details via email.
+	* Cloud VMs via MetaCTF/Skillbit, the primary path for this workshop. Students receive login information and connection details through whatever channel that class uses.
+	* VMware Workstation or Fusion, for those who would rather run the VMs locally on their own computer.
 * **Local models and customization**
 	* Ollama: the local model runtime and API on HeartOfGold
 	* `llama3.2`: the pre-loaded model used throughout the workshop

@@ -24,7 +24,7 @@ The connection between them is established and maintained using [[10 Glossary#Ta
 There are two paths to HeartOfGold and Marvin, and most of this lesson only applies to one of them.
 
 ### Hosted, via MetaCTF/Skillbit
-If you registered for a hosted VM, you will receive login information and connection details by email before the workshop. Everything from "Setting Up VMware" through "Troubleshooting Tips" below does not apply to you. Skip ahead to [[#Logging into the VMs]].
+If you registered for a hosted VM, you will receive login information and connection details before the workshop, through whatever channel this class uses for that. Everything from "Setting Up VMware" through "Troubleshooting Tips" below does not apply to you. Skip ahead to [[#Logging into the VMs]].
 
 > [!info] Hosted access is not time limited, but your credits are
 > Your Skillbit access code is good indefinitely, so there is no deadline to worry about. What runs out is credit: the code grants 10 hours of VM time, and once that's spent, Skillbit gives you 5 free lab hours per week going forward. Need more than that in a given week? You can buy additional credits for a small fee.
@@ -188,7 +188,7 @@ You do not need to run it to start the workshop. Reach for it if you are told a 
 > You have finished this lesson when all of the boxes below are ticked. Work through them in order, and if one does not hold, go back to the section it came from before moving on. Tick each box as you confirm it.
 >
 > **If you're using the hosted VMs:**
-> - [ ] Both VMs are up and reachable using the access details from your email
+> - [ ] Both VMs are up and reachable using the access details you were given
 > - [ ] You're logged in to HeartOfGold and Marvin, both running at the same time
 > - [ ] The lab manual is open in Obsidian on Marvin, ready to work from
 >
